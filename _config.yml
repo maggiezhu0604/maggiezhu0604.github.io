@@ -32,7 +32,7 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+avatar: "Weixin Image_2025-11-11_115433_582.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -52,7 +52,7 @@ round-avatar: true
 social-network-links:
   email: "danz2_mag@163.com"
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: maggiezhu
+  facebook: maggie.zhu.462793
   github: maggiezhu0604
   twitter: maggiezhu64
 # patreon: DeanAttali
