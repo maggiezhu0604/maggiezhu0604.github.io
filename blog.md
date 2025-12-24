@@ -1,7 +1,7 @@
 ---
 layout: page
-title: Travel
-subtitle: I'm here to record some my travel plans and shere photos
+title: My Blog
+subtitle: This blog is a collection of those thoughts and traces: science, places I’ve lived, things I’ve learned, and memories that continue to shape how I see the world
 ---
 
-Hello World, test test!
+This blog is a collection of those thoughts and traces: science, places I’ve lived, things I’ve learned, and memories that continue to shape how I see the world.
