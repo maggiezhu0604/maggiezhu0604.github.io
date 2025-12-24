@@ -10,7 +10,7 @@
 ############################
 
 # Name of website
-title: Maggie Zhu's website
+title: Maggie Zhu
 
 # Your name to show in the footer
 author: Maggie Zhu
@@ -20,11 +20,12 @@ author: Maggie Zhu
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Magggie: "https://beautifuljekyll.com"
-#   - Learn markdown: "https://www.markdowntutorial.com/"
-  Maggie's home: "https://deanattali.com"
+  About: "aboutme"
+  Research:
+#    - Maggie‘s Writing: "https://mp.weixin.qq.com/s/tzJQQOcZvuxzp3etTM42XA"
+#    - Photograph: "https://www.markdowntutorial.com/"
+  OUTREACH:
+  BLOG: "https://mp.weixin.qq.com/s/tzJQQOcZvuxzp3etTM42XA"
 
 ################
 # --- Logo --- #
@@ -39,7 +40,7 @@ round-avatar: true
 
 # If you want to have an image logo in the top-left corner instead of having the title of the website,
 # then specify the following parameter
-#title-img: /path/to/image
+title-img: /path/to/image
 
 
 #####################################
@@ -54,7 +55,7 @@ social-network-links:
   rss: true  # remove this line if you don't want to show an RSS link at the bottom
   facebook: maggie.zhu.462793
   github: maggiezhu0604
-  twitter: maggiezhu64
+  X: maggiezhu64
   wx: https://mp.weixin.qq.com/cgi-bin/home?t=home/index&lang=en_US&token=2133763010
 # youtube: "@daattali"
 # whatsapp: 15551212
@@ -94,7 +95,7 @@ rss-description: This website is a virtual proof that I'm awesome
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: true
+  X: true
   facebook: true
   linkedin: true
   vk: false
@@ -153,7 +154,7 @@ footer-hover-col: "#0085A1"
 
 #navbar-img: "/assets/img/bgimage.png"
 #footer-img: "/assets/img/bgimage.png"
-#page-img: "/assets/img/bgimage.png"
+page-img: "/assets/img/bgimage.png"
 
 # Suggest a colour for mobile browsers to use as the browser's theme. This is only supported by a few mobile browsers.
 #mobile-theme-col: "#0085A1"
