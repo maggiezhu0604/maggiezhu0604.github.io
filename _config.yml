@@ -24,8 +24,9 @@ navbar-links:
   Research:
    - Heavy Metal:  
    - Maize Phenotyping: 
-  Travel: “travel”
+  Travel: "travel"
   BLOG: "blog"
+  Alvin: "https://wangyh1949.github.io/"
 
 ################
 # --- Logo --- #
