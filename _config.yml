@@ -22,10 +22,10 @@ author: Maggie Zhu
 navbar-links:
   About: "aboutme"
   Research:
-#    - Maggie‘s Writing: "https://mp.weixin.qq.com/s/tzJQQOcZvuxzp3etTM42XA"
-#    - Photograph: "https://www.markdowntutorial.com/"
-  OUTREACH:
-  BLOG: "https://mp.weixin.qq.com/s/tzJQQOcZvuxzp3etTM42XA"
+   - Heavy Metal:  
+   - Maize Phenotyping: 
+  Travel: “travel”
+  BLOG: "blog"
 
 ################
 # --- Logo --- #
