@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About 
-bigimg: /img/maggie.jpg 
+bigimg: "assets/img/maggie.jpg" 
 # subtitle: Why you'd want to go on a date with me
 ---
 <figure>
