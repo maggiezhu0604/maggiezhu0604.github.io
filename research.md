@@ -4,29 +4,26 @@ title: Research
 permalink: /research/
 ---
 
-My research focuses on developing and applying data-driven approaches for crop improvement. I work with breeding trial data, genomic markers, environmental covariates, and statistical models to understand crop performance across diverse conditions.
+My research interests focus on computational breeding: using quantitative genetics, genomic prediction, high-throughput phenotyping, and careful data systems to improve breeding decisions. I am especially drawn to questions where biological measurement, statistical modeling, and operational breeding constraints meet.
 
 ## Research Themes
 
-### Genomic Prediction
+### Genomic Prediction and Quantitative Genetics
 
-Genomic prediction uses genome-wide marker data to estimate breeding values and support selection decisions. I am interested in models that are accurate, interpretable, and useful in real breeding pipelines.
+I am interested in genomic selection and predictive models that help breeders identify promising material earlier and with more confidence. My long-term goal is to develop models that are not only accurate, but also practical for breeding programs with real timelines, trait priorities, and data limitations.
 
-### Genotype-by-Environment Interaction
+### High-Throughput Phenotyping
 
-Crop varieties often perform differently across locations and years. I study approaches for modeling these patterns so breeders can identify stable, adapted, and environment-specific materials.
+During a Bayer Vegetable Breeding R&D internship, I designed and delivered a proof of concept for high-throughput phenotyping in sweet corn. The project explored how image-based traits and field measurements could reduce labor bottlenecks and support earlier selection for processor-market traits.
 
-### Breeding Data Systems
+### Breeding Pipeline Analytics
 
-Field trial data can be powerful but messy. I build reproducible workflows for data cleaning, quality control, analysis, and visualization, with an emphasis on clarity and reuse.
+In pipeline enablement work, I help connect experimental protocols, phenotypic and genomic data, and breeding operations. I am interested in reproducible systems that improve data quality and make breeding analytics easier to trust, maintain, and translate into action.
 
-### Climate-Resilient Crop Improvement
+### Food Security and Sustainable Agriculture
 
-Changing environments create new challenges for breeding programs. I am interested in connecting environmental data with genetic information to better understand adaptation and stress response.
+My earlier community-engaged research on heavy metal contamination in edible plants connected plant data with food safety, urban agriculture, and public communication. This experience continues to shape my interest in crop improvement as a tool for food security and resilient agricultural systems.
 
 ## Publications
 
-Add selected publications here. A simple format works well:
-
-- Author, A., Author, B., and Your Name. Year. Title of publication. *Journal Name*.
-- Your Name, Author, C., and Author, D. Year. Title of preprint or manuscript. *Journal or Preprint Server*.
+- Publication from the edible plant heavy metal contamination project, *Plant Direct*. Full citation to be added.

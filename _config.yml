@@ -1,7 +1,7 @@
-title: "Your Name"
-author: "Your Name"
-email: "your.email@example.com"
-description: "Personal academic website in plant breeding and data science."
+title: "Maggie \"Dan\" Zhu"
+author: "Maggie \"Dan\" Zhu"
+email: "maggiezhu0604@gmail.com"
+description: "Plant breeding, quantitative genetics, genomic prediction, high-throughput phenotyping, and breeding decision support."
 
 remote_theme: daattali/beautiful-jekyll@6.0.1
 
@@ -18,10 +18,9 @@ site-css:
   - "/assets/css/custom-styles.css"
 
 social-network-links:
-  email: "your.email@example.com"
-  github: your-github
-  linkedin: your-linkedin
-  google-scholar: your-scholar-id
+  email: "maggiezhu0604@gmail.com"
+  github: maggiezhu0604
+  linkedin: maggie-dan-zhu
 
 share-links-active:
   twitter: false
@@ -29,7 +28,7 @@ share-links-active:
   linkedin: false
   vk: false
 
-url-pretty: "yourname.github.io"
+url-pretty: "maggiezhu0604.github.io"
 title-on-all-pages: true
 feed_show_excerpt: true
 remove-ads: true

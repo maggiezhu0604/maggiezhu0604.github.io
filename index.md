@@ -1,28 +1,29 @@
 ---
 layout: home
-title: Your Name
+title: Maggie "Dan" Zhu
 subtitle: Plant Breeding + Data Science
 cover-img: /assets/img/field-data-cover.svg
 ---
 
-I study how genetic diversity, environments, and data-driven models can help build more resilient crop varieties.
+I work at the intersection of plant breeding, quantitative genetics, and agricultural data science, with a focus on turning phenotypic, genomic, and pipeline data into better breeding decisions.
 
-My work brings together plant breeding, quantitative genetics, genomic prediction, and reproducible data science. I am especially interested in practical tools that help breeding programs make better decisions from field trials, genomic data, and environmental information.
+My path has moved across crop science, high-throughput phenotyping, food safety, greenhouse systems, and breeding operations. I am especially interested in computational breeding approaches that help crop improvement programs select earlier, phenotype more efficiently, and connect data products with decisions breeders can use.
 
 ## Current Focus
 
-- Genomic prediction and genotype-by-environment modeling
-- Multi-environment trial analysis for crop improvement
-- Open, reproducible workflows for breeding data
-- Data visualization for communicating biological patterns
+- Plant breeding and quantitative genetics for crop improvement
+- Genomic prediction and breeding decision support
+- High-throughput phenotyping for vegetable and field crop pipelines
+- Phenotypic, genomic, and operational data curation
+- Reproducible analytics for scalable breeding workflows
 
 ## Featured Work
 
-**Breeding Analytics Toolkit**  
-A collection of reproducible scripts and notebooks for cleaning, modeling, and visualizing plant breeding trial data.
+**Sweet Corn High-Throughput Phenotyping**
+Designed a proof of concept for image-enabled phenotyping in sweet corn, linking field measurements, R-based analysis, and breeder feedback to improve processor-market trait evaluation.
 
-**Genotype-by-Environment Prediction**  
-Modeling crop performance across environments using genomic, phenotypic, and environmental covariates.
+**Breeding Pipeline Enablement**
+Support genomic, phenotypic, and pipeline data workflows at Bayer Crop Science, working with breeders, testing teams, and operational partners to improve data quality and experimental execution.
 
-**Field Trial Data Stories**  
-Simple visual explanations that turn complex field data into practical research insights.
+**Food Safety and Plant Data Translation**
+Contributed to a community-engaged study of heavy metal contamination in edible plants, combining plant tissue data, R visualization, publication, and public workshops.

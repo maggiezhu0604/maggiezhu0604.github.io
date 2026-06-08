@@ -4,32 +4,36 @@ title: Projects
 permalink: /projects/
 ---
 
-This page highlights selected projects in plant breeding analytics, genomic prediction, and scientific computing.
+Selected projects that reflect my interests in plant breeding, high-throughput phenotyping, breeding analytics, food safety, and data-driven crop improvement.
 
-## Breeding Analytics Toolkit
+## Sweet Corn High-Throughput Phenotyping
 
-A reproducible analysis framework for multi-environment field trials.
+At Bayer Vegetable Breeding R&D, I developed a proof of concept for high-throughput phenotyping in sweet corn. The project focused on processor-market traits and explored how image-enabled phenotyping could reduce manual measurement bottlenecks.
 
-**Topics:** trial data cleaning, mixed models, visualization, reproducible reports  
-**Tools:** R, Python, Git, Quarto
+I collected approximately 800 in-field phenotyping data points, analyzed trait data in R, and worked with breeders, data scientists, operations teams, and engineers. The project considered traits such as kernel depth, ear width, cob diameter, percent recovery, percent cut kernel, and percent green weight, with an eye toward BLUPs, genomic selection training, and predictive modeling.
 
-## Genomic Prediction Workflows
+- **Themes:** high-throughput phenotyping, sweet corn breeding, image analysis, breeding decision support
+- **Tools and methods:** R, field phenotyping, image-analysis concepts, cross-functional product feedback
 
-Scripts and notebooks for training, validating, and comparing genomic prediction models.
+## Breeding Pipeline Enablement
 
-**Topics:** genomic selection, cross-validation, marker data, prediction accuracy  
-**Tools:** R, Python, rrBLUP, sommer, scikit-learn
+In my current role at Bayer Crop Science, I support experimental protocols and data workflows for breeding pipelines. My work includes drafting and reviewing protocols with breeders, testing teams, and operations partners, and assisting with tools for extracting, curating, and managing genomic, phenotypic, and pipeline data.
 
-## Environmental Covariate Modeling
+- **Themes:** breeding operations, genomic and phenotypic data, pipeline analytics, stakeholder communication
+- **Tools and methods:** protocol review, data curation, Excel, R/Python-informed analytics, cross-team collaboration
 
-Exploring how weather, soil, and location-level covariates can improve prediction of crop performance.
+## Heavy Metal Contamination and Food Safety
 
-**Topics:** GxE interaction, environmental similarity, climate resilience  
-**Tools:** tidyverse, geospatial data, machine learning
+As a UC Global Food Initiative Research Fellow, I contributed to a community-engaged project studying heavy metal contamination in edible plants from community garden and food desert contexts in San Diego and Mexico. The project analyzed more than 200 edible plant samples and translated findings into workshops for growers and community members.
 
-## Data Visualization for Breeding
+This work strengthened my interest in plant data that leads to usable decisions, especially when research affects food security, sustainability, and community health.
 
-Clean visual summaries for communicating trial performance, stability, and selection outcomes.
+- **Themes:** food safety, plant tissue data, sustainability, public communication
+- **Tools and methods:** R, data visualization, plant and soil data, workshop facilitation
 
-**Topics:** dashboards, plots, scientific communication  
-**Tools:** ggplot2, plotly, Observable, Quarto
+## Greenhouse and Plant Tissue Work
+
+At the UCSD Biology Department, I gained hands-on experience with greenhouse systems, hydroponic techniques, plant tissue processing, and ICP-MS workflows. I also searched for grant opportunities and received a $5,000 Green Initiative Fund award supporting sustainability-related work.
+
+- **Themes:** greenhouse systems, hydroponics, plant tissue processing, sustainability
+- **Tools and methods:** greenhouse maintenance, hydroponics, ICP-MS sample processing, grant development

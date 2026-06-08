@@ -38,3 +38,28 @@ blockquote {
   color: #52655b;
   border-left-color: #9bc5a7;
 }
+
+main p,
+.container-md p {
+  line-height: 1.7;
+}
+
+main li,
+.container-md li {
+  margin-bottom: 0.35rem;
+}
+
+@media (max-width: 576px) {
+  .intro-header .page-heading h1,
+  .intro-header .site-heading h1 {
+    font-size: 2.35rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
