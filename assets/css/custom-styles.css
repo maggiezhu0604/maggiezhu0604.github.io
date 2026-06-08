@@ -1,0 +1,40 @@
+body {
+  color: #25312b;
+}
+
+.navbar-custom {
+  border-bottom: 1px solid #e5ece7;
+}
+
+.intro-header .page-heading h1,
+.intro-header .site-heading h1 {
+  letter-spacing: 0;
+}
+
+.intro-header .page-heading .page-subheading,
+.intro-header .site-heading .site-heading-subtitle {
+  font-weight: 400;
+}
+
+h2,
+h3 {
+  color: #1f4d3a;
+}
+
+a {
+  color: #2c6e49;
+}
+
+a:hover,
+a:focus {
+  color: #1b4332;
+}
+
+.post-preview {
+  border-bottom: 1px solid #edf2ef;
+}
+
+blockquote {
+  color: #52655b;
+  border-left-color: #9bc5a7;
+}

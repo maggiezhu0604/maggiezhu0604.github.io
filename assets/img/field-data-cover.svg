@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Abstract crop field and data visualization">
+  <rect width="1600" height="900" fill="#f7faf7"/>
+  <rect y="560" width="1600" height="340" fill="#dcead9"/>
+  <path d="M0 620c210-86 415-99 620-39 178 53 365 47 561-18 151-50 291-58 419-24v361H0z" fill="#b8d4b6"/>
+  <path d="M0 695c228-54 422-55 582-4 192 62 384 63 577 5 175-52 322-56 441-12v216H0z" fill="#86b887"/>
+  <g stroke="#f7faf7" stroke-width="3" opacity=".55">
+    <path d="M70 900L470 575"/>
+    <path d="M215 900L570 577"/>
+    <path d="M365 900L670 584"/>
+    <path d="M520 900L790 583"/>
+    <path d="M690 900L935 570"/>
+    <path d="M850 900l260-340"/>
+    <path d="M1020 900l310-358"/>
+    <path d="M1195 900l355-350"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M955 230c64-70 125-35 183-92 26-26 42-58 50-98 55 89 49 170-17 244-69 77-152 74-216-54z" fill="#e4f0e2" stroke="#6aa36f" stroke-width="5"/>
+    <path d="M993 250c39-58 94-98 165-120" stroke="#6aa36f" stroke-width="5"/>
+    <path d="M1074 180c-7 27-8 53-3 78" stroke="#6aa36f" stroke-width="4"/>
+    <path d="M1121 149c-3 25-1 48 7 69" stroke="#6aa36f" stroke-width="4"/>
+  </g>
+  <g transform="translate(270 150)">
+    <rect x="0" y="0" width="455" height="265" rx="8" fill="#ffffff" opacity=".92"/>
+    <g stroke="#d7e5da" stroke-width="2">
+      <path d="M48 42v174h350"/>
+      <path d="M48 174h350"/>
+      <path d="M48 132h350"/>
+      <path d="M48 90h350"/>
+    </g>
+    <polyline points="58,188 115,151 172,164 229,95 286,118 343,70 390,86" fill="none" stroke="#2f6f4e" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#2f6f4e">
+      <circle cx="58" cy="188" r="7"/>
+      <circle cx="115" cy="151" r="7"/>
+      <circle cx="172" cy="164" r="7"/>
+      <circle cx="229" cy="95" r="7"/>
+      <circle cx="286" cy="118" r="7"/>
+      <circle cx="343" cy="70" r="7"/>
+      <circle cx="390" cy="86" r="7"/>
+    </g>
+    <g fill="#8fb996">
+      <rect x="76" y="218" width="36" height="18"/>
+      <rect x="134" y="205" width="36" height="31"/>
+      <rect x="192" y="194" width="36" height="42"/>
+      <rect x="250" y="177" width="36" height="59"/>
+      <rect x="308" y="160" width="36" height="76"/>
+    </g>
+  </g>
+</svg>
