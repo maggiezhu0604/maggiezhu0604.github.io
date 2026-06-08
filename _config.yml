@@ -12,7 +12,7 @@ navbar-links:
   CV: "cv"
   Contact: "contact"
 
-avatar: "/assets/img/profile-placeholder.svg"
+avatar: "/assets/img/profile.jpg"
 round-avatar: true
 site-css:
   - "/assets/css/custom-styles.css"
