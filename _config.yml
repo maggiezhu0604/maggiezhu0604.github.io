@@ -6,11 +6,11 @@ description: "Plant breeding, quantitative genetics, genomic prediction, high-th
 remote_theme: daattali/beautiful-jekyll@6.0.1
 
 navbar-links:
-  About: "about"
-  Research: "research"
-  Projects: "projects"
-  CV: "cv"
-  Contact: "contact"
+  About: "#about"
+  Project: "#project"
+  Outreach: "#outreach"
+  Blog: "#blog"
+  Contact: "#contact"
 
 avatar: "/assets/img/profile.jpg"
 round-avatar: true

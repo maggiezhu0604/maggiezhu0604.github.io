@@ -2,6 +2,10 @@ body {
   color: #25312b;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .navbar-custom {
   border-bottom: 1px solid #e5ece7;
 }
@@ -49,6 +53,24 @@ main li,
   margin-bottom: 0.35rem;
 }
 
+.site-section {
+  border-bottom: 1px solid #edf2ef;
+  padding: 2.25rem 0;
+  scroll-margin-top: 5.5rem;
+}
+
+.site-section:first-of-type {
+  padding-top: 0;
+}
+
+.site-section:last-of-type {
+  border-bottom: 0;
+}
+
+.site-section h2 {
+  margin-top: 0;
+}
+
 @media (max-width: 576px) {
   .intro-header .page-heading h1,
   .intro-header .site-heading h1 {
@@ -61,5 +83,10 @@ main li,
 
   h3 {
     font-size: 1.25rem;
+  }
+
+  .site-section {
+    padding: 1.75rem 0;
+    scroll-margin-top: 4.75rem;
   }
 }
