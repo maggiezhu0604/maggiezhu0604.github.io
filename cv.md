@@ -8,28 +8,34 @@ This web CV summarizes my academic preparation, research experience, projects, s
 
 ## Education
 
+**Georgia Institute of Technology**
+M.S. in Analytics, January 2026-January 2028
+
+Relevant coursework includes statistical modeling, machine learning, regression analysis, data mining, optimization, and computational data analytics.
+
 **University of Illinois Urbana-Champaign**
-M.S. in Agricultural Production, Crop Science, December 2021
+M.S. in Agricultural Production, Crop Science, August 2020-December 2021
 
 **University of California, San Diego**
-B.S. in Environmental Systems, Ecology, Behavior and Evolution, May 2020
+B.S. in Environmental Systems, Ecology, Behavior and Evolution, August 2016-May 2020
 
 ## Research Experience
 
 **Pipeline Enablement Associate, Bayer Crop Science**
-DeForest, Wisconsin, July 2022-Present
+DeForest, Wisconsin, July 2022-March 2025
 
-- Support breeding pipeline execution through experimental protocol drafting and review.
-- Collaborate with breeders, testing teams, operations partners, and data-focused colleagues.
-- Assist with tools and workflows for extracting, curating, and managing genomic, phenotypic, and pipeline data.
-- Build stakeholder relationships across teams that depend on reliable breeding data.
+- Supported breeding pipeline decisions through integration and curation of phenotypic, genomic, seed, trial, and pipeline datasets.
+- Coordinated information across international melon, cucumber, and watermelon breeding programs.
+- Supported crossing plans, seed production, trial execution, and data integration for data-driven breeding decisions.
+- Collaborated with breeders, testing teams, operations partners, and data-focused colleagues.
 
 **Vegetable R&D Breeding Intern, Bayer Crop Science**
 June 2021-September 2021
 
-- Designed and delivered a proof of concept for high-throughput phenotyping in sweet corn.
-- Collected approximately 800 in-field phenotyping data points and analyzed data in R.
-- Explored image-based traits and phenotyping workflows for processor-market sweet corn.
+- Designed and delivered a proof of concept for high-throughput phenotyping in a field-based breeding program.
+- Collected and curated more than 800 field phenotyping observations and analyzed experimental data in R.
+- Explored image-based traits and phenotyping workflows for breeding efficiency and improved data collection.
+- Participated in field trial execution, leaf tissue sampling, controlled pollination, and silk note collection.
 - Collaborated with breeders, data scientists, operations teams, and engineers.
 - Co-led two global feedback meetings for digital phenotyping platform development.
 
@@ -50,25 +56,26 @@ September 2018-June 2020
 
 ## Projects
 
-**Sweet Corn High-Throughput Phenotyping**
-Proof of concept for scalable sweet corn phenotyping with field measurements, image-analysis concepts, R-based analysis, and breeder feedback.
+**High-Throughput Phenotyping in Maize**
+Proof of concept for scalable field phenotyping with image-analysis concepts, more than 800 observations, R-based analysis, and breeder feedback.
 
 **Heavy Metal Contamination and Food Safety**
 Community-engaged plant and soil data project connecting edible plant contamination research with public workshops and food safety communication.
 
-**Breeding Pipeline Data Curation**
-Ongoing work supporting phenotypic, genomic, and operational data workflows for crop breeding teams.
+**Vegetable Breeding Pipeline Data Curation**
+Work supporting phenotypic, genomic, seed, trial, and pipeline data workflows for melon, cucumber, and watermelon breeding teams.
 
 ## Technical Skills
 
-- **Programming and analysis:** R, Python, Excel, image analysis tools
+- **Programming and analysis:** Python, R, Git, Excel, image analysis tools
+- **Data analysis:** statistical analysis, data curation, phenotypic data analysis, image analysis
 - **Breeding data:** phenotypic data curation, genomic data curation, pipeline data management, experimental protocol review
-- **Research workflows:** high-throughput phenotyping, greenhouse systems, hydroponics, plant tissue processing, ICP-MS sample workflows
+- **Research workflows:** high-throughput phenotyping, field phenotyping, greenhouse systems, hydroponics, plant tissue processing, ICP-MS sample workflows
 - **Communication:** PowerPoint, Word, stakeholder communication, workshop facilitation, mentoring
 
 ## Publications
 
-- Publication from the edible plant heavy metal contamination project, *Plant Direct*. Full citation to be added.
+- Cooper AM, Felix D, Alcantara F, Zaslavsky I, Work A, Watson PL, Pezzoli K, Yu Q, Zhu D, Scavo AJ, Zarabi Y, Schroeder JI. 2020. Monitoring and mitigation of toxic heavy metals and arsenic accumulation in food crops: A case study of an urban community garden. *Plant Direct* 4(1):e00198. doi:10.1002/pld3.198. PMID:31956855; PMCID:PMC6957986.
 
 ## Awards and Honors
 

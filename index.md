@@ -5,9 +5,9 @@ subtitle: Plant Breeding + Data Science
 cover-img: /assets/img/field-data-cover.svg
 ---
 
-I work at the intersection of plant breeding, quantitative genetics, and agricultural data science, with a focus on turning phenotypic, genomic, and pipeline data into better breeding decisions.
+I work at the intersection of plant breeding, quantitative genetics, and agricultural data science, with a focus on turning phenotypic, genomic, seed, trial, and pipeline data into better breeding decisions.
 
-My path has moved across crop science, high-throughput phenotyping, food safety, greenhouse systems, and breeding operations. I am especially interested in computational breeding approaches that help crop improvement programs select earlier, phenotype more efficiently, and connect data products with decisions breeders can use.
+My path has moved across crop science, analytics, high-throughput phenotyping, food safety, greenhouse systems, and breeding operations. I am especially interested in computational breeding approaches that help crop improvement programs select earlier, phenotype more efficiently, and connect data products with decisions breeders can use.
 
 ## Current Focus
 
@@ -19,11 +19,11 @@ My path has moved across crop science, high-throughput phenotyping, food safety,
 
 ## Featured Work
 
-**Sweet Corn High-Throughput Phenotyping**
-Designed a proof of concept for image-enabled phenotyping in sweet corn, linking field measurements, R-based analysis, and breeder feedback to improve processor-market trait evaluation.
+**High-Throughput Phenotyping in Maize**
+Designed a proof of concept for image-enabled phenotyping in a field-based breeding program, linking more than 800 field observations, R-based analysis, and breeder feedback to improve trait measurement efficiency.
 
 **Breeding Pipeline Enablement**
-Support genomic, phenotypic, and pipeline data workflows at Bayer Crop Science, working with breeders, testing teams, and operational partners to improve data quality and experimental execution.
+Supported melon, cucumber, and watermelon breeding programs at Bayer Crop Science by coordinating crossing plans, seed production, trial execution, and integrated phenotypic, genomic, and pipeline data workflows.
 
 **Food Safety and Plant Data Translation**
 Contributed to a community-engaged study of heavy metal contamination in edible plants, combining plant tissue data, R visualization, publication, and public workshops.

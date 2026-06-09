@@ -6,20 +6,20 @@ permalink: /projects/
 
 Selected projects that reflect my interests in plant breeding, high-throughput phenotyping, breeding analytics, food safety, and data-driven crop improvement.
 
-## Sweet Corn High-Throughput Phenotyping
+## High-Throughput Phenotyping in Maize
 
-At Bayer Vegetable Breeding R&D, I developed a proof of concept for high-throughput phenotyping in sweet corn. The project focused on processor-market traits and explored how image-enabled phenotyping could reduce manual measurement bottlenecks.
+At Bayer Vegetable Breeding R&D, I developed and evaluated a proof-of-concept high-throughput phenotyping workflow for a field-based breeding program. The project explored how image-enabled phenotyping could reduce manual measurement bottlenecks and improve the efficiency of trait data collection.
 
-I collected approximately 800 in-field phenotyping data points, analyzed trait data in R, and worked with breeders, data scientists, operations teams, and engineers. The project considered traits such as kernel depth, ear width, cob diameter, percent recovery, percent cut kernel, and percent green weight, with an eye toward BLUPs, genomic selection training, and predictive modeling.
+I collected and curated more than 800 field phenotyping observations, analyzed experimental data in R, and worked with breeders, data scientists, operations teams, and engineers. The experience also gave me hands-on exposure to field trial execution, leaf tissue sampling, controlled pollination, silk note collection, and the operational context behind breeding decisions.
 
-- **Themes:** high-throughput phenotyping, sweet corn breeding, image analysis, breeding decision support
+- **Themes:** high-throughput phenotyping, maize breeding, image analysis, breeding decision support
 - **Tools and methods:** R, field phenotyping, image-analysis concepts, cross-functional product feedback
 
 ## Breeding Pipeline Enablement
 
-In my current role at Bayer Crop Science, I support experimental protocols and data workflows for breeding pipelines. My work includes drafting and reviewing protocols with breeders, testing teams, and operations partners, and assisting with tools for extracting, curating, and managing genomic, phenotypic, and pipeline data.
+At Bayer Crop Science, I supported breeding pipeline decisions by coordinating phenotypic, genomic, seed, trial, and pipeline information across breeding programs. My work included supporting international melon, cucumber, and watermelon programs through crossing plans, seed production, trial execution, and data integration.
 
-- **Themes:** breeding operations, genomic and phenotypic data, pipeline analytics, stakeholder communication
+- **Themes:** breeding operations, genomic and phenotypic data, vegetable breeding pipelines, stakeholder communication
 - **Tools and methods:** protocol review, data curation, Excel, R/Python-informed analytics, cross-team collaboration
 
 ## Heavy Metal Contamination and Food Safety
