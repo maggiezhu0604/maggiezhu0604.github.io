@@ -4,21 +4,24 @@ title: About
 permalink: /about/
 ---
 
-I am a researcher working at the intersection of plant breeding and data science. My academic interests center on using statistical modeling, machine learning, and genomic information to accelerate crop improvement.
+From community garden organizer to plant researcher. From community outreach to science communication. From institute to industry. My north star never changed: people, plants, and sustainability.
+I’m a lifelong learner who shows up every day to ask and help answer one question:
+How do we collaboratively tackle food security, nutrition, and sustainability?
+🌱 Currently doing an online master's in Analytics with Georgia Tech, pivoting toward high‑throughput phenotyping & ag data analytics.
 
-I enjoy building workflows that connect field observations with modern computational tools. The goal is not only to predict performance, but also to make breeding decisions clearer, more transparent, and easier to reproduce.
 
 ## Research Interests
 
-- Plant breeding and quantitative genetics
 - Genomic selection and genomic prediction
 - Genotype-by-environment interaction
+- High-throughput phenotyping
 - Crop adaptation and climate resilience
 - Statistical computing in R and Python
-- Reproducible research and open science
+- Science communication and outreach
 
 ## Technical Skills
 
-**Programming:** R, Python, SQL, Bash  
+**Programming:** R, Python,   
 **Methods:** mixed models, genomic prediction, machine learning, data visualization  
-**Tools:** tidyverse, scikit-learn, Jupyter, Git, Quarto, high-performance computing
+**Tools:** tidyverse, scikit-learn, Jupyter, Git,high-performance computing
+**Relevant coursework:** Statistical Modeling, Machine Learning, Regression Analysis, Data Mining, Optimization, Computational Data Analytics
