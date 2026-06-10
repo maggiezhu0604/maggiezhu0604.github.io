@@ -21,5 +21,5 @@ Then open `http://localhost:4000`.
 ## Customize
 
 - Edit `_config.yml` for your name, email, social links, and site settings.
-- Replace `assets/img/profile-placeholder.svg` with a real profile image.
-- Edit the Markdown pages for your biography, research, projects, CV, and contact details.
+- Replace `assets/img/profile.jpg` to update the navigation avatar.
+- Edit `index.md` to update the single-page sections: About, Project, Outreach, Blog, and Contact.
