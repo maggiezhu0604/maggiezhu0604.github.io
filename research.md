@@ -28,5 +28,4 @@ Changing environments create new challenges for breeding programs. I am interest
 
 Add selected publications here. A simple format works well:
 
-- Author, A., Author, B., and Your Name. Year. Title of publication. *Journal Name*.
-- Your Name, Author, C., and Author, D. Year. Title of preprint or manuscript. *Journal or Preprint Server*.
+- Cooper AM, Felix D, Alcantara F, Zaslavsky I, Work A, Watson PL, Pezzoli K, Yu Q, Zhu D, Scavo AJ, Zarabi Y, Schroeder JI. Monitoring and mitigation of toxic heavy metals and arsenic accumulation in food crops: A case study of an urban community garden. Plant Direct. 2020 Jan 14;4(1):e00198. doi: 10.1002/pld3.198. PMID: 31956855; PMCID: PMC6957986.
