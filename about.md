@@ -2,6 +2,7 @@
 layout: page
 title: About
 permalink: /about/
+bigimg: /img/IMG_2873.jpg
 ---
 
 From community garden organizer to plant researcher. From community outreach to science communication. From institute to industry. My north star never changed: people, plants, and sustainability.
