@@ -2,7 +2,7 @@
 layout: page
 title: Maggie "Dan" Zhu
 subtitle: Plant Breeding + Data Science
-cover-img: /assets/img/field-data-cover.svg
+cover-img: /assets/img/IMG_2801.jpg
 permalink: /
 ---
 
@@ -47,7 +47,7 @@ B.S. in Environmental Systems, Ecology, Behavior and Evolution, August 2016-May 
 - **Data analysis:** statistical analysis, data curation, phenotypic data analysis, image analysis
 - **Breeding data:** phenotypic data curation, genomic data curation, pipeline data management, experimental protocol review
 - **Research workflows:** high-throughput phenotyping, field phenotyping, greenhouse systems, hydroponics, plant tissue processing, ICP-MS sample workflows
-- **Communication:** PowerPoint, Word, stakeholder communication, workshop facilitation, mentoring
+
 
 ### Selected Publication
 
