@@ -1,5 +1,6 @@
 body {
-  color: #25312b;
+  color: #404040;
+  font-family: "Lora", "Times New Roman", serif;
 }
 
 html {
@@ -8,6 +9,19 @@ html {
 
 .navbar-custom {
   border-bottom: 1px solid #e5ece7;
+  background-color: rgba(255, 255, 255, 0.96);
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+  font-weight: 800;
+}
+
+.navbar-custom .navbar-nav .nav-link {
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .intro-header .page-heading h1,
@@ -23,6 +37,8 @@ html {
 h2,
 h3 {
   color: #1f4d3a;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
 }
 
 a {
@@ -45,7 +61,8 @@ blockquote {
 
 main p,
 .container-md p {
-  line-height: 1.7;
+  line-height: 1.55;
+  margin: 1.35rem 0;
 }
 
 main li,
@@ -55,7 +72,7 @@ main li,
 
 .site-section {
   border-bottom: 1px solid #edf2ef;
-  padding: 2.25rem 0;
+  padding: 2.75rem 0;
   scroll-margin-top: 5.5rem;
 }
 
@@ -69,7 +86,34 @@ main li,
 
 .site-section h2 {
   margin-top: 0;
+  margin-bottom: 1.4rem;
 }
+
+.site-section h3 {
+  margin-top: 2rem;
+}
+
+.profile-figure {
+  float: right;
+  width: min(300px, 42%);
+  margin: 0.35rem 0 1.25rem 1.75rem;
+}
+
+.profile-figure img {
+  border-radius: 3px;
+  width: 100%;
+  box-shadow: 0 1px 8px rgba(31, 77, 58, 0.18);
+}
+
+.profile-figure figcaption {
+  color: #6a7770;
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.35;
+  padding-top: 0.55rem;
+  text-align: center;
+}
+
 
 @media (max-width: 576px) {
   .intro-header .page-heading h1,
@@ -88,5 +132,12 @@ main li,
   .site-section {
     padding: 1.75rem 0;
     scroll-margin-top: 4.75rem;
+  }
+
+  .profile-figure {
+    float: none;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 1.5rem;
   }
 }
