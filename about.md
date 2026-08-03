@@ -8,16 +8,12 @@ permalink: /
 
 <figure class="profile-figure">
   <img src="/assets/img/profile.jpg" alt="Maggie Zhu in a field holding a watermelon">
-  <figcaption>Field work and crop improvement in practice.</figcaption>
+  <figcaption>In front of my vegetable garden in DeForest, WI(Summer,2024).</figcaption>
 </figure>
 
-I am Maggie Zhu, an agricultural data scientist and crop science researcher interested in computational breeding for resilient, efficient crop improvement. My work connects plant breeding, quantitative genetics, genomic prediction, high-throughput phenotyping, phenotypic and genomic data curation, and decision-support tools for breeding pipelines.
+I am Maggie Zhu, a crop science researcher working at the intersection of plant breeding, quantitative genetics, and computational analytics. I am interested in developing computational breeding tools that help breeders translate phenotypic, genomic, and trial data into better selection decisions. My background spans crop science training at the University of Illinois Urbana-Champaign, graduate study in analytics at Georgia Tech, and industry experience supporting Bayer Crop Science breeding pipelines.
 
-I trained in crop science at the University of Illinois Urbana-Champaign and am continuing to build computational depth through graduate study in analytics at Georgia Tech. In industry, I have supported Bayer Crop Science breeding pipelines by coordinating experimental information across phenotypic, genomic, seed, trial, and operational datasets.
-
-Earlier research experiences in high-throughput phenotyping, edible plant heavy metal contamination, greenhouse systems, and community food safety shaped the way I think about agricultural data: useful models begin with careful biological context, reliable measurements, and communication with the people who will act on the results.
-
-I am preparing for doctoral study in plant breeding and computational breeding. I hope to develop quantitative and genomic tools that make selection more accurate, phenotyping more scalable, and breeding decisions more transparent.
+My broader goal is to collaborate across research, education, policy, community engagement, and communications to support more just, sustainable, and resilient food and farm systems.
 
 ### Education
 
@@ -39,15 +35,6 @@ B.S. in Environmental Systems, Ecology, Behavior and Evolution, August 2016-May 
 - High-throughput phenotyping for vegetable and field crop pipelines
 - Genotype-by-environment interaction and crop adaptation
 - Phenotypic, genomic, and operational data curation
-- Reproducible analytics for scalable breeding workflows
-
-### Technical Skills
-
-- **Programming and analysis:** Python, R, Git, Excel, image analysis tools
-- **Data analysis:** statistical analysis, data curation, phenotypic data analysis, image analysis
-- **Breeding data:** phenotypic data curation, genomic data curation, pipeline data management, experimental protocol review
-- **Research workflows:** high-throughput phenotyping, field phenotyping, greenhouse systems, hydroponics, plant tissue processing, ICP-MS sample workflows
-
 
 ### Selected Publication
 
@@ -56,5 +43,5 @@ B.S. in Environmental Systems, Ecology, Behavior and Evolution, August 2016-May 
 ### Awards and Fellowships
 
 - Bayer Youth Ag Summit Delegate
-- UC Global Food Initiative Fellow
+- University of California Office of President, Global Food Initiative Fellow
 - $5,000 Green Initiative Fund award
