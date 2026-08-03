@@ -3,6 +3,7 @@ layout: post
 title: "Can AI Breed Crops by Itself? What a Robotics Debate Reveals About the Future of Plant Breeding"
 subtitle: "A research blog on AI, biological knowledge, and crop breeding decisions"
 date: 2026-08-03
+permalink: /blog/ai-breeding-data-mechanism/
 cover-img: /assets/img/blog/ai-breeding-data-mechanism-cover.png
 thumbnail-img: /assets/img/blog/ai-breeding-data-mechanism-cover.png
 share-img: /assets/img/blog/ai-breeding-data-mechanism-cover.png
