@@ -1,17 +1,17 @@
 ---
 layout: page
-title: Maggie "Dan" Zhu
+title: Maggie Zhu(朱丹)
 subtitle: Plant Breeding + Data Science
 cover-img: /assets/img/IMG_2801.jpg
 permalink: /
 ---
 
 <figure class="profile-figure">
-  <img src="/assets/img/profile.jpg" alt="Maggie Dan Zhu in a field holding a watermelon">
+  <img src="/assets/img/profile.jpg" alt="Maggie Zhu in a field holding a watermelon">
   <figcaption>Field work and crop improvement in practice.</figcaption>
 </figure>
 
-I am Maggie "Dan" Zhu, an agricultural data scientist and crop science researcher interested in computational breeding for resilient, efficient crop improvement. My work connects plant breeding, quantitative genetics, genomic prediction, high-throughput phenotyping, phenotypic and genomic data curation, and decision-support tools for breeding pipelines.
+I am Maggie Zhu, an agricultural data scientist and crop science researcher interested in computational breeding for resilient, efficient crop improvement. My work connects plant breeding, quantitative genetics, genomic prediction, high-throughput phenotyping, phenotypic and genomic data curation, and decision-support tools for breeding pipelines.
 
 I trained in crop science at the University of Illinois Urbana-Champaign and am continuing to build computational depth through graduate study in analytics at Georgia Tech. In industry, I have supported Bayer Crop Science breeding pipelines by coordinating experimental information across phenotypic, genomic, seed, trial, and operational datasets.
 

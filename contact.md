@@ -9,7 +9,7 @@ I welcome conversations about plant breeding, computational breeding, high-throu
 
 - **Email:** maggiezhu0604@gmail.com
 - **GitHub:** [maggiezhu0604](https://github.com/maggiezhu0604)
-- **LinkedIn:** [Maggie Dan Zhu](https://www.linkedin.com/in/maggie-dan-zhu)
+- **LinkedIn:** [Maggie Zhu](https://www.linkedin.com/in/maggie-dan-zhu)
 
 ### Collaboration Interests
 
