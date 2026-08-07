@@ -9,7 +9,7 @@ bigimg: "/assets/img/IMG_2804.jpg"
 <figure>
 <div style="float: right; padding-left: 25px; padding-bottom: 25px">
 	<img src="/assets/img/IMG_2789.jpg" width="300" alt="corn project">
-	<figcaption><i>Corn on display</i></figcaption>
+	<figcaption><i>Corn on display (I'm just kidding)</i></figcaption>
 </div>
 </figure>
 
@@ -33,7 +33,6 @@ I collected and curated more than 800 field phenotyping observations, analyzed e
 
 - **Themes:** high-throughput phenotyping, maize breeding, image analysis, breeding decision support
 - **Tools and methods:** R, field phenotyping, image-analysis concepts, cross-functional product feedback
-
 
 
 
