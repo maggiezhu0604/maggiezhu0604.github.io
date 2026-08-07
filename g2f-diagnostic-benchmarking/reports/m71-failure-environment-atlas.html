@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M7.1 Failure Environment Atlas</title>
+<style>
+body { margin: 0; padding: 28px; font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #fbfbf8; color: #171717; }
+main { max-width: 1180px; margin: 0 auto; }
+h1 { font-size: 26px; font-weight: 600; margin: 0 0 8px; }
+p { color: #555; margin: 0 0 20px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 14px; }
+.eyebrow { color: #777; font-size: 12px; }
+h2 { margin: 3px 0 8px; font-size: 18px; }
+.metrics { display: flex; gap: 10px; flex-wrap: wrap; color: #555; }
+.metrics b { color: #111; }
+.bar { height: 8px; margin: 12px 0; background: linear-gradient(90deg, #3b82f6, #e5e7eb 50%, #ef4444); border-radius: 8px; position: relative; }
+.bar i { position: absolute; top: -3px; width: 3px; height: 14px; background: #111; }
+table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+td, th { border-top: 1px solid #eee; padding: 6px 2px; text-align: left; }
+.wide { margin-top: 24px; overflow-x: auto; background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 12px; }
+</style>
+</head>
+<body>
+<main>
+<h1>G2F M7.1 Failure Environment Atlas</h1>
+<p>Top failure environments from the current final candidate, annotated by environment mean error, stress signal and weather shift.</p>
+<div class="grid">
+        <section class="card">
+          <div class="eyebrow">2022-01-WIH1_2022</div>
+          <h2>WIH1_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.875427</b></span>
+            <span>bias <b>-3.383957</b></span>
+            <span>r <b>0.329561</b></span>
+          </div>
+          <div class="bar"><i style="left:22.928344%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>14.503425</td></tr>
+            <tr><td>M3 site-history</td><td>11.331875 (-3.17155)</td></tr>
+            <tr><td>M5 full</td><td>10.173461 (-4.329964)</td></tr>
+            <tr><td>Dominant stress</td><td>radiation_depression / 8.037607</td></tr>
+            <tr><td>Weather shift</td><td>4.612663</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-02-NEH1_2022</div>
+          <h2>NEH1_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.695574</b></span>
+            <span>bias <b>3.178498</b></span>
+            <span>r <b>0.058293</b></span>
+          </div>
+          <div class="bar"><i style="left:75.427984%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>5.002784</td></tr>
+            <tr><td>M3 site-history</td><td>7.958524 (2.95574)</td></tr>
+            <tr><td>M5 full</td><td>9.18664 (4.183856)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 3.4657</td></tr>
+            <tr><td>Weather shift</td><td>3.423282</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-03-IAH2_2022</div>
+          <h2>IAH2_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.575067</b></span>
+            <span>bias <b>1.319101</b></span>
+            <span>r <b>0.159462</b></span>
+          </div>
+          <div class="bar"><i style="left:60.552808%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>9.673941</td></tr>
+            <tr><td>M3 site-history</td><td>11.012284 (1.338343)</td></tr>
+            <tr><td>M5 full</td><td>10.428066 (0.754125)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 3.220292</td></tr>
+            <tr><td>Weather shift</td><td>2.193941</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-04-GAH1_2022</div>
+          <h2>GAH1_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.294647</b></span>
+            <span>bias <b>2.744598</b></span>
+            <span>r <b>0.21346</b></span>
+          </div>
+          <div class="bar"><i style="left:71.956784%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>4.989131</td></tr>
+            <tr><td>M3 site-history</td><td>7.832324 (2.843193)</td></tr>
+            <tr><td>M5 full</td><td>7.215787 (2.226656)</td></tr>
+            <tr><td>Dominant stress</td><td>heat / 13.00717</td></tr>
+            <tr><td>Weather shift</td><td>3.935957</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-05-MNH1_2022</div>
+          <h2>MNH1_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.82591</b></span>
+            <span>bias <b>-2.186129</b></span>
+            <span>r <b>0.246321</b></span>
+          </div>
+          <div class="bar"><i style="left:32.510968%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>11.669409</td></tr>
+            <tr><td>M3 site-history</td><td>9.213224 (-2.456185)</td></tr>
+            <tr><td>M5 full</td><td>10.455001 (-1.214408)</td></tr>
+            <tr><td>Dominant stress</td><td>radiation_depression / 4.833141</td></tr>
+            <tr><td>Weather shift</td><td>2.910775</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-06-MOH2_2022</div>
+          <h2>MOH2_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.607978</b></span>
+            <span>bias <b>1.894438</b></span>
+            <span>r <b>0.076017</b></span>
+          </div>
+          <div class="bar"><i style="left:65.15550400000001%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>6.187366</td></tr>
+            <tr><td>M3 site-history</td><td>7.96679 (1.779424)</td></tr>
+            <tr><td>M5 full</td><td>8.279131 (2.091765)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 2.669878</td></tr>
+            <tr><td>Weather shift</td><td>4.136404</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-07-IAH4_2022</div>
+          <h2>IAH4_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.573506</b></span>
+            <span>bias <b>-1.561192</b></span>
+            <span>r <b>0.311147</b></span>
+          </div>
+          <div class="bar"><i style="left:37.510464%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>12.399432</td></tr>
+            <tr><td>M3 site-history</td><td>10.862621 (-1.536811)</td></tr>
+            <tr><td>M5 full</td><td>10.24589 (-2.153542)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 2.9347</td></tr>
+            <tr><td>Weather shift</td><td>2.265375</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-08-DEH1_2022</div>
+          <h2>DEH1_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.552437</b></span>
+            <span>bias <b>-0.990128</b></span>
+            <span>r <b>0.208734</b></span>
+          </div>
+          <div class="bar"><i style="left:42.078976%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>11.324058</td></tr>
+            <tr><td>M3 site-history</td><td>10.319041 (-1.005017)</td></tr>
+            <tr><td>M5 full</td><td>9.792084 (-1.531974)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 3.907411</td></tr>
+            <tr><td>Weather shift</td><td>1.895549</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-09-WIH3_2022</div>
+          <h2>WIH3_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.455487</b></span>
+            <span>bias <b>-1.758225</b></span>
+            <span>r <b>0.368803</b></span>
+          </div>
+          <div class="bar"><i style="left:35.934200000000004%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>12.305694</td></tr>
+            <tr><td>M3 site-history</td><td>10.390389 (-1.915305)</td></tr>
+            <tr><td>M5 full</td><td>10.909992 (-1.395702)</td></tr>
+            <tr><td>Dominant stress</td><td>radiation_depression / 7.381097</td></tr>
+            <tr><td>Weather shift</td><td>2.775428</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2022-10-WIH2_2022</div>
+          <h2>WIH2_2022</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.384089</b></span>
+            <span>bias <b>-1.440568</b></span>
+            <span>r <b>0.334225</b></span>
+          </div>
+          <div class="bar"><i style="left:38.475456%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>11.609352</td></tr>
+            <tr><td>M3 site-history</td><td>9.921007 (-1.688345)</td></tr>
+            <tr><td>M5 full</td><td>10.663208 (-0.946144)</td></tr>
+            <tr><td>Dominant stress</td><td>radiation_depression / 8.037607</td></tr>
+            <tr><td>Weather shift</td><td>2.578957</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-01-NEH3_2024</div>
+          <h2>NEH3_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>5.226164</b></span>
+            <span>bias <b>-4.959763</b></span>
+            <span>r <b>0.447071</b></span>
+          </div>
+          <div class="bar"><i style="left:10.321896000000002%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>14.068794</td></tr>
+            <tr><td>M3 site-history</td><td>8.74574 (-5.323054)</td></tr>
+            <tr><td>M5 full</td><td>8.75119 (-5.317604)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 8.920513</td></tr>
+            <tr><td>Weather shift</td><td>2.700757</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-02-NYH2_2024</div>
+          <h2>NYH2_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.786157</b></span>
+            <span>bias <b>-3.336365</b></span>
+            <span>r <b>0.324094</b></span>
+          </div>
+          <div class="bar"><i style="left:23.30908%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>13.351708</td></tr>
+            <tr><td>M3 site-history</td><td>9.773158 (-3.57855)</td></tr>
+            <tr><td>M5 full</td><td>10.983801 (-2.367907)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 2.874391</td></tr>
+            <tr><td>Weather shift</td><td>2.211945</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-03-MOH1_2024</div>
+          <h2>MOH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.686581</b></span>
+            <span>bias <b>-3.195546</b></span>
+            <span>r <b>0.420535</b></span>
+          </div>
+          <div class="bar"><i style="left:24.435632%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>11.260188</td></tr>
+            <tr><td>M3 site-history</td><td>7.505917 (-3.754271)</td></tr>
+            <tr><td>M5 full</td><td>9.448443 (-1.811745)</td></tr>
+            <tr><td>Dominant stress</td><td>heat / 4.010169</td></tr>
+            <tr><td>Weather shift</td><td>2.326164</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-04-OHH1_2024</div>
+          <h2>OHH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.531867</b></span>
+            <span>bias <b>-3.26906</b></span>
+            <span>r <b>0.479905</b></span>
+          </div>
+          <div class="bar"><i style="left:23.84752%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>14.667062</td></tr>
+            <tr><td>M3 site-history</td><td>11.086527 (-3.580535)</td></tr>
+            <tr><td>M5 full</td><td>10.427203 (-4.239859)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 1.993616</td></tr>
+            <tr><td>Weather shift</td><td>1.58118</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-05-IAH2_2024</div>
+          <h2>IAH2_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.276764</b></span>
+            <span>bias <b>1.526001</b></span>
+            <span>r <b>0.222692</b></span>
+          </div>
+          <div class="bar"><i style="left:62.208008%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>9.392469</td></tr>
+            <tr><td>M3 site-history</td><td>10.716282 (1.323813)</td></tr>
+            <tr><td>M5 full</td><td>10.501697 (1.109228)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 3.857813</td></tr>
+            <tr><td>Weather shift</td><td>1.883249</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-06-MNH1_2024</div>
+          <h2>MNH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.183342</b></span>
+            <span>bias <b>-2.565024</b></span>
+            <span>r <b>0.374033</b></span>
+          </div>
+          <div class="bar"><i style="left:29.479808%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>12.370664</td></tr>
+            <tr><td>M3 site-history</td><td>9.648329 (-2.722335)</td></tr>
+            <tr><td>M5 full</td><td>10.115897 (-2.254767)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 1.887433</td></tr>
+            <tr><td>Weather shift</td><td>3.928224</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-07-ONH3_2024</div>
+          <h2>ONH3_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.132476</b></span>
+            <span>bias <b>-2.6184</b></span>
+            <span>r <b>0.273293</b></span>
+          </div>
+          <div class="bar"><i style="left:29.0528%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>12.717622</td></tr>
+            <tr><td>M3 site-history</td><td>9.964146 (-2.753476)</td></tr>
+            <tr><td>M5 full</td><td>10.097748 (-2.619874)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 3.090051</td></tr>
+            <tr><td>Weather shift</td><td>3.085003</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-08-WIH1_2024</div>
+          <h2>WIH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>3.084519</b></span>
+            <span>bias <b>-2.464584</b></span>
+            <span>r <b>0.348464</b></span>
+          </div>
+          <div class="bar"><i style="left:30.283328%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>13.903626</td></tr>
+            <tr><td>M3 site-history</td><td>11.501801 (-2.401825)</td></tr>
+            <tr><td>M5 full</td><td>8.481433 (-5.422193)</td></tr>
+            <tr><td>Dominant stress</td><td>drought / 1.919765</td></tr>
+            <tr><td>Weather shift</td><td>5.109629</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-09-MIH1_2024</div>
+          <h2>MIH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.970293</b></span>
+            <span>bias <b>-2.38687</b></span>
+            <span>r <b>0.379057</b></span>
+          </div>
+          <div class="bar"><i style="left:30.90504%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>12.473124</td></tr>
+            <tr><td>M3 site-history</td><td>9.917974 (-2.55515)</td></tr>
+            <tr><td>M5 full</td><td>10.406305 (-2.066819)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 2.338946</td></tr>
+            <tr><td>Weather shift</td><td>4.534759</td></tr>
+          </table>
+        </section>
+        <section class="card">
+          <div class="eyebrow">2024-10-GAH1_2024</div>
+          <h2>GAH1_2024</h2>
+          <div class="metrics">
+            <span>RMSE <b>2.873707</b></span>
+            <span>bias <b>2.071635</b></span>
+            <span>r <b>0.272758</b></span>
+          </div>
+          <div class="bar"><i style="left:66.57308%"></i></div>
+          <table>
+            <tr><td>Observed mean</td><td>5.900717</td></tr>
+            <tr><td>M3 site-history</td><td>7.477946 (1.577229)</td></tr>
+            <tr><td>M5 full</td><td>7.955018 (2.054301)</td></tr>
+            <tr><td>Dominant stress</td><td>humidity / 16.949219</td></tr>
+            <tr><td>Weather shift</td><td>12.53956</td></tr>
+          </table>
+        </section></div>
+<div class="wide">
+<h2>Top hybrid-level failures</h2>
+<table><thead><tr><th>Round</th><th>Hybrid</th><th>RMSE</th><th>Primary label</th><th>All labels</th></tr></thead><tbody><tr><td>2024</td><td>TX714/PHZ51</td><td>8.158602</td><td>high_residual_despite_support</td><td>high_residual_despite_support</td></tr>
+<tr><td>2022</td><td>W10001_0042/LH244</td><td>5.886702</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2022</td><td>TX779/LH195</td><td>5.701292</td><td>parent_name_ambiguity</td><td>parent_name_ambiguity</td></tr>
+<tr><td>2024</td><td>GEMS-0227_PHBW8_0002/LH287</td><td>5.524456</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0022/LH287</td><td>5.152835</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2022</td><td>GEMN-0207/LH244</td><td>5.036908</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2022</td><td>NC548/LH244</td><td>4.825917</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0061_3AZA1_0011/LH287</td><td>4.78042</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0041/LH287</td><td>4.77981</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>W10004_0714/LH287</td><td>4.75215</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2022</td><td>GEMN-0097_LH212HT_0046/LH244</td><td>4.728911</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>PH1TB/PHP02</td><td>4.642736</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0067/LH287</td><td>4.637708</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0037/LH287</td><td>4.630461</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0061_FBLL_0004/LH287</td><td>4.579998</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0095/LH287</td><td>4.552343</td><td>low_historical_phenotype</td><td>low_historical_phenotype|low_genomic_relatedness</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0080/LH287</td><td>4.543773</td><td>low_historical_phenotype</td><td>low_historical_phenotype|low_genomic_relatedness</td></tr>
+<tr><td>2024</td><td>PHTV7/PHP02</td><td>4.471744</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>FBLL/LH287</td><td>4.423747</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>PH79A/LH287</td><td>4.423451</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>PH09B/PHP02</td><td>4.412262</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_FBLL_0016/LH287</td><td>4.401412</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0113_PHBW8_0004/LH287</td><td>4.359586</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0113_PHBW8_0008/LH287</td><td>4.357742</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr>
+<tr><td>2024</td><td>GEMS-0227_PHB47_0016/LH287</td><td>4.357629</td><td>low_historical_phenotype</td><td>low_historical_phenotype</td></tr></tbody></table>
+</div>
+</main>
+</body>
+</html>

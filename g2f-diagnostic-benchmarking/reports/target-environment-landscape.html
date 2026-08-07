@@ -1,0 +1,1197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Target Environment Landscape</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;max-width:736px;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+</head>
+<body>
+<iframe sandbox="allow-scripts" referrerpolicy="no-referrer" title="Target Environment Landscape" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Target Environment Landscape&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(--background) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: light-dark(rgb(255 255 255), rgb(24 24 24));
+  --foreground: light-dark(rgb(26 28 31), rgb(255 255 255));
+  --card: color-mix(in oklab, var(--foreground) 5%, transparent);
+  --card-foreground: var(--foreground);
+  --popover: light-dark(rgb(255 255 255), rgb(45 45 45));
+  --popover-foreground: var(--foreground);
+  --primary: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --primary-foreground: light-dark(rgb(255 255 255), rgb(13 13 13));
+  --secondary: light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%));
+  --secondary-foreground: var(--foreground);
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: light-dark(
+    rgb(26 28 31 / 49.4%),
+    rgb(255 255 255 / 49.8%)
+  );
+  --accent: light-dark(rgb(229 242 255), rgb(13 39 63));
+  --accent-foreground: var(--primary);
+  --destructive: light-dark(rgb(226 85 7), rgb(255 133 73));
+  --border: light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%));
+  --input: light-dark(
+    rgb(26 28 31 / 11.8%),
+    color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+  );
+  --ring: light-dark(rgb(51 156 255), rgb(131 195 255 / 76%));
+  --font-size-base: 14px;
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, &quot;Segoe UI&quot;, sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --radius: 12.5px;
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+  --color-background-primary: var(--background);
+  --color-text-primary: var(--foreground);
+  --color-border-secondary: var(--border);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  margin: 0;
+  padding: 5px;
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans);
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: pointer;
+  font-weight: var(--viz-font-weight-medium);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: superellipse(1.5);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget &gt; :not(.card) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: superellipse(1.5);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: superellipse(1.5);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: superellipse(1.5);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+    [aria-pressed=&quot;true&quot;],
+    [aria-selected=&quot;true&quot;],
+    .is-selected
+  ) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id=&quot;g2f-target-env-landscape&quot; class=&quot;g2f-env-vis&quot;&gt;
+  &lt;style&gt;
+    #g2f-target-env-landscape { color: var(--foreground); font-size: var(--font-size-base); }
+    #g2f-target-env-landscape .toolbar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px; }
+    #g2f-target-env-landscape .toolbar span { color: var(--muted-foreground); }
+    #g2f-target-env-landscape .btn { border:1px solid var(--border); background:var(--secondary); color:var(--secondary-foreground); padding:6px 10px; border-radius:6px; cursor:pointer; }
+    #g2f-target-env-landscape .btn[aria-pressed=&quot;true&quot;] { background:var(--primary); color:var(--primary-foreground); border-color:var(--primary); }
+    #g2f-target-env-landscape .wrap { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(260px,.8fr); gap:14px; align-items:start; }
+    #g2f-target-env-landscape .panel { border:1px solid var(--border); border-radius:8px; background:color-mix(in srgb, var(--card) 88%, transparent); padding:12px; }
+    #g2f-target-env-landscape svg { width:100%; height:auto; display:block; overflow:visible; }
+    #g2f-target-env-landscape .axis text, #g2f-target-env-landscape .note { fill:var(--muted-foreground); color:var(--muted-foreground); }
+    #g2f-target-env-landscape .axis line, #g2f-target-env-landscape .axis path, #g2f-target-env-landscape .grid { stroke:var(--border); }
+    #g2f-target-env-landscape .diag { stroke:var(--muted-foreground); stroke-width:1.2; stroke-dasharray:4 4; opacity:.75; }
+    #g2f-target-env-landscape .pt { stroke:var(--background); stroke-width:1.2; cursor:pointer; }
+    #g2f-target-env-landscape .pt.y2022 { fill:var(--viz-series-1); }
+    #g2f-target-env-landscape .pt.y2024 { fill:var(--viz-series-2); }
+    #g2f-target-env-landscape .pt.selected { stroke:var(--foreground); stroke-width:2.5; }
+    #g2f-target-env-landscape .label { fill:var(--foreground); font-weight:500; }
+    #g2f-target-env-landscape .muted { color:var(--muted-foreground); }
+    #g2f-target-env-landscape .detail-title { display:flex; justify-content:space-between; gap:10px; align-items:baseline; margin-bottom:8px; }
+    #g2f-target-env-landscape .env-name { font-weight:500; }
+    #g2f-target-env-landscape .metrics { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; margin:10px 0; }
+    #g2f-target-env-landscape .metric { border:1px solid var(--border); border-radius:6px; padding:8px; }
+    #g2f-target-env-landscape .metric b { display:block; font-weight:500; }
+    #g2f-target-env-landscape .barrow { display:grid; grid-template-columns:84px minmax(0,1fr) 58px; gap:8px; align-items:center; margin:8px 0; }
+    #g2f-target-env-landscape .track { height:9px; border-radius:99px; background:var(--muted); overflow:hidden; }
+    #g2f-target-env-landscape .fill { height:100%; background:var(--viz-series-3); }
+    #g2f-target-env-landscape .surprises { margin-top:10px; display:grid; gap:5px; }
+    #g2f-target-env-landscape .surprise { display:grid; grid-template-columns:80px minmax(0,1fr) 62px; gap:8px; border:1px solid var(--border); border-radius:6px; padding:6px 8px; background:color-mix(in srgb, var(--card) 72%, transparent); cursor:pointer; text-align:left; color:var(--foreground); }
+    #g2f-target-env-landscape .surprise[aria-pressed=&quot;true&quot;] { outline:2px solid var(--ring); }
+    #g2f-target-env-landscape .legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:8px; color:var(--muted-foreground); }
+    #g2f-target-env-landscape .sw { display:inline-block; width:10px; height:10px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
+    #g2f-target-env-landscape .sw.a { background:var(--viz-series-1); }
+    #g2f-target-env-landscape .sw.b { background:var(--viz-series-2); }
+    @media (max-width: 760px) { #g2f-target-env-landscape .wrap { grid-template-columns:1fr; } }
+  &lt;/style&gt;
+  &lt;div class=&quot;toolbar&quot; aria-label=&quot;round filter&quot;&gt;
+    &lt;span&gt;Round&lt;/span&gt;
+    &lt;button class=&quot;btn&quot; data-round=&quot;all&quot; aria-pressed=&quot;true&quot;&gt;All&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; data-round=&quot;2022&quot; aria-pressed=&quot;false&quot;&gt;2022&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; data-round=&quot;2024&quot; aria-pressed=&quot;false&quot;&gt;2024&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;wrap&quot;&gt;
+    &lt;div class=&quot;panel&quot;&gt;
+      &lt;svg viewBox=&quot;0 0 720 470&quot; role=&quot;img&quot; aria-label=&quot;Observed environment mean versus site-history predicted environment mean&quot;&gt;
+        &lt;g id=&quot;env-plot&quot;&gt;&lt;/g&gt;
+      &lt;/svg&gt;
+      &lt;div class=&quot;legend&quot;&gt;&lt;span&gt;&lt;i class=&quot;sw a&quot;&gt;&lt;/i&gt;2022&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw b&quot;&gt;&lt;/i&gt;2024&lt;/span&gt;&lt;span&gt;diagonal = history matches observed mean&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;panel&quot; id=&quot;env-detail&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+(() =&gt; {
+  const root = document.getElementById(&#x27;g2f-target-env-landscape&#x27;);
+  const data = [{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;DEH1_2022&quot;,&quot;site&quot;:&quot;DEH1&quot;,&quot;state&quot;:&quot;DE&quot;,&quot;observedMean&quot;:11.324,&quot;observedSd&quot;:2.404,&quot;sitePred&quot;:10.319,&quot;blendPred&quot;:10.573,&quot;residual&quot;:1.005,&quot;observedRows&quot;:473,&quot;submissionRows&quot;:477,&quot;hybrids&quot;:477,&quot;missingObserved&quot;:4,&quot;t2m&quot;:15.3,&quot;tmax&quot;:20.18,&quot;rain&quot;:1186.0,&quot;solar&quot;:5095.5,&quot;rh&quot;:79.9,&quot;m3Rmse&quot;:2.606,&quot;clacRmse&quot;:2.703,&quot;clacR&quot;:0.448},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;GAH1_2022&quot;,&quot;site&quot;:&quot;GAH1&quot;,&quot;state&quot;:&quot;GA&quot;,&quot;observedMean&quot;:4.989,&quot;observedSd&quot;:1.851,&quot;sitePred&quot;:7.832,&quot;blendPred&quot;:7.999,&quot;residual&quot;:-2.843,&quot;observedRows&quot;:445,&quot;submissionRows&quot;:446,&quot;hybrids&quot;:446,&quot;missingObserved&quot;:1,&quot;t2m&quot;:20.72,&quot;tmax&quot;:26.85,&quot;rain&quot;:942.5,&quot;solar&quot;:5744.0,&quot;rh&quot;:74.0,&quot;m3Rmse&quot;:3.392,&quot;clacRmse&quot;:3.638,&quot;clacR&quot;:0.285},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;GAH2_2022&quot;,&quot;site&quot;:&quot;GAH2&quot;,&quot;state&quot;:&quot;GA&quot;,&quot;observedMean&quot;:9.501,&quot;observedSd&quot;:1.898,&quot;sitePred&quot;:9.167,&quot;blendPred&quot;:9.316,&quot;residual&quot;:0.334,&quot;observedRows&quot;:437,&quot;submissionRows&quot;:446,&quot;hybrids&quot;:446,&quot;missingObserved&quot;:9,&quot;t2m&quot;:18.81,&quot;tmax&quot;:25.67,&quot;rain&quot;:984.8,&quot;solar&quot;:5480.8,&quot;rh&quot;:74.3,&quot;m3Rmse&quot;:1.927,&quot;clacRmse&quot;:1.813,&quot;clacR&quot;:0.302},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;IAH1_2022&quot;,&quot;site&quot;:&quot;IAH1&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:11.043,&quot;observedSd&quot;:2.349,&quot;sitePred&quot;:10.817,&quot;blendPred&quot;:10.377,&quot;residual&quot;:0.226,&quot;observedRows&quot;:524,&quot;submissionRows&quot;:528,&quot;hybrids&quot;:528,&quot;missingObserved&quot;:4,&quot;t2m&quot;:11.8,&quot;tmax&quot;:17.34,&quot;rain&quot;:1076.8,&quot;solar&quot;:4902.8,&quot;rh&quot;:78.4,&quot;m3Rmse&quot;:2.36,&quot;clacRmse&quot;:2.14,&quot;clacR&quot;:0.549},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;IAH2_2022&quot;,&quot;site&quot;:&quot;IAH2&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:9.674,&quot;observedSd&quot;:3.365,&quot;sitePred&quot;:11.012,&quot;blendPred&quot;:10.494,&quot;residual&quot;:-1.338,&quot;observedRows&quot;:518,&quot;submissionRows&quot;:518,&quot;hybrids&quot;:518,&quot;missingObserved&quot;:0,&quot;t2m&quot;:10.97,&quot;tmax&quot;:16.81,&quot;rain&quot;:914.4,&quot;solar&quot;:5005.9,&quot;rh&quot;:73.5,&quot;m3Rmse&quot;:3.621,&quot;clacRmse&quot;:3.67,&quot;clacR&quot;:0.146},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;IAH3_2022&quot;,&quot;site&quot;:&quot;IAH3&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:11.861,&quot;observedSd&quot;:1.91,&quot;sitePred&quot;:11.947,&quot;blendPred&quot;:11.055,&quot;residual&quot;:-0.086,&quot;observedRows&quot;:521,&quot;submissionRows&quot;:521,&quot;hybrids&quot;:521,&quot;missingObserved&quot;:0,&quot;t2m&quot;:10.62,&quot;tmax&quot;:16.3,&quot;rain&quot;:960.4,&quot;solar&quot;:4974.8,&quot;rh&quot;:77.5,&quot;m3Rmse&quot;:1.912,&quot;clacRmse&quot;:1.718,&quot;clacR&quot;:0.504},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;IAH4_2022&quot;,&quot;site&quot;:&quot;IAH4&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:12.399,&quot;observedSd&quot;:2.152,&quot;sitePred&quot;:10.863,&quot;blendPred&quot;:10.404,&quot;residual&quot;:1.537,&quot;observedRows&quot;:518,&quot;submissionRows&quot;:518,&quot;hybrids&quot;:518,&quot;missingObserved&quot;:0,&quot;t2m&quot;:11.05,&quot;tmax&quot;:16.94,&quot;rain&quot;:916.6,&quot;solar&quot;:5023.5,&quot;rh&quot;:74.5,&quot;m3Rmse&quot;:2.645,&quot;clacRmse&quot;:2.282,&quot;clacR&quot;:0.487},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;ILH1_2022&quot;,&quot;site&quot;:&quot;ILH1&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;observedMean&quot;:10.941,&quot;observedSd&quot;:2.247,&quot;sitePred&quot;:11.234,&quot;blendPred&quot;:11.418,&quot;residual&quot;:-0.293,&quot;observedRows&quot;:446,&quot;submissionRows&quot;:449,&quot;hybrids&quot;:449,&quot;missingObserved&quot;:3,&quot;t2m&quot;:12.33,&quot;tmax&quot;:17.54,&quot;rain&quot;:1431.0,&quot;solar&quot;:4682.7,&quot;rh&quot;:81.7,&quot;m3Rmse&quot;:2.266,&quot;clacRmse&quot;:2.157,&quot;clacR&quot;:0.344},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;INH1_2022&quot;,&quot;site&quot;:&quot;INH1&quot;,&quot;state&quot;:&quot;IN&quot;,&quot;observedMean&quot;:11.65,&quot;observedSd&quot;:1.734,&quot;sitePred&quot;:10.945,&quot;blendPred&quot;:11.396,&quot;residual&quot;:0.705,&quot;observedRows&quot;:458,&quot;submissionRows&quot;:458,&quot;hybrids&quot;:458,&quot;missingObserved&quot;:0,&quot;t2m&quot;:11.93,&quot;tmax&quot;:17.08,&quot;rain&quot;:1304.1,&quot;solar&quot;:4663.1,&quot;rh&quot;:81.8,&quot;m3Rmse&quot;:1.871,&quot;clacRmse&quot;:1.728,&quot;clacR&quot;:0.559},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;MIH1_2022&quot;,&quot;site&quot;:&quot;MIH1&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;observedMean&quot;:9.204,&quot;observedSd&quot;:1.807,&quot;sitePred&quot;:9.951,&quot;blendPred&quot;:9.875,&quot;residual&quot;:-0.747,&quot;observedRows&quot;:507,&quot;submissionRows&quot;:508,&quot;hybrids&quot;:508,&quot;missingObserved&quot;:1,&quot;t2m&quot;:9.91,&quot;tmax&quot;:14.98,&quot;rain&quot;:1230.3,&quot;solar&quot;:4579.7,&quot;rh&quot;:82.4,&quot;m3Rmse&quot;:1.956,&quot;clacRmse&quot;:2.039,&quot;clacR&quot;:0.339},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;MNH1_2022&quot;,&quot;site&quot;:&quot;MNH1&quot;,&quot;state&quot;:&quot;MN&quot;,&quot;observedMean&quot;:11.669,&quot;observedSd&quot;:1.839,&quot;sitePred&quot;:9.213,&quot;blendPred&quot;:9.241,&quot;residual&quot;:2.456,&quot;observedRows&quot;:434,&quot;submissionRows&quot;:435,&quot;hybrids&quot;:435,&quot;missingObserved&quot;:1,&quot;t2m&quot;:9.12,&quot;tmax&quot;:14.79,&quot;rain&quot;:837.5,&quot;solar&quot;:4692.3,&quot;rh&quot;:75.5,&quot;m3Rmse&quot;:3.069,&quot;clacRmse&quot;:2.503,&quot;clacR&quot;:0.443},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;MOH2_2022&quot;,&quot;site&quot;:&quot;MOH2&quot;,&quot;state&quot;:&quot;MO&quot;,&quot;observedMean&quot;:6.187,&quot;observedSd&quot;:1.729,&quot;sitePred&quot;:7.967,&quot;blendPred&quot;:7.951,&quot;residual&quot;:-1.779,&quot;observedRows&quot;:453,&quot;submissionRows&quot;:455,&quot;hybrids&quot;:455,&quot;missingObserved&quot;:2,&quot;t2m&quot;:13.84,&quot;tmax&quot;:19.66,&quot;rain&quot;:1314.3,&quot;solar&quot;:5204.5,&quot;rh&quot;:77.1,&quot;m3Rmse&quot;:2.481,&quot;clacRmse&quot;:2.825,&quot;clacR&quot;:0.207},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;NCH1_2022&quot;,&quot;site&quot;:&quot;NCH1&quot;,&quot;state&quot;:&quot;NC&quot;,&quot;observedMean&quot;:9.698,&quot;observedSd&quot;:1.134,&quot;sitePred&quot;:8.671,&quot;blendPred&quot;:8.435,&quot;residual&quot;:1.027,&quot;observedRows&quot;:530,&quot;submissionRows&quot;:530,&quot;hybrids&quot;:530,&quot;missingObserved&quot;:0,&quot;t2m&quot;:17.96,&quot;tmax&quot;:23.77,&quot;rain&quot;:965.8,&quot;solar&quot;:5228.1,&quot;rh&quot;:76.9,&quot;m3Rmse&quot;:1.53,&quot;clacRmse&quot;:1.055,&quot;clacR&quot;:0.38},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;NEH1_2022&quot;,&quot;site&quot;:&quot;NEH1&quot;,&quot;state&quot;:&quot;NE&quot;,&quot;observedMean&quot;:5.003,&quot;observedSd&quot;:1.816,&quot;sitePred&quot;:7.959,&quot;blendPred&quot;:8.681,&quot;residual&quot;:-2.956,&quot;observedRows&quot;:344,&quot;submissionRows&quot;:359,&quot;hybrids&quot;:359,&quot;missingObserved&quot;:15,&quot;t2m&quot;:13.13,&quot;tmax&quot;:19.8,&quot;rain&quot;:799.5,&quot;solar&quot;:5298.5,&quot;rh&quot;:64.8,&quot;m3Rmse&quot;:3.469,&quot;clacRmse&quot;:4.335,&quot;clacR&quot;:0.149},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;NYH2_2022&quot;,&quot;site&quot;:&quot;NYH2&quot;,&quot;state&quot;:&quot;NY&quot;,&quot;observedMean&quot;:10.775,&quot;observedSd&quot;:1.812,&quot;sitePred&quot;:9.69,&quot;blendPred&quot;:9.993,&quot;residual&quot;:1.085,&quot;observedRows&quot;:427,&quot;submissionRows&quot;:443,&quot;hybrids&quot;:443,&quot;missingObserved&quot;:16,&quot;t2m&quot;:9.76,&quot;tmax&quot;:14.97,&quot;rain&quot;:1263.0,&quot;solar&quot;:4497.4,&quot;rh&quot;:82.5,&quot;m3Rmse&quot;:2.112,&quot;clacRmse&quot;:1.842,&quot;clacR&quot;:0.319},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;NYH3_2022&quot;,&quot;site&quot;:&quot;NYH3&quot;,&quot;state&quot;:&quot;NY&quot;,&quot;observedMean&quot;:10.292,&quot;observedSd&quot;:1.757,&quot;sitePred&quot;:10.233,&quot;blendPred&quot;:10.319,&quot;residual&quot;:0.058,&quot;observedRows&quot;:435,&quot;submissionRows&quot;:447,&quot;hybrids&quot;:447,&quot;missingObserved&quot;:12,&quot;t2m&quot;:9.76,&quot;tmax&quot;:14.97,&quot;rain&quot;:1263.0,&quot;solar&quot;:4497.4,&quot;rh&quot;:82.5,&quot;m3Rmse&quot;:1.758,&quot;clacRmse&quot;:1.668,&quot;clacR&quot;:0.324},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;OHH1_2022&quot;,&quot;site&quot;:&quot;OHH1&quot;,&quot;state&quot;:&quot;OH&quot;,&quot;observedMean&quot;:11.547,&quot;observedSd&quot;:1.943,&quot;sitePred&quot;:10.808,&quot;blendPred&quot;:10.896,&quot;residual&quot;:0.739,&quot;observedRows&quot;:430,&quot;submissionRows&quot;:435,&quot;hybrids&quot;:435,&quot;missingObserved&quot;:5,&quot;t2m&quot;:12.08,&quot;tmax&quot;:17.32,&quot;rain&quot;:1022.4,&quot;solar&quot;:4780.9,&quot;rh&quot;:80.2,&quot;m3Rmse&quot;:2.079,&quot;clacRmse&quot;:1.824,&quot;clacR&quot;:0.374},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;TXH1_2022&quot;,&quot;site&quot;:&quot;TXH1&quot;,&quot;state&quot;:&quot;TX&quot;,&quot;observedMean&quot;:8.002,&quot;observedSd&quot;:1.481,&quot;sitePred&quot;:8.318,&quot;blendPred&quot;:8.536,&quot;residual&quot;:-0.316,&quot;observedRows&quot;:347,&quot;submissionRows&quot;:348,&quot;hybrids&quot;:348,&quot;missingObserved&quot;:1,&quot;t2m&quot;:21.35,&quot;tmax&quot;:27.35,&quot;rain&quot;:1340.3,&quot;solar&quot;:5863.0,&quot;rh&quot;:75.2,&quot;m3Rmse&quot;:1.514,&quot;clacRmse&quot;:1.402,&quot;clacR&quot;:0.341},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;TXH2_2022&quot;,&quot;site&quot;:&quot;TXH2&quot;,&quot;state&quot;:&quot;TX&quot;,&quot;observedMean&quot;:8.017,&quot;observedSd&quot;:1.553,&quot;sitePred&quot;:8.67,&quot;blendPred&quot;:8.616,&quot;residual&quot;:-0.654,&quot;observedRows&quot;:335,&quot;submissionRows&quot;:336,&quot;hybrids&quot;:336,&quot;missingObserved&quot;:1,&quot;t2m&quot;:21.35,&quot;tmax&quot;:27.35,&quot;rain&quot;:1340.3,&quot;solar&quot;:5863.0,&quot;rh&quot;:75.2,&quot;m3Rmse&quot;:1.685,&quot;clacRmse&quot;:1.706,&quot;clacR&quot;:0.232},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;TXH3_2022&quot;,&quot;site&quot;:&quot;TXH3&quot;,&quot;state&quot;:&quot;TX&quot;,&quot;observedMean&quot;:6.595,&quot;observedSd&quot;:1.386,&quot;sitePred&quot;:6.596,&quot;blendPred&quot;:6.178,&quot;residual&quot;:-0.001,&quot;observedRows&quot;:342,&quot;submissionRows&quot;:348,&quot;hybrids&quot;:348,&quot;missingObserved&quot;:6,&quot;t2m&quot;:21.35,&quot;tmax&quot;:27.35,&quot;rain&quot;:1340.3,&quot;solar&quot;:5863.0,&quot;rh&quot;:75.2,&quot;m3Rmse&quot;:1.386,&quot;clacRmse&quot;:1.288,&quot;clacR&quot;:0.394},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;WIH1_2022&quot;,&quot;site&quot;:&quot;WIH1&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:14.503,&quot;observedSd&quot;:2.0,&quot;sitePred&quot;:11.332,&quot;blendPred&quot;:11.408,&quot;residual&quot;:3.172,&quot;observedRows&quot;:423,&quot;submissionRows&quot;:430,&quot;hybrids&quot;:430,&quot;missingObserved&quot;:7,&quot;t2m&quot;:9.31,&quot;tmax&quot;:14.4,&quot;rain&quot;:1458.2,&quot;solar&quot;:4551.8,&quot;rh&quot;:81.3,&quot;m3Rmse&quot;:3.75,&quot;clacRmse&quot;:3.764,&quot;clacR&quot;:0.56},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;WIH2_2022&quot;,&quot;site&quot;:&quot;WIH2&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:11.609,&quot;observedSd&quot;:2.015,&quot;sitePred&quot;:9.921,&quot;blendPred&quot;:10.561,&quot;residual&quot;:1.688,&quot;observedRows&quot;:501,&quot;submissionRows&quot;:525,&quot;hybrids&quot;:525,&quot;missingObserved&quot;:24,&quot;t2m&quot;:8.9,&quot;tmax&quot;:14.03,&quot;rain&quot;:1243.7,&quot;solar&quot;:4551.8,&quot;rh&quot;:80.7,&quot;m3Rmse&quot;:2.629,&quot;clacRmse&quot;:2.124,&quot;clacR&quot;:0.489},{&quot;round&quot;:&quot;2022&quot;,&quot;env&quot;:&quot;WIH3_2022&quot;,&quot;site&quot;:&quot;WIH3&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:12.306,&quot;observedSd&quot;:1.843,&quot;sitePred&quot;:10.39,&quot;blendPred&quot;:10.794,&quot;residual&quot;:1.915,&quot;observedRows&quot;:442,&quot;submissionRows&quot;:447,&quot;hybrids&quot;:447,&quot;missingObserved&quot;:5,&quot;t2m&quot;:8.52,&quot;tmax&quot;:13.62,&quot;rain&quot;:1029.4,&quot;solar&quot;:4537.1,&quot;rh&quot;:80.1,&quot;m3Rmse&quot;:2.658,&quot;clacRmse&quot;:2.716,&quot;clacR&quot;:0.51},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;DEH1_2024&quot;,&quot;site&quot;:&quot;DEH1&quot;,&quot;state&quot;:&quot;DE&quot;,&quot;observedMean&quot;:8.698,&quot;observedSd&quot;:2.08,&quot;sitePred&quot;:10.639,&quot;blendPred&quot;:10.703,&quot;residual&quot;:-1.941,&quot;observedRows&quot;:600,&quot;submissionRows&quot;:603,&quot;hybrids&quot;:603,&quot;missingObserved&quot;:3,&quot;t2m&quot;:21.05,&quot;tmax&quot;:26.37,&quot;rain&quot;:483.8,&quot;solar&quot;:4094.2,&quot;rh&quot;:76.9,&quot;m3Rmse&quot;:2.845,&quot;clacRmse&quot;:2.505,&quot;clacR&quot;:0.359},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;GAH1_2024&quot;,&quot;site&quot;:&quot;GAH1&quot;,&quot;state&quot;:&quot;GA&quot;,&quot;observedMean&quot;:5.901,&quot;observedSd&quot;:2.069,&quot;sitePred&quot;:7.478,&quot;blendPred&quot;:7.913,&quot;residual&quot;:-1.577,&quot;observedRows&quot;:354,&quot;submissionRows&quot;:355,&quot;hybrids&quot;:355,&quot;missingObserved&quot;:1,&quot;t2m&quot;:23.63,&quot;tmax&quot;:28.74,&quot;rain&quot;:1213.0,&quot;solar&quot;:4781.4,&quot;rh&quot;:78.8,&quot;m3Rmse&quot;:2.602,&quot;clacRmse&quot;:2.478,&quot;clacR&quot;:0.265},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;GAH2_2024&quot;,&quot;site&quot;:&quot;GAH2&quot;,&quot;state&quot;:&quot;GA&quot;,&quot;observedMean&quot;:9.496,&quot;observedSd&quot;:1.432,&quot;sitePred&quot;:9.357,&quot;blendPred&quot;:9.28,&quot;residual&quot;:0.139,&quot;observedRows&quot;:369,&quot;submissionRows&quot;:369,&quot;hybrids&quot;:369,&quot;missingObserved&quot;:0,&quot;t2m&quot;:23.56,&quot;tmax&quot;:30.44,&quot;rain&quot;:700.3,&quot;solar&quot;:4436.0,&quot;rh&quot;:72.3,&quot;m3Rmse&quot;:1.439,&quot;clacRmse&quot;:1.354,&quot;clacR&quot;:0.428},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;IAH2_2024&quot;,&quot;site&quot;:&quot;IAH2&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:9.392,&quot;observedSd&quot;:2.968,&quot;sitePred&quot;:10.716,&quot;blendPred&quot;:10.682,&quot;residual&quot;:-1.324,&quot;observedRows&quot;:651,&quot;submissionRows&quot;:658,&quot;hybrids&quot;:658,&quot;missingObserved&quot;:7,&quot;t2m&quot;:19.4,&quot;tmax&quot;:25.28,&quot;rain&quot;:575.0,&quot;solar&quot;:3247.2,&quot;rh&quot;:70.9,&quot;m3Rmse&quot;:3.249,&quot;clacRmse&quot;:3.426,&quot;clacR&quot;:0.261},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;IAH4_2024&quot;,&quot;site&quot;:&quot;IAH4&quot;,&quot;state&quot;:&quot;IA&quot;,&quot;observedMean&quot;:13.173,&quot;observedSd&quot;:2.011,&quot;sitePred&quot;:11.306,&quot;blendPred&quot;:10.887,&quot;residual&quot;:1.866,&quot;observedRows&quot;:759,&quot;submissionRows&quot;:761,&quot;hybrids&quot;:761,&quot;missingObserved&quot;:2,&quot;t2m&quot;:19.26,&quot;tmax&quot;:25.0,&quot;rain&quot;:657.6,&quot;solar&quot;:3459.5,&quot;rh&quot;:73.6,&quot;m3Rmse&quot;:2.743,&quot;clacRmse&quot;:2.34,&quot;clacR&quot;:0.534},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;ILH1_2024&quot;,&quot;site&quot;:&quot;ILH1&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;observedMean&quot;:10.621,&quot;observedSd&quot;:1.702,&quot;sitePred&quot;:11.072,&quot;blendPred&quot;:11.03,&quot;residual&quot;:-0.452,&quot;observedRows&quot;:370,&quot;submissionRows&quot;:370,&quot;hybrids&quot;:370,&quot;missingObserved&quot;:0,&quot;t2m&quot;:19.68,&quot;tmax&quot;:25.28,&quot;rain&quot;:862.9,&quot;solar&quot;:3707.1,&quot;rh&quot;:75.9,&quot;m3Rmse&quot;:1.761,&quot;clacRmse&quot;:1.731,&quot;clacR&quot;:0.374},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;INH1_2024&quot;,&quot;site&quot;:&quot;INH1&quot;,&quot;state&quot;:&quot;IN&quot;,&quot;observedMean&quot;:11.851,&quot;observedSd&quot;:1.746,&quot;sitePred&quot;:11.182,&quot;blendPred&quot;:10.784,&quot;residual&quot;:0.67,&quot;observedRows&quot;:273,&quot;submissionRows&quot;:375,&quot;hybrids&quot;:375,&quot;missingObserved&quot;:102,&quot;t2m&quot;:19.28,&quot;tmax&quot;:24.78,&quot;rain&quot;:753.4,&quot;solar&quot;:3717.3,&quot;rh&quot;:76.6,&quot;m3Rmse&quot;:1.87,&quot;clacRmse&quot;:1.657,&quot;clacR&quot;:0.52},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;MIH1_2024&quot;,&quot;site&quot;:&quot;MIH1&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;observedMean&quot;:12.473,&quot;observedSd&quot;:1.894,&quot;sitePred&quot;:9.918,&quot;blendPred&quot;:10.053,&quot;residual&quot;:2.555,&quot;observedRows&quot;:407,&quot;submissionRows&quot;:418,&quot;hybrids&quot;:418,&quot;missingObserved&quot;:11,&quot;t2m&quot;:17.82,&quot;tmax&quot;:23.27,&quot;rain&quot;:859.8,&quot;solar&quot;:3275.7,&quot;rh&quot;:78.3,&quot;m3Rmse&quot;:3.18,&quot;clacRmse&quot;:3.363,&quot;clacR&quot;:0.409},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;MNH1_2024&quot;,&quot;site&quot;:&quot;MNH1&quot;,&quot;state&quot;:&quot;MN&quot;,&quot;observedMean&quot;:12.371,&quot;observedSd&quot;:2.015,&quot;sitePred&quot;:9.648,&quot;blendPred&quot;:9.444,&quot;residual&quot;:2.722,&quot;observedRows&quot;:397,&quot;submissionRows&quot;:402,&quot;hybrids&quot;:402,&quot;missingObserved&quot;:5,&quot;t2m&quot;:17.72,&quot;tmax&quot;:23.31,&quot;rain&quot;:771.1,&quot;solar&quot;:3358.2,&quot;rh&quot;:76.5,&quot;m3Rmse&quot;:3.387,&quot;clacRmse&quot;:3.134,&quot;clacR&quot;:0.342},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;MOH1_2024&quot;,&quot;site&quot;:&quot;MOH1&quot;,&quot;state&quot;:&quot;MO&quot;,&quot;observedMean&quot;:11.26,&quot;observedSd&quot;:1.987,&quot;sitePred&quot;:7.506,&quot;blendPred&quot;:7.232,&quot;residual&quot;:3.754,&quot;observedRows&quot;:583,&quot;submissionRows&quot;:590,&quot;hybrids&quot;:590,&quot;missingObserved&quot;:7,&quot;t2m&quot;:21.42,&quot;tmax&quot;:27.49,&quot;rain&quot;:729.3,&quot;solar&quot;:3497.5,&quot;rh&quot;:72.4,&quot;m3Rmse&quot;:4.248,&quot;clacRmse&quot;:4.005,&quot;clacR&quot;:0.472},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NCH1_2024&quot;,&quot;site&quot;:&quot;NCH1&quot;,&quot;state&quot;:&quot;NC&quot;,&quot;observedMean&quot;:8.792,&quot;observedSd&quot;:1.898,&quot;sitePred&quot;:8.595,&quot;blendPred&quot;:8.024,&quot;residual&quot;:0.197,&quot;observedRows&quot;:773,&quot;submissionRows&quot;:814,&quot;hybrids&quot;:814,&quot;missingObserved&quot;:41,&quot;t2m&quot;:22.26,&quot;tmax&quot;:28.14,&quot;rain&quot;:703.6,&quot;solar&quot;:4358.6,&quot;rh&quot;:76.4,&quot;m3Rmse&quot;:1.908,&quot;clacRmse&quot;:1.74,&quot;clacR&quot;:0.481},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NEH1_2024&quot;,&quot;site&quot;:&quot;NEH1&quot;,&quot;state&quot;:&quot;NE&quot;,&quot;observedMean&quot;:9.387,&quot;observedSd&quot;:1.318,&quot;sitePred&quot;:7.348,&quot;blendPred&quot;:7.241,&quot;residual&quot;:2.039,&quot;observedRows&quot;:239,&quot;submissionRows&quot;:239,&quot;hybrids&quot;:239,&quot;missingObserved&quot;:0,&quot;t2m&quot;:20.61,&quot;tmax&quot;:27.38,&quot;rain&quot;:504.9,&quot;solar&quot;:3861.8,&quot;rh&quot;:64.2,&quot;m3Rmse&quot;:2.428,&quot;clacRmse&quot;:2.006,&quot;clacR&quot;:0.491},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NEH2_2024&quot;,&quot;site&quot;:&quot;NEH2&quot;,&quot;state&quot;:&quot;NE&quot;,&quot;observedMean&quot;:6.356,&quot;observedSd&quot;:0.735,&quot;sitePred&quot;:8.564,&quot;blendPred&quot;:8.399,&quot;residual&quot;:-2.208,&quot;observedRows&quot;:238,&quot;submissionRows&quot;:238,&quot;hybrids&quot;:238,&quot;missingObserved&quot;:0,&quot;t2m&quot;:20.07,&quot;tmax&quot;:27.22,&quot;rain&quot;:353.2,&quot;solar&quot;:3998.6,&quot;rh&quot;:56.5,&quot;m3Rmse&quot;:2.328,&quot;clacRmse&quot;:2.329,&quot;clacR&quot;:0.189},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NEH3_2024&quot;,&quot;site&quot;:&quot;NEH3&quot;,&quot;state&quot;:&quot;NE&quot;,&quot;observedMean&quot;:14.069,&quot;observedSd&quot;:1.823,&quot;sitePred&quot;:8.746,&quot;blendPred&quot;:8.734,&quot;residual&quot;:5.323,&quot;observedRows&quot;:238,&quot;submissionRows&quot;:238,&quot;hybrids&quot;:238,&quot;missingObserved&quot;:0,&quot;t2m&quot;:20.07,&quot;tmax&quot;:27.22,&quot;rain&quot;:353.2,&quot;solar&quot;:3998.6,&quot;rh&quot;:56.5,&quot;m3Rmse&quot;:5.626,&quot;clacRmse&quot;:5.924,&quot;clacR&quot;:0.442},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NYH2_2024&quot;,&quot;site&quot;:&quot;NYH2&quot;,&quot;state&quot;:&quot;NY&quot;,&quot;observedMean&quot;:13.352,&quot;observedSd&quot;:1.89,&quot;sitePred&quot;:9.773,&quot;blendPred&quot;:10.106,&quot;residual&quot;:3.579,&quot;observedRows&quot;:349,&quot;submissionRows&quot;:349,&quot;hybrids&quot;:349,&quot;missingObserved&quot;:0,&quot;t2m&quot;:17.27,&quot;tmax&quot;:22.6,&quot;rain&quot;:807.9,&quot;solar&quot;:3235.4,&quot;rh&quot;:79.1,&quot;m3Rmse&quot;:4.047,&quot;clacRmse&quot;:3.466,&quot;clacR&quot;:0.361},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;NYH3_2024&quot;,&quot;site&quot;:&quot;NYH3&quot;,&quot;state&quot;:&quot;NY&quot;,&quot;observedMean&quot;:8.952,&quot;observedSd&quot;:1.429,&quot;sitePred&quot;:10.296,&quot;blendPred&quot;:10.252,&quot;residual&quot;:-1.344,&quot;observedRows&quot;:370,&quot;submissionRows&quot;:370,&quot;hybrids&quot;:370,&quot;missingObserved&quot;:0,&quot;t2m&quot;:17.27,&quot;tmax&quot;:22.6,&quot;rain&quot;:807.9,&quot;solar&quot;:3235.4,&quot;rh&quot;:79.1,&quot;m3Rmse&quot;:1.962,&quot;clacRmse&quot;:1.65,&quot;clacR&quot;:0.172},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;OHH1_2024&quot;,&quot;site&quot;:&quot;OHH1&quot;,&quot;state&quot;:&quot;OH&quot;,&quot;observedMean&quot;:14.667,&quot;observedSd&quot;:1.506,&quot;sitePred&quot;:11.087,&quot;blendPred&quot;:11.029,&quot;residual&quot;:3.581,&quot;observedRows&quot;:341,&quot;submissionRows&quot;:342,&quot;hybrids&quot;:342,&quot;missingObserved&quot;:1,&quot;t2m&quot;:18.9,&quot;tmax&quot;:24.29,&quot;rain&quot;:576.8,&quot;solar&quot;:3284.0,&quot;rh&quot;:76.1,&quot;m3Rmse&quot;:3.884,&quot;clacRmse&quot;:3.36,&quot;clacR&quot;:0.502},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;ONH3_2024&quot;,&quot;site&quot;:&quot;ONH3&quot;,&quot;state&quot;:&quot;ON&quot;,&quot;observedMean&quot;:12.718,&quot;observedSd&quot;:1.787,&quot;sitePred&quot;:9.964,&quot;blendPred&quot;:10.161,&quot;residual&quot;:2.753,&quot;observedRows&quot;:422,&quot;submissionRows&quot;:422,&quot;hybrids&quot;:422,&quot;missingObserved&quot;:0,&quot;t2m&quot;:16.04,&quot;tmax&quot;:21.17,&quot;rain&quot;:868.9,&quot;solar&quot;:3294.8,&quot;rh&quot;:80.7,&quot;m3Rmse&quot;:3.283,&quot;clacRmse&quot;:2.392,&quot;clacR&quot;:0.178},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;TXH1_2024&quot;,&quot;site&quot;:&quot;TXH1&quot;,&quot;state&quot;:&quot;TX&quot;,&quot;observedMean&quot;:6.859,&quot;observedSd&quot;:1.42,&quot;sitePred&quot;:8.46,&quot;blendPred&quot;:8.758,&quot;residual&quot;:-1.6,&quot;observedRows&quot;:237,&quot;submissionRows&quot;:239,&quot;hybrids&quot;:239,&quot;missingObserved&quot;:2,&quot;t2m&quot;:24.35,&quot;tmax&quot;:29.68,&quot;rain&quot;:1217.8,&quot;solar&quot;:5056.1,&quot;rh&quot;:80.3,&quot;m3Rmse&quot;:2.14,&quot;clacRmse&quot;:2.258,&quot;clacR&quot;:0.368},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;WIH1_2024&quot;,&quot;site&quot;:&quot;WIH1&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:13.904,&quot;observedSd&quot;:1.969,&quot;sitePred&quot;:11.502,&quot;blendPred&quot;:11.527,&quot;residual&quot;:2.402,&quot;observedRows&quot;:354,&quot;submissionRows&quot;:354,&quot;hybrids&quot;:354,&quot;missingObserved&quot;:0,&quot;t2m&quot;:17.44,&quot;tmax&quot;:23.09,&quot;rain&quot;:829.1,&quot;solar&quot;:3711.3,&quot;rh&quot;:75.8,&quot;m3Rmse&quot;:3.105,&quot;clacRmse&quot;:2.923,&quot;clacR&quot;:0.37},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;WIH2_2024&quot;,&quot;site&quot;:&quot;WIH2&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:11.792,&quot;observedSd&quot;:1.938,&quot;sitePred&quot;:10.584,&quot;blendPred&quot;:10.617,&quot;residual&quot;:1.208,&quot;observedRows&quot;:741,&quot;submissionRows&quot;:743,&quot;hybrids&quot;:743,&quot;missingObserved&quot;:2,&quot;t2m&quot;:17.44,&quot;tmax&quot;:22.85,&quot;rain&quot;:614.7,&quot;solar&quot;:3107.2,&quot;rh&quot;:77.3,&quot;m3Rmse&quot;:2.284,&quot;clacRmse&quot;:1.926,&quot;clacR&quot;:0.257},{&quot;round&quot;:&quot;2024&quot;,&quot;env&quot;:&quot;WIH3_2024&quot;,&quot;site&quot;:&quot;WIH3&quot;,&quot;state&quot;:&quot;WI&quot;,&quot;observedMean&quot;:10.593,&quot;observedSd&quot;:1.814,&quot;sitePred&quot;:11.712,&quot;blendPred&quot;:11.647,&quot;residual&quot;:-1.118,&quot;observedRows&quot;:421,&quot;submissionRows&quot;:423,&quot;hybrids&quot;:423,&quot;missingObserved&quot;:2,&quot;t2m&quot;:16.5,&quot;tmax&quot;:21.84,&quot;rain&quot;:697.0,&quot;solar&quot;:3645.5,&quot;rh&quot;:76.4,&quot;m3Rmse&quot;:2.131,&quot;clacRmse&quot;:1.911,&quot;clacR&quot;:0.233}];
+  let round = &#x27;all&#x27;;
+  let selected = data.slice().sort((a,b)=&gt;Math.abs(b.residual)-Math.abs(a.residual))[0];
+  const plot = root.querySelector(&#x27;#env-plot&#x27;);
+  const detail = root.querySelector(&#x27;#env-detail&#x27;);
+  const W=720,H=470,m={l:62,r:22,t:18,b:60};
+  const fmt = (x,d=2) =&gt; x === null || x === undefined ? &#x27;NA&#x27; : Number(x).toFixed(d).replace(/\.0+$/,&#x27;&#x27;).replace(/(\.\d*[1-9])0+$/,&#x27;$1&#x27;);
+  const filtered = () =&gt; data.filter(d =&gt; round === &#x27;all&#x27; || d.round === round);
+  const extent = (arr, key) =&gt; [Math.min(...arr.map(d=&gt;d[key]).filter(Number.isFinite)), Math.max(...arr.map(d=&gt;d[key]).filter(Number.isFinite))];
+  const sx = (x,lo,hi) =&gt; m.l + (x-lo)/(hi-lo)*(W-m.l-m.r);
+  const sy = (y,lo,hi) =&gt; H-m.b - (y-lo)/(hi-lo)*(H-m.t-m.b);
+  function renderPlot() {
+    const ds = filtered();
+    if (!ds.includes(selected)) selected = ds.slice().sort((a,b)=&gt;Math.abs(b.residual)-Math.abs(a.residual))[0] || data[0];
+    const ex1=extent(ds,&#x27;observedMean&#x27;), ex2=extent(ds,&#x27;sitePred&#x27;);
+    let lo=Math.floor(Math.min(ex1[0],ex2[0])-0.5), hi=Math.ceil(Math.max(ex1[1],ex2[1])+0.5);
+    if (hi&lt;=lo) hi=lo+1;
+    const ticks = Array.from({length:6},(_,i)=&gt;lo+(hi-lo)*i/5);
+    plot.innerHTML = &#x27;&#x27;;
+    ticks.forEach(t =&gt; {
+      const x=sx(t,lo,hi), y=sy(t,lo,hi);
+      plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;line class=&quot;grid&quot; x1=&quot;${x}&quot; x2=&quot;${x}&quot; y1=&quot;${m.t}&quot; y2=&quot;${H-m.b}&quot; /&gt;`);
+      plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;line class=&quot;grid&quot; x1=&quot;${m.l}&quot; x2=&quot;${W-m.r}&quot; y1=&quot;${y}&quot; y2=&quot;${y}&quot; /&gt;`);
+      plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;text class=&quot;axis&quot; x=&quot;${x}&quot; y=&quot;${H-m.b+24}&quot; text-anchor=&quot;middle&quot;&gt;${fmt(t,1)}&lt;/text&gt;`);
+      plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;text class=&quot;axis&quot; x=&quot;${m.l-10}&quot; y=&quot;${y+4}&quot; text-anchor=&quot;end&quot;&gt;${fmt(t,1)}&lt;/text&gt;`);
+    });
+    plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;line class=&quot;diag&quot; x1=&quot;${sx(lo,lo,hi)}&quot; y1=&quot;${sy(lo,lo,hi)}&quot; x2=&quot;${sx(hi,lo,hi)}&quot; y2=&quot;${sy(hi,lo,hi)}&quot; /&gt;`);
+    plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;text class=&quot;label&quot; x=&quot;${(m.l+W-m.r)/2}&quot; y=&quot;${H-17}&quot; text-anchor=&quot;middle&quot;&gt;Observed mean yield (Mg/ha)&lt;/text&gt;`);
+    plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;text class=&quot;label&quot; x=&quot;16&quot; y=&quot;${(m.t+H-m.b)/2}&quot; transform=&quot;rotate(-90 16 ${(m.t+H-m.b)/2})&quot; text-anchor=&quot;middle&quot;&gt;Site-history predicted mean&lt;/text&gt;`);
+    ds.forEach((d,i) =&gt; {
+      const x=sx(d.observedMean,lo,hi), y=sy(d.sitePred,lo,hi), r=5+Math.sqrt(d.observedRows)/8;
+      const c=document.createElementNS(&#x27;http://www.w3.org/2000/svg&#x27;,&#x27;circle&#x27;);
+      c.setAttribute(&#x27;cx&#x27;,x); c.setAttribute(&#x27;cy&#x27;,y); c.setAttribute(&#x27;r&#x27;,Math.min(13,r));
+      c.setAttribute(&#x27;class&#x27;,`pt y${d.round}${d.env===selected.env?&#x27; selected&#x27;:&#x27;&#x27;}`);
+      c.setAttribute(&#x27;aria-label&#x27;,`${d.env} observed ${d.observedMean} predicted ${d.sitePred}`);
+      c.addEventListener(&#x27;click&#x27;,()=&gt;{ selected=d; renderPlot(); renderDetail(); });
+      plot.appendChild(c);
+    });
+    const high = ds.slice().sort((a,b)=&gt;Math.abs(b.residual)-Math.abs(a.residual)).slice(0,3);
+    high.forEach(d =&gt; {
+      const x=sx(d.observedMean,lo,hi), y=sy(d.sitePred,lo,hi);
+      plot.insertAdjacentHTML(&#x27;beforeend&#x27;, `&lt;text class=&quot;axis&quot; x=&quot;${x+10}&quot; y=&quot;${y-10}&quot;&gt;${d.env}&lt;/text&gt;`);
+    });
+  }
+  function bar(label, val, max, suffix=&#x27;&#x27;) {
+    const p=Math.max(0, Math.min(100, val/max*100));
+    return `&lt;div class=&quot;barrow&quot;&gt;&lt;span class=&quot;muted&quot;&gt;${label}&lt;/span&gt;&lt;div class=&quot;track&quot;&gt;&lt;div class=&quot;fill&quot; style=&quot;width:${p}%&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;span&gt;${fmt(val,1)}${suffix}&lt;/span&gt;&lt;/div&gt;`;
+  }
+  function renderDetail() {
+    const d=selected;
+    const ds=filtered();
+    const surprises=ds.slice().sort((a,b)=&gt;Math.abs(b.residual)-Math.abs(a.residual)).slice(0,6).map(x=&gt;
+      `&lt;button class=&quot;surprise&quot; aria-pressed=&quot;${x.env===d.env}&quot; data-env=&quot;${x.env}&quot;&gt;&lt;span&gt;${x.env}&lt;/span&gt;&lt;span class=&quot;muted&quot;&gt;obs ${fmt(x.observedMean,1)} vs hist ${fmt(x.sitePred,1)}&lt;/span&gt;&lt;b&gt;${x.residual&gt;0?&#x27;+&#x27;:&#x27;&#x27;}${fmt(x.residual,1)}&lt;/b&gt;&lt;/button&gt;`).join(&#x27;&#x27;);
+    detail.innerHTML = `&lt;div class=&quot;detail-title&quot;&gt;&lt;span class=&quot;env-name&quot;&gt;${d.env}&lt;/span&gt;&lt;span class=&quot;muted&quot;&gt;${d.round} · ${d.state} · ${d.site}&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;metrics&quot;&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;Observed mean&lt;/span&gt;&lt;b&gt;${fmt(d.observedMean,2)} Mg/ha&lt;/b&gt;&lt;/div&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;History miss&lt;/span&gt;&lt;b&gt;${d.residual&gt;0?&#x27;+&#x27;:&#x27;&#x27;}${fmt(d.residual,2)} Mg/ha&lt;/b&gt;&lt;/div&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;Observed rows&lt;/span&gt;&lt;b&gt;${d.observedRows} / ${d.submissionRows}&lt;/b&gt;&lt;/div&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;M3 RMSE&lt;/span&gt;&lt;b&gt;${fmt(d.m3Rmse,2)}&lt;/b&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      ${bar(&#x27;Mean temp&#x27;, d.t2m, 28, &#x27; C&#x27;)}
+      ${bar(&#x27;Max temp&#x27;, d.tmax, 34, &#x27; C&#x27;)}
+      ${bar(&#x27;Rain&#x27;, d.rain, 1700, &#x27; mm&#x27;)}
+      ${bar(&#x27;Solar&#x27;, d.solar, 7000, &#x27;&#x27;)}
+      &lt;div class=&quot;metrics&quot;&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;CLAC RMSE&lt;/span&gt;&lt;b&gt;${fmt(d.clacRmse,2)}&lt;/b&gt;&lt;/div&gt;
+        &lt;div class=&quot;metric&quot;&gt;&lt;span class=&quot;muted&quot;&gt;CLAC within-env r&lt;/span&gt;&lt;b&gt;${fmt(d.clacR,2)}&lt;/b&gt;&lt;/div&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;muted&quot;&gt;Largest history surprises&lt;/div&gt;&lt;div class=&quot;surprises&quot;&gt;${surprises}&lt;/div&gt;`;
+    detail.querySelectorAll(&#x27;.surprise&#x27;).forEach(btn=&gt;btn.addEventListener(&#x27;click&#x27;,()=&gt;{
+      const found=data.find(x=&gt;x.env===btn.dataset.env &amp;&amp; (round===&#x27;all&#x27;||x.round===round));
+      if(found){ selected=found; renderPlot(); renderDetail(); }
+    }));
+  }
+  root.querySelectorAll(&#x27;[data-round]&#x27;).forEach(btn=&gt;btn.addEventListener(&#x27;click&#x27;,()=&gt;{
+    round=btn.dataset.round;
+    root.querySelectorAll(&#x27;[data-round]&#x27;).forEach(b=&gt;b.setAttribute(&#x27;aria-pressed&#x27;, String(b===btn)));
+    renderPlot(); renderDetail();
+  }));
+  renderPlot(); renderDetail();
+})();
+&lt;/script&gt;
+
+&lt;script src=&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+
+  const getTrigger = (target) =&gt;
+    target?.nodeType === Node.ELEMENT_NODE
+      ? target.closest(&quot;[data-tooltip]&quot;)
+      : null;
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () =&gt; {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handleLeave = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    const trigger = getTrigger(event.target);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    document.removeEventListener(&quot;pointerover&quot;, handlePointerOpen);
+    document.removeEventListener(&quot;pointerout&quot;, handleLeave);
+    document.removeEventListener(&quot;focusin&quot;, handleFocusIn);
+    document.removeEventListener(&quot;focusout&quot;, handleLeave);
+    document.removeEventListener(&quot;keydown&quot;, handleKeyDown);
+    document.removeEventListener(&quot;contextmenu&quot;, handleContextMenu);
+    tooltip = null;
+  };
+
+  document.addEventListener(&quot;pointerover&quot;, handlePointerOpen);
+  document.addEventListener(&quot;pointerout&quot;, handleLeave);
+  document.addEventListener(&quot;focusin&quot;, handleFocusIn);
+  document.addEventListener(&quot;focusout&quot;, handleLeave);
+  document.addEventListener(&quot;keydown&quot;, handleKeyDown);
+  document.addEventListener(&quot;contextmenu&quot;, handleContextMenu);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-lucide&quot; async src=&quot;https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+</body>
+</html>

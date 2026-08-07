@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M4 Visual Report</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: Canvas;
+  --fg: CanvasText;
+  --muted: color-mix(in srgb, CanvasText 68%, Canvas);
+  --line: color-mix(in srgb, CanvasText 18%, Canvas);
+  --soft: color-mix(in srgb, CanvasText 7%, Canvas);
+  --bar: #3b82f6;
+  --bar2: #10b981;
+  --warn: #f59e0b;
+}
+body {
+  margin: 0;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 26px; margin: 0 0 6px; font-weight: 500; }
+h2 { font-size: 18px; margin: 28px 0 10px; font-weight: 500; }
+p { color: var(--muted); margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--soft); }
+.k { color: var(--muted); font-size: 12px; }
+.v { font-size: 24px; font-weight: 500; margin-top: 4px; }
+svg { width: 100%; height: auto; display: block; }
+.track { fill: color-mix(in srgb, CanvasText 10%, Canvas); }
+.bar { fill: var(--bar); }
+.bar.alt { fill: var(--bar2); }
+.gridline { stroke: var(--line); stroke-width: 1; }
+.diag { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 5; }
+.dot { stroke: var(--bg); stroke-width: 1.3; opacity: .9; }
+.dot2022 { fill: var(--bar); }
+.dot2024 { fill: var(--bar2); }
+.label, .value, .section-label { fill: currentColor; font-size: 12px; }
+.section-label { font-weight: 500; }
+.value { fill: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { font-weight: 500; background: var(--soft); }
+tr:last-child td { border-bottom: 0; }
+.note { border-left: 3px solid var(--warn); padding-left: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>M4 Genetic Baseline Visual Report</h1>
+<p>M4.1 uses leave-one-year-out validation over historical training years. M4.2 applies the selected shrinkage alpha to parent overlap, genomic KNN, and ridge genotype-effect predictions, then sends calibrated files back through M2.</p>
+<div class='grid'><div class='card'><div class='k'>2022 target hybrids</div><div class='v'>548</div><div class='k'>43 with historical phenotype</div></div><div class='card'><div class='k'>2024 target hybrids</div><div class='v'>1063</div><div class='k'>104 with historical phenotype</div></div><div class='card'><div class='k'>2022 KNN shrinkage</div><div class='v'>0.5</div><div class='k'>LOYO RMSE 1.696044</div></div><div class='card'><div class='k'>2024 KNN shrinkage</div><div class='v'>0.75</div><div class='k'>LOYO RMSE 1.703622</div></div></div>
+<h2>Selected shrinkage / ridge configs</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>method</th><th>effect_target</th><th>marker_count</th><th>lambda</th><th>alpha</th><th>LOYO_RMSE</th><th>LOYO_r</th></tr></thead><tbody><tr><td>2022</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.5</td><td>1.700271</td><td>0.799029</td></tr><tr><td>2022</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.5</td><td>1.696044</td><td>0.80015</td></tr><tr><td>2022</td><td>ridge</td><td>env_centered</td><td>1000</td><td>25.0</td><td>0.75</td><td>1.733513</td><td>0.790062</td></tr><tr><td>2024</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.75</td><td>1.708052</td><td>0.81931</td></tr><tr><td>2024</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.75</td><td>1.703622</td><td>0.820367</td></tr><tr><td>2024</td><td>ridge</td><td>env_centered</td><td>1000</td><td>100.0</td><td>0.75</td><td>1.731431</td><td>0.813732</td></tr></tbody></table></div>
+<h2>M4.3 nested ridge refinement</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>model</th><th>marker_set</th><th>marker_count</th><th>lambda</th><th>alpha</th><th>LOYO_RMSE</th><th>LOYO_r</th></tr></thead><tbody><tr><td>2022</td><td>ridge</td><td>qc_top</td><td>1000</td><td>25.0</td><td>0.75</td><td>1.733513</td><td>0.790062</td></tr><tr><td>2024</td><td>ridge</td><td>qc_top</td><td>1000</td><td>100.0</td><td>0.75</td><td>1.731431</td><td>0.813732</td></tr></tbody></table></div>
+<h2>Official test comparison after M2 scoring</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>rank</th><th>model</th><th>mean_env_rmse</th><th>mean_env_pearson_r</th><th>across_pearson_r</th><th>mean_bias</th></tr></thead><tbody><tr><td>2022</td><td>7</td><td>2022_m4_calibrated_parent_overlap_env_centered_alpha0.5</td><td>2.324941</td><td>0.30216</td><td>0.647437</td><td>0.275119</td></tr><tr><td>2022</td><td>10</td><td>2022_m4_calibrated_genomic_knn_env_centered_alpha0.5</td><td>2.333149</td><td>0.23502</td><td>0.64288</td><td>-0.173506</td></tr><tr><td>2022</td><td>11</td><td>2022_m4_genomic_knn_baseline</td><td>2.334188</td><td>0.237534</td><td>0.62996</td><td>-0.153693</td></tr><tr><td>2022</td><td>15</td><td>2022_m4_parent_overlap_baseline</td><td>2.369594</td><td>0.302336</td><td>0.654033</td><td>0.730246</td></tr><tr><td>2022</td><td>22</td><td>2022_m4_m43_ridge_qc_top_m1000_lambda25_alpha0.75</td><td>2.401845</td><td>0.1103</td><td>0.601471</td><td>-0.25843</td></tr><tr><td>2022</td><td>23</td><td>2022_m4_calibrated_ridge_env_centered_alpha0.75_m1000_lambda25</td><td>2.401845</td><td>0.1103</td><td>0.601471</td><td>-0.25843</td></tr><tr><td>2022</td><td>30</td><td>2022_m4_ridge_genotype_effect_baseline</td><td>2.4396</td><td>0.115239</td><td>0.578078</td><td>-0.285327</td></tr><tr><td>2024</td><td>3</td><td>2024_m4_genomic_knn_baseline</td><td>2.741612</td><td>0.34909</td><td>0.39744</td><td>-0.739346</td></tr><tr><td>2024</td><td>6</td><td>2024_m4_calibrated_genomic_knn_env_centered_alpha0.75</td><td>2.759084</td><td>0.345417</td><td>0.389572</td><td>-0.802311</td></tr><tr><td>2024</td><td>7</td><td>2024_m4_parent_overlap_baseline</td><td>2.739345</td><td>0.317356</td><td>0.372178</td><td>-0.30327</td></tr><tr><td>2024</td><td>10</td><td>2024_m4_calibrated_parent_overlap_env_centered_alpha0.75</td><td>2.74241</td><td>0.313472</td><td>0.37894</td><td>-0.523961</td></tr><tr><td>2024</td><td>13</td><td>2024_m4_calibrated_ridge_env_centered_alpha0.75_m1000_lambda100</td><td>2.888701</td><td>-0.042957</td><td>0.317523</td><td>-0.947394</td></tr><tr><td>2024</td><td>14</td><td>2024_m4_m43_ridge_qc_top_m1000_lambda100_alpha0.75</td><td>2.888701</td><td>-0.042957</td><td>0.317523</td><td>-0.947394</td></tr><tr><td>2024</td><td>15</td><td>2024_m4_ridge_genotype_effect_baseline</td><td>2.9779</td><td>-0.054841</td><td>0.283457</td><td>-0.950188</td></tr></tbody></table></div>
+<h2>Calibration delta on public observed answers</h2>
+<div class='table-wrap'><table><thead><tr><th>label</th><th>raw_rmse</th><th>calibrated_rmse</th><th>delta</th></tr></thead><tbody><tr><td>2022 parent_overlap</td><td>2.369594</td><td>2.324941</td><td>-0.044653</td></tr><tr><td>2022 genomic_knn</td><td>2.334188</td><td>2.333149</td><td>-0.001039</td></tr><tr><td>2022 ridge_genotype_effect</td><td>2.4396</td><td>2.401845</td><td>-0.037755</td></tr><tr><td>2024 parent_overlap</td><td>2.739345</td><td>2.74241</td><td>0.003065</td></tr><tr><td>2024 genomic_knn</td><td>2.741612</td><td>2.759084</td><td>0.017472</td></tr><tr><td>2024 ridge_genotype_effect</td><td>2.9779</td><td>2.888701</td><td>-0.089199</td></tr></tbody></table></div>
+<h2>Top validation configs</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>method</th><th>effect_target</th><th>marker_count</th><th>lambda</th><th>alpha</th><th>rmse</th><th>pearson_r</th></tr></thead><tbody><tr><td>2022</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.5</td><td>1.700271</td><td>0.799029</td></tr><tr><td>2022</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.75</td><td>1.701385</td><td>0.798858</td></tr><tr><td>2022</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.25</td><td>1.722155</td><td>0.793174</td></tr><tr><td>2022</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.5</td><td>1.696044</td><td>0.80015</td></tr><tr><td>2022</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.75</td><td>1.6964</td><td>0.800181</td></tr><tr><td>2022</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.25</td><td>1.719624</td><td>0.793864</td></tr><tr><td>2022</td><td>ridge</td><td>env_centered</td><td>1000</td><td>25.0</td><td>0.75</td><td>1.733513</td><td>0.790062</td></tr><tr><td>2022</td><td>ridge</td><td>env_centered</td><td>1000</td><td>100.0</td><td>0.75</td><td>1.73501</td><td>0.789638</td></tr><tr><td>2022</td><td>ridge</td><td>env_centered</td><td>1000</td><td>5.0</td><td>0.5</td><td>1.736104</td><td>0.789325</td></tr><tr><td>2024</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.75</td><td>1.708052</td><td>0.81931</td></tr><tr><td>2024</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>0.5</td><td>1.713646</td><td>0.817975</td></tr><tr><td>2024</td><td>parent_overlap</td><td>env_centered</td><td></td><td></td><td>1.0</td><td>1.728412</td><td>0.815176</td></tr><tr><td>2024</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.75</td><td>1.703622</td><td>0.820367</td></tr><tr><td>2024</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>0.5</td><td>1.70982</td><td>0.818873</td></tr><tr><td>2024</td><td>genomic_knn</td><td>env_centered</td><td>1000</td><td></td><td>1.0</td><td>1.724324</td><td>0.816266</td></tr><tr><td>2024</td><td>ridge</td><td>env_centered</td><td>1000</td><td>100.0</td><td>0.75</td><td>1.731431</td><td>0.813732</td></tr><tr><td>2024</td><td>ridge</td><td>env_centered</td><td>1000</td><td>25.0</td><td>0.75</td><td>1.732399</td><td>0.813514</td></tr><tr><td>2024</td><td>ridge</td><td>env_centered</td><td>1000</td><td>100.0</td><td>1.0</td><td>1.733484</td><td>0.813394</td></tr></tbody></table></div>
+<h2>M4.3 outer-year audit</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>outer_year</th><th>selected</th><th>inner_rmse</th><th>outer_rmse</th><th>outer_r</th><th>outer_bias</th></tr></thead><tbody><tr><td>2022</td><td>2014</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.740801</td><td>1.631268</td><td>0.779561</td><td>-0.042822</td></tr><tr><td>2022</td><td>2015</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.71674</td><td>1.843694</td><td>0.755572</td><td>-0.015492</td></tr><tr><td>2022</td><td>2016</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.741928</td><td>1.643439</td><td>0.778157</td><td>-0.05383</td></tr><tr><td>2022</td><td>2017</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.743885</td><td>1.592568</td><td>0.82659</td><td>0.038322</td></tr><tr><td>2022</td><td>2018</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.754352</td><td>1.624298</td><td>0.774474</td><td>0.033051</td></tr><tr><td>2022</td><td>2019</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.719992</td><td>1.792301</td><td>0.79166</td><td>-0.011132</td></tr><tr><td>2022</td><td>2020</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.72698</td><td>1.775239</td><td>0.751489</td><td>0.00257</td></tr><tr><td>2022</td><td>2021</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.720995</td><td>1.797229</td><td>0.685166</td><td>0.007079</td></tr><tr><td>2024</td><td>2014</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.735773</td><td>1.652918</td><td>0.773358</td><td>-0.062636</td></tr><tr><td>2024</td><td>2015</td><td>ridge/qc_top/m1000/lambda25.0/a0.75</td><td>1.72375</td><td>1.80841</td><td>0.7659</td><td>-0.168707</td></tr><tr><td>2024</td><td>2016</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.740334</td><td>1.605862</td><td>0.789602</td><td>-0.041707</td></tr><tr><td>2024</td><td>2017</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.740743</td><td>1.565967</td><td>0.833107</td><td>0.074097</td></tr><tr><td>2024</td><td>2018</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.74851</td><td>1.611974</td><td>0.778345</td><td>0.028717</td></tr><tr><td>2024</td><td>2019</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.722595</td><td>1.78306</td><td>0.794101</td><td>-0.018232</td></tr><tr><td>2024</td><td>2020</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.727801</td><td>1.762154</td><td>0.755935</td><td>-0.018403</td></tr><tr><td>2024</td><td>2021</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.725465</td><td>1.772169</td><td>0.695784</td><td>-0.00971</td></tr><tr><td>2024</td><td>2022</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.72485</td><td>1.783956</td><td>0.872935</td><td>0.020002</td></tr><tr><td>2024</td><td>2023</td><td>ridge/qc_top/m1000/lambda100.0/a0.75</td><td>1.722888</td><td>1.800719</td><td>0.831238</td><td>0.037068</td></tr></tbody></table></div>
+<h2>Highest-RMSE environments under uncalibrated genomic KNN</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>environment</th><th>n</th><th>rmse</th><th>pearson_r</th><th>bias</th></tr></thead><tbody><tr><td>2024</td><td>NEH3_2024</td><td>238</td><td>5.227276</td><td>0.447071</td><td>-4.960935</td></tr><tr><td>2024</td><td>MOH1_2024</td><td>583</td><td>3.959022</td><td>0.420535</td><td>-3.50635</td></tr><tr><td>2024</td><td>NYH2_2024</td><td>349</td><td>3.914778</td><td>0.324094</td><td>-3.481642</td></tr><tr><td>2022</td><td>WIH1_2022</td><td>423</td><td>3.645094</td><td>0.329561</td><td>-3.117522</td></tr><tr><td>2022</td><td>IAH2_2022</td><td>518</td><td>3.601524</td><td>0.159462</td><td>1.389207</td></tr><tr><td>2022</td><td>NEH1_2022</td><td>344</td><td>3.553982</td><td>0.058293</td><td>3.012703</td></tr><tr><td>2024</td><td>OHH1_2024</td><td>341</td><td>3.458765</td><td>0.479905</td><td>-3.189941</td></tr><tr><td>2022</td><td>GAH1_2022</td><td>445</td><td>3.426721</td><td>0.21346</td><td>2.901815</td></tr><tr><td>2024</td><td>IAH2_2024</td><td>651</td><td>3.292893</td><td>0.222692</td><td>1.560334</td></tr><tr><td>2024</td><td>MNH1_2024</td><td>397</td><td>3.234419</td><td>0.374033</td><td>-2.628145</td></tr><tr><td>2024</td><td>ONH3_2024</td><td>422</td><td>3.152045</td><td>0.273293</td><td>-2.64178</td></tr><tr><td>2024</td><td>MIH1_2024</td><td>407</td><td>3.029469</td><td>0.379057</td><td>-2.46012</td></tr></tbody></table></div>
+<p class="note">Shrinkage and M4.3 ridge refinement were selected from historical validation, not by optimizing the public test answer. Public-answer deltas are diagnostic only.</p>
+
+</main>
+</body>
+</html>

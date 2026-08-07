@@ -1,0 +1,630 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M2 Visual Report</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: Canvas;
+  --fg: CanvasText;
+  --muted: color-mix(in srgb, CanvasText 68%, Canvas);
+  --line: color-mix(in srgb, CanvasText 18%, Canvas);
+  --soft: color-mix(in srgb, CanvasText 7%, Canvas);
+  --bar: #3b82f6;
+  --bar2: #10b981;
+  --warn: #f59e0b;
+}
+body {
+  margin: 0;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 26px; margin: 0 0 6px; font-weight: 500; }
+h2 { font-size: 18px; margin: 28px 0 10px; font-weight: 500; }
+p { color: var(--muted); margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--soft); }
+.k { color: var(--muted); font-size: 12px; }
+.v { font-size: 24px; font-weight: 500; margin-top: 4px; }
+svg { width: 100%; height: auto; display: block; }
+.track { fill: color-mix(in srgb, CanvasText 10%, Canvas); }
+.bar { fill: var(--bar); }
+.bar.alt { fill: var(--bar2); }
+.gridline { stroke: var(--line); stroke-width: 1; }
+.diag { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 5; }
+.dot { stroke: var(--bg); stroke-width: 1.3; opacity: .9; }
+.dot2022 { fill: var(--bar); }
+.dot2024 { fill: var(--bar2); }
+.label, .value, .section-label { fill: currentColor; font-size: 12px; }
+.section-label { font-weight: 500; }
+.value { fill: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { font-weight: 500; background: var(--soft); }
+tr:last-child td { border-bottom: 0; }
+.note { border-left: 3px solid var(--warn); padding-left: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>M2 Evaluation Visual Report</h1>
+<p>Metrics are computed after observed inner join, using raw Yield_Mg_ha.</p>
+<div class='grid'><div class='card'><div class='k'>2022 best</div><div class='v'>CLACsubmission5 stage window climate best cw0.1</div><div class='k'>mean_env_rmse: 2.301096</div></div><div class='card'><div class='k'>2024 best</div><div class='v'>MODEL A aligned</div><div class='k'>mean_env_pearson_r: 0.394085</div></div></div>
+<h2>Mean environment RMSE</h2>
+<svg viewBox="0 0 1040 2036" role="img" aria-label="mean_env_rmse by model">
+<text x="0" y="40" class="section-label">2022</text>
+<text x="0" y="65" class="label">MODEL A</text>
+<rect x="470" y="52" width="480" height="16" class="track"></rect>
+<rect x="470" y="52" width="362.36" height="16" class="bar"></rect>
+<text x="840.36" y="65" class="value">2.427</text>
+<text x="0" y="93" class="label">MODEL B</text>
+<rect x="470" y="80" width="480" height="16" class="track"></rect>
+<rect x="470" y="80" width="355.55" height="16" class="bar"></rect>
+<text x="833.55" y="93" class="value">2.381</text>
+<text x="0" y="121" class="label">CLAC 50 50 ensemble</text>
+<rect x="470" y="108" width="480" height="16" class="track"></rect>
+<rect x="470" y="108" width="343.71" height="16" class="bar"></rect>
+<text x="821.71" y="121" class="value">2.302</text>
+<text x="0" y="149" class="label">regulatory gwas  pred global</text>
+<rect x="470" y="136" width="480" height="16" class="track"></rect>
+<rect x="470" y="136" width="444.29" height="16" class="bar"></rect>
+<text x="922.29" y="149" class="value">2.975</text>
+<text x="0" y="177" class="label">regulatory gwas  pred hybrid mean</text>
+<rect x="470" y="164" width="480" height="16" class="track"></rect>
+<rect x="470" y="164" width="441.71" height="16" class="bar"></rect>
+<text x="919.71" y="177" class="value">2.958</text>
+<text x="0" y="205" class="label">regulatory gwas  pred station mean</text>
+<rect x="470" y="192" width="480" height="16" class="track"></rect>
+<rect x="470" y="192" width="355.98" height="16" class="bar"></rect>
+<text x="833.98" y="205" class="value">2.384</text>
+<text x="0" y="233" class="label">regulatory gwas  pred hybrid plus station</text>
+<rect x="470" y="220" width="480" height="16" class="track"></rect>
+<rect x="470" y="220" width="352.70" height="16" class="bar"></rect>
+<text x="830.70" y="233" class="value">2.362</text>
+<text x="0" y="261" class="label">regulatory gwas  pred blup global</text>
+<rect x="470" y="248" width="480" height="16" class="track"></rect>
+<rect x="470" y="248" width="442.54" height="16" class="bar"></rect>
+<text x="920.54" y="261" class="value">2.964</text>
+<text x="0" y="289" class="label">MODEL A stage window climate best cw0.1</text>
+<rect x="470" y="276" width="480" height="16" class="track"></rect>
+<rect x="470" y="276" width="361.21" height="16" class="bar"></rect>
+<text x="839.21" y="289" class="value">2.419</text>
+<text x="0" y="317" class="label">CLACsubmission5 climate aware</text>
+<rect x="470" y="304" width="480" height="16" class="track"></rect>
+<rect x="470" y="304" width="343.65" height="16" class="bar"></rect>
+<text x="821.65" y="317" class="value">2.301</text>
+<text x="0" y="345" class="label">CLACsubmission5 stage window climate best cw0.1</text>
+<rect x="470" y="332" width="480" height="16" class="track"></rect>
+<rect x="470" y="332" width="343.61" height="16" class="bar"></rect>
+<text x="821.61" y="345" class="value">2.301</text>
+<text x="0" y="373" class="label">CLACsubmission5 stage window climate</text>
+<rect x="470" y="360" width="480" height="16" class="track"></rect>
+<rect x="470" y="360" width="343.62" height="16" class="bar"></rect>
+<text x="821.62" y="373" class="value">2.301</text>
+<text x="0" y="401" class="label">MODEL A climate aware</text>
+<rect x="470" y="388" width="480" height="16" class="track"></rect>
+<rect x="470" y="388" width="360.74" height="16" class="bar"></rect>
+<text x="838.74" y="401" class="value">2.416</text>
+<text x="0" y="429" class="label">MODEL A stage window climate</text>
+<rect x="470" y="416" width="480" height="16" class="track"></rect>
+<rect x="470" y="416" width="358.73" height="16" class="bar"></rect>
+<text x="836.73" y="429" class="value">2.402</text>
+<text x="0" y="457" class="label">climate diagnostics 2022  MODEL A mu corrected stage window</text>
+<rect x="470" y="444" width="480" height="16" class="track"></rect>
+<rect x="470" y="444" width="363.27" height="16" class="bar"></rect>
+<text x="841.27" y="457" class="value">2.433</text>
+<text x="0" y="485" class="label">climate diagnostics 2022  CLACsubmission5 mu corrected stage window</text>
+<rect x="470" y="472" width="480" height="16" class="track"></rect>
+<rect x="470" y="472" width="344.04" height="16" class="bar"></rect>
+<text x="822.04" y="485" class="value">2.304</text>
+<text x="0" y="513" class="label">env feature automl 2022  CLACsubmission5 automl mu corrected</text>
+<rect x="470" y="500" width="480" height="16" class="track"></rect>
+<rect x="470" y="500" width="343.71" height="16" class="bar"></rect>
+<text x="821.71" y="513" class="value">2.302</text>
+<text x="0" y="541" class="label">env feature automl 2022  MODEL A automl mu corrected</text>
+<rect x="470" y="528" width="480" height="16" class="track"></rect>
+<rect x="470" y="528" width="362.36" height="16" class="bar"></rect>
+<text x="840.36" y="541" class="value">2.427</text>
+<text x="0" y="569" class="label">run  local test 10000  MODEL A</text>
+<rect x="470" y="556" width="480" height="16" class="track"></rect>
+<rect x="470" y="556" width="423.16" height="16" class="bar"></rect>
+<text x="901.16" y="569" class="value">2.834</text>
+<text x="0" y="597" class="label">run  local test 10000  MODEL B</text>
+<rect x="470" y="584" width="480" height="16" class="track"></rect>
+<rect x="470" y="584" width="423.16" height="16" class="bar"></rect>
+<text x="901.16" y="597" class="value">2.834</text>
+<text x="0" y="625" class="label">run  local test 10000  CLACsubmission5</text>
+<rect x="470" y="612" width="480" height="16" class="track"></rect>
+<rect x="470" y="612" width="423.16" height="16" class="bar"></rect>
+<text x="901.16" y="625" class="value">2.834</text>
+<text x="0" y="653" class="label">2022 m3 meta weather knn env mean</text>
+<rect x="470" y="640" width="480" height="16" class="track"></rect>
+<rect x="470" y="640" width="372.66" height="16" class="bar"></rect>
+<text x="850.66" y="653" class="value">2.496</text>
+<text x="0" y="681" class="label">2022 m3 blend site weather env mean</text>
+<rect x="470" y="668" width="480" height="16" class="track"></rect>
+<rect x="470" y="668" width="356.89" height="16" class="bar"></rect>
+<text x="834.89" y="681" class="value">2.390</text>
+<text x="0" y="709" class="label">2022 m3 site history env mean</text>
+<rect x="470" y="696" width="480" height="16" class="track"></rect>
+<rect x="470" y="696" width="354.97" height="16" class="bar"></rect>
+<text x="832.97" y="709" class="value">2.377</text>
+<text x="0" y="737" class="label">2022 m4 m43 ridge qc top m1000 lambda25 alpha0.75</text>
+<rect x="470" y="724" width="480" height="16" class="track"></rect>
+<rect x="470" y="724" width="358.66" height="16" class="bar"></rect>
+<text x="836.66" y="737" class="value">2.402</text>
+<text x="0" y="765" class="label">2022 m4 parent overlap baseline</text>
+<rect x="470" y="752" width="480" height="16" class="track"></rect>
+<rect x="470" y="752" width="353.84" height="16" class="bar"></rect>
+<text x="831.84" y="765" class="value">2.370</text>
+<text x="0" y="793" class="label">2022 m4 calibrated parent overlap env centered alpha0.5</text>
+<rect x="470" y="780" width="480" height="16" class="track"></rect>
+<rect x="470" y="780" width="347.18" height="16" class="bar"></rect>
+<text x="825.18" y="793" class="value">2.325</text>
+<text x="0" y="821" class="label">2022 m4 ridge genotype effect baseline</text>
+<rect x="470" y="808" width="480" height="16" class="track"></rect>
+<rect x="470" y="808" width="364.30" height="16" class="bar"></rect>
+<text x="842.30" y="821" class="value">2.440</text>
+<text x="0" y="849" class="label">2022 m4 calibrated ridge env centered alpha0.75 m1000 lambda25</text>
+<rect x="470" y="836" width="480" height="16" class="track"></rect>
+<rect x="470" y="836" width="358.66" height="16" class="bar"></rect>
+<text x="836.66" y="849" class="value">2.402</text>
+<text x="0" y="877" class="label">2022 m4 genomic knn baseline</text>
+<rect x="470" y="864" width="480" height="16" class="track"></rect>
+<rect x="470" y="864" width="348.56" height="16" class="bar"></rect>
+<text x="826.56" y="877" class="value">2.334</text>
+<text x="0" y="905" class="label">2022 m4 calibrated genomic knn env centered alpha0.5</text>
+<rect x="470" y="892" width="480" height="16" class="track"></rect>
+<rect x="470" y="892" width="348.40" height="16" class="bar"></rect>
+<text x="826.40" y="905" class="value">2.333</text>
+<text x="0" y="933" class="label">2022 m5 metadata weather soil ec ridge env mean</text>
+<rect x="470" y="920" width="480" height="16" class="track"></rect>
+<rect x="470" y="920" width="374.45" height="16" class="bar"></rect>
+<text x="852.45" y="933" class="value">2.508</text>
+<text x="0" y="961" class="label">2022 m5 metadata weather ridge env mean</text>
+<rect x="470" y="948" width="480" height="16" class="track"></rect>
+<rect x="470" y="948" width="401.79" height="16" class="bar"></rect>
+<text x="879.79" y="961" class="value">2.691</text>
+<text x="0" y="989" class="label">2022 m5 pca knn metadata weather soil ec env mean</text>
+<rect x="470" y="976" width="480" height="16" class="track"></rect>
+<rect x="470" y="976" width="426.53" height="16" class="bar"></rect>
+<text x="904.53" y="989" class="value">2.856</text>
+<text x="0" y="1017" class="label">2022 m5 metadata weather soil ridge env mean</text>
+<rect x="470" y="1004" width="480" height="16" class="track"></rect>
+<rect x="470" y="1004" width="392.91" height="16" class="bar"></rect>
+<text x="870.91" y="1017" class="value">2.631</text>
+<text x="0" y="1045" class="label">2022 m5 ec matrix ridge env mean</text>
+<rect x="470" y="1032" width="480" height="16" class="track"></rect>
+<rect x="470" y="1032" width="417.77" height="16" class="bar"></rect>
+<text x="895.77" y="1045" class="value">2.798</text>
+<text x="0" y="1073" class="label">2022 m5 metadata weather ec ridge env mean</text>
+<rect x="470" y="1060" width="480" height="16" class="track"></rect>
+<rect x="470" y="1060" width="379.37" height="16" class="bar"></rect>
+<text x="857.37" y="1073" class="value">2.541</text>
+<text x="0" y="1101" class="label">2022 m6 gated env genomic knn residual</text>
+<rect x="470" y="1088" width="480" height="16" class="track"></rect>
+<rect x="470" y="1088" width="348.16" height="16" class="bar"></rect>
+<text x="826.16" y="1101" class="value">2.332</text>
+<text x="0" y="1129" class="label">2022 m61 validation weighted environment offset only</text>
+<rect x="470" y="1116" width="480" height="16" class="track"></rect>
+<rect x="470" y="1116" width="354.61" height="16" class="bar"></rect>
+<text x="832.61" y="1129" class="value">2.375</text>
+<text x="0" y="1157" class="label">2022 m61 validation weighted env genomic knn residual</text>
+<rect x="470" y="1144" width="480" height="16" class="track"></rect>
+<rect x="470" y="1144" width="348.16" height="16" class="bar"></rect>
+<text x="826.16" y="1157" class="value">2.332</text>
+<text x="0" y="1185" class="label">2022 m6 gated environment offset only</text>
+<rect x="470" y="1172" width="480" height="16" class="track"></rect>
+<rect x="470" y="1172" width="354.61" height="16" class="bar"></rect>
+<text x="832.61" y="1185" class="value">2.375</text>
+<text x="0" y="1213" class="label">2022 m61 validation weighted env parent overlap residual</text>
+<rect x="470" y="1200" width="480" height="16" class="track"></rect>
+<rect x="470" y="1200" width="352.14" height="16" class="bar"></rect>
+<text x="830.14" y="1213" class="value">2.358</text>
+<text x="0" y="1241" class="label">2022 m6 gated env parent overlap residual</text>
+<rect x="470" y="1228" width="480" height="16" class="track"></rect>
+<rect x="470" y="1228" width="352.14" height="16" class="bar"></rect>
+<text x="830.14" y="1241" class="value">2.358</text>
+<text x="0" y="1270" class="section-label">2024</text>
+<text x="0" y="1295" class="label">MODEL A aligned</text>
+<rect x="470" y="1282" width="480" height="16" class="track"></rect>
+<rect x="470" y="1282" width="387.47" height="16" class="bar"></rect>
+<text x="865.47" y="1295" class="value">2.595</text>
+<text x="0" y="1323" class="label">MODEL B aligned</text>
+<rect x="470" y="1310" width="480" height="16" class="track"></rect>
+<rect x="470" y="1310" width="410.72" height="16" class="bar"></rect>
+<text x="888.72" y="1323" class="value">2.750</text>
+<text x="0" y="1351" class="label">CLAC 50 50 ensemble aligned</text>
+<rect x="470" y="1338" width="480" height="16" class="track"></rect>
+<rect x="470" y="1338" width="392.85" height="16" class="bar"></rect>
+<text x="870.85" y="1351" class="value">2.631</text>
+<text x="0" y="1379" class="label">run  submission5</text>
+<rect x="470" y="1366" width="480" height="16" class="track"></rect>
+<rect x="470" y="1366" width="369.72" height="16" class="bar"></rect>
+<text x="847.72" y="1379" class="value">2.476</text>
+<text x="0" y="1407" class="label">2024 m3 site history env mean</text>
+<rect x="470" y="1394" width="480" height="16" class="track"></rect>
+<rect x="470" y="1394" width="423.89" height="16" class="bar"></rect>
+<text x="901.89" y="1407" class="value">2.839</text>
+<text x="0" y="1435" class="label">2024 m3 blend site weather env mean</text>
+<rect x="470" y="1422" width="480" height="16" class="track"></rect>
+<rect x="470" y="1422" width="430.05" height="16" class="bar"></rect>
+<text x="908.05" y="1435" class="value">2.880</text>
+<text x="0" y="1463" class="label">2024 m3 meta weather knn env mean</text>
+<rect x="470" y="1450" width="480" height="16" class="track"></rect>
+<rect x="470" y="1450" width="442.91" height="16" class="bar"></rect>
+<text x="920.91" y="1463" class="value">2.966</text>
+<text x="0" y="1491" class="label">2024 m4 calibrated ridge env centered alpha0.75 m1000 lambda100</text>
+<rect x="470" y="1478" width="480" height="16" class="track"></rect>
+<rect x="470" y="1478" width="431.36" height="16" class="bar"></rect>
+<text x="909.36" y="1491" class="value">2.889</text>
+<text x="0" y="1519" class="label">2024 m4 calibrated genomic knn env centered alpha0.75</text>
+<rect x="470" y="1506" width="480" height="16" class="track"></rect>
+<rect x="470" y="1506" width="412.00" height="16" class="bar"></rect>
+<text x="890.00" y="1519" class="value">2.759</text>
+<text x="0" y="1547" class="label">2024 m4 genomic knn baseline</text>
+<rect x="470" y="1534" width="480" height="16" class="track"></rect>
+<rect x="470" y="1534" width="409.40" height="16" class="bar"></rect>
+<text x="887.40" y="1547" class="value">2.742</text>
+<text x="0" y="1575" class="label">2024 m4 parent overlap baseline</text>
+<rect x="470" y="1562" width="480" height="16" class="track"></rect>
+<rect x="470" y="1562" width="409.06" height="16" class="bar"></rect>
+<text x="887.06" y="1575" class="value">2.739</text>
+<text x="0" y="1603" class="label">2024 m4 m43 ridge qc top m1000 lambda100 alpha0.75</text>
+<rect x="470" y="1590" width="480" height="16" class="track"></rect>
+<rect x="470" y="1590" width="431.36" height="16" class="bar"></rect>
+<text x="909.36" y="1603" class="value">2.889</text>
+<text x="0" y="1631" class="label">2024 m4 ridge genotype effect baseline</text>
+<rect x="470" y="1618" width="480" height="16" class="track"></rect>
+<rect x="470" y="1618" width="444.68" height="16" class="bar"></rect>
+<text x="922.68" y="1631" class="value">2.978</text>
+<text x="0" y="1659" class="label">2024 m4 calibrated parent overlap env centered alpha0.75</text>
+<rect x="470" y="1646" width="480" height="16" class="track"></rect>
+<rect x="470" y="1646" width="409.51" height="16" class="bar"></rect>
+<text x="887.51" y="1659" class="value">2.742</text>
+<text x="0" y="1687" class="label">2024 m5 metadata weather soil ridge env mean</text>
+<rect x="470" y="1674" width="480" height="16" class="track"></rect>
+<rect x="470" y="1674" width="428.70" height="16" class="bar"></rect>
+<text x="906.70" y="1687" class="value">2.871</text>
+<text x="0" y="1715" class="label">2024 m5 metadata weather ridge env mean</text>
+<rect x="470" y="1702" width="480" height="16" class="track"></rect>
+<rect x="470" y="1702" width="480.00" height="16" class="bar"></rect>
+<text x="958.00" y="1715" class="value">3.214</text>
+<text x="0" y="1743" class="label">2024 m5 pca knn metadata weather soil ec env mean</text>
+<rect x="470" y="1730" width="480" height="16" class="track"></rect>
+<rect x="470" y="1730" width="404.20" height="16" class="bar"></rect>
+<text x="882.20" y="1743" class="value">2.707</text>
+<text x="0" y="1771" class="label">2024 m5 ec matrix ridge env mean</text>
+<rect x="470" y="1758" width="480" height="16" class="track"></rect>
+<rect x="470" y="1758" width="451.46" height="16" class="bar"></rect>
+<text x="929.46" y="1771" class="value">3.023</text>
+<text x="0" y="1799" class="label">2024 m5 metadata weather soil ec ridge env mean</text>
+<rect x="470" y="1786" width="480" height="16" class="track"></rect>
+<rect x="470" y="1786" width="417.82" height="16" class="bar"></rect>
+<text x="895.82" y="1799" class="value">2.798</text>
+<text x="0" y="1827" class="label">2024 m5 metadata weather ec ridge env mean</text>
+<rect x="470" y="1814" width="480" height="16" class="track"></rect>
+<rect x="470" y="1814" width="421.19" height="16" class="bar"></rect>
+<text x="899.19" y="1827" class="value">2.821</text>
+<text x="0" y="1855" class="label">2024 m61 validation weighted environment offset only</text>
+<rect x="470" y="1842" width="480" height="16" class="track"></rect>
+<rect x="470" y="1842" width="418.61" height="16" class="bar"></rect>
+<text x="896.61" y="1855" class="value">2.803</text>
+<text x="0" y="1883" class="label">2024 m6 gated env genomic knn residual</text>
+<rect x="470" y="1870" width="480" height="16" class="track"></rect>
+<rect x="470" y="1870" width="402.99" height="16" class="bar"></rect>
+<text x="880.99" y="1883" class="value">2.699</text>
+<text x="0" y="1911" class="label">2024 m6 gated env parent overlap residual</text>
+<rect x="470" y="1898" width="480" height="16" class="track"></rect>
+<rect x="470" y="1898" width="402.51" height="16" class="bar"></rect>
+<text x="880.51" y="1911" class="value">2.696</text>
+<text x="0" y="1939" class="label">2024 m6 gated environment offset only</text>
+<rect x="470" y="1926" width="480" height="16" class="track"></rect>
+<rect x="470" y="1926" width="418.04" height="16" class="bar"></rect>
+<text x="896.04" y="1939" class="value">2.800</text>
+<text x="0" y="1967" class="label">2024 m61 validation weighted env genomic knn residual</text>
+<rect x="470" y="1954" width="480" height="16" class="track"></rect>
+<rect x="470" y="1954" width="403.57" height="16" class="bar"></rect>
+<text x="881.57" y="1967" class="value">2.703</text>
+<text x="0" y="1995" class="label">2024 m61 validation weighted env parent overlap residual</text>
+<rect x="470" y="1982" width="480" height="16" class="track"></rect>
+<rect x="470" y="1982" width="403.04" height="16" class="bar"></rect>
+<text x="881.04" y="1995" class="value">2.699</text>
+</svg>
+<h2>Mean environment Pearson r</h2>
+<svg viewBox="0 0 1040 2036" role="img" aria-label="mean_env_pearson_r by model">
+<text x="0" y="40" class="section-label">2022</text>
+<text x="0" y="65" class="label">MODEL A</text>
+<rect x="470" y="52" width="480" height="16" class="track"></rect>
+<rect x="470" y="52" width="380.62" height="16" class="bar"></rect>
+<text x="858.62" y="65" class="value">0.312</text>
+<text x="0" y="93" class="label">MODEL B</text>
+<rect x="470" y="80" width="480" height="16" class="track"></rect>
+<rect x="470" y="80" width="429.45" height="16" class="bar"></rect>
+<text x="907.45" y="93" class="value">0.353</text>
+<text x="0" y="121" class="label">CLAC 50 50 ensemble</text>
+<rect x="470" y="108" width="480" height="16" class="track"></rect>
+<rect x="470" y="108" width="459.87" height="16" class="bar"></rect>
+<text x="937.87" y="121" class="value">0.378</text>
+<text x="0" y="149" class="label">regulatory gwas  pred global</text>
+<rect x="470" y="136" width="480" height="16" class="track"></rect>
+<rect x="470" y="136" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="149" class="value">0.000</text>
+<text x="0" y="177" class="label">regulatory gwas  pred hybrid mean</text>
+<rect x="470" y="164" width="480" height="16" class="track"></rect>
+<rect x="470" y="164" width="208.74" height="16" class="bar"></rect>
+<text x="686.74" y="177" class="value">0.171</text>
+<text x="0" y="205" class="label">regulatory gwas  pred station mean</text>
+<rect x="470" y="192" width="480" height="16" class="track"></rect>
+<rect x="470" y="192" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="205" class="value">0.000</text>
+<text x="0" y="233" class="label">regulatory gwas  pred hybrid plus station</text>
+<rect x="470" y="220" width="480" height="16" class="track"></rect>
+<rect x="470" y="220" width="208.74" height="16" class="bar"></rect>
+<text x="686.74" y="233" class="value">0.171</text>
+<text x="0" y="261" class="label">regulatory gwas  pred blup global</text>
+<rect x="470" y="248" width="480" height="16" class="track"></rect>
+<rect x="470" y="248" width="162.68" height="16" class="bar"></rect>
+<text x="640.68" y="261" class="value">0.134</text>
+<text x="0" y="289" class="label">MODEL A stage window climate best cw0.1</text>
+<rect x="470" y="276" width="480" height="16" class="track"></rect>
+<rect x="470" y="276" width="384.62" height="16" class="bar"></rect>
+<text x="862.62" y="289" class="value">0.316</text>
+<text x="0" y="317" class="label">CLACsubmission5 climate aware</text>
+<rect x="470" y="304" width="480" height="16" class="track"></rect>
+<rect x="470" y="304" width="456.98" height="16" class="bar"></rect>
+<text x="934.98" y="317" class="value">0.375</text>
+<text x="0" y="345" class="label">CLACsubmission5 stage window climate best cw0.1</text>
+<rect x="470" y="332" width="480" height="16" class="track"></rect>
+<rect x="470" y="332" width="460.19" height="16" class="bar"></rect>
+<text x="938.19" y="345" class="value">0.378</text>
+<text x="0" y="373" class="label">CLACsubmission5 stage window climate</text>
+<rect x="470" y="360" width="480" height="16" class="track"></rect>
+<rect x="470" y="360" width="458.37" height="16" class="bar"></rect>
+<text x="936.37" y="373" class="value">0.376</text>
+<text x="0" y="401" class="label">MODEL A climate aware</text>
+<rect x="470" y="388" width="480" height="16" class="track"></rect>
+<rect x="470" y="388" width="379.93" height="16" class="bar"></rect>
+<text x="857.93" y="401" class="value">0.312</text>
+<text x="0" y="429" class="label">MODEL A stage window climate</text>
+<rect x="470" y="416" width="480" height="16" class="track"></rect>
+<rect x="470" y="416" width="392.27" height="16" class="bar"></rect>
+<text x="870.27" y="429" class="value">0.322</text>
+<text x="0" y="457" class="label">climate diagnostics 2022  MODEL A mu corrected stage window</text>
+<rect x="470" y="444" width="480" height="16" class="track"></rect>
+<rect x="470" y="444" width="380.62" height="16" class="bar"></rect>
+<text x="858.62" y="457" class="value">0.312</text>
+<text x="0" y="485" class="label">climate diagnostics 2022  CLACsubmission5 mu corrected stage window</text>
+<rect x="470" y="472" width="480" height="16" class="track"></rect>
+<rect x="470" y="472" width="459.87" height="16" class="bar"></rect>
+<text x="937.87" y="485" class="value">0.378</text>
+<text x="0" y="513" class="label">env feature automl 2022  CLACsubmission5 automl mu corrected</text>
+<rect x="470" y="500" width="480" height="16" class="track"></rect>
+<rect x="470" y="500" width="459.87" height="16" class="bar"></rect>
+<text x="937.87" y="513" class="value">0.378</text>
+<text x="0" y="541" class="label">env feature automl 2022  MODEL A automl mu corrected</text>
+<rect x="470" y="528" width="480" height="16" class="track"></rect>
+<rect x="470" y="528" width="380.62" height="16" class="bar"></rect>
+<text x="858.62" y="541" class="value">0.312</text>
+<text x="0" y="569" class="label">run  local test 10000  MODEL A</text>
+<rect x="470" y="556" width="480" height="16" class="track"></rect>
+<rect x="470" y="556" width="227.05" height="16" class="bar"></rect>
+<text x="705.05" y="569" class="value">0.186</text>
+<text x="0" y="597" class="label">run  local test 10000  MODEL B</text>
+<rect x="470" y="584" width="480" height="16" class="track"></rect>
+<rect x="470" y="584" width="227.05" height="16" class="bar"></rect>
+<text x="705.05" y="597" class="value">0.186</text>
+<text x="0" y="625" class="label">run  local test 10000  CLACsubmission5</text>
+<rect x="470" y="612" width="480" height="16" class="track"></rect>
+<rect x="470" y="612" width="227.05" height="16" class="bar"></rect>
+<text x="705.05" y="625" class="value">0.186</text>
+<text x="0" y="653" class="label">2022 m3 meta weather knn env mean</text>
+<rect x="470" y="640" width="480" height="16" class="track"></rect>
+<rect x="470" y="640" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="653" class="value">0.000</text>
+<text x="0" y="681" class="label">2022 m3 blend site weather env mean</text>
+<rect x="470" y="668" width="480" height="16" class="track"></rect>
+<rect x="470" y="668" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="681" class="value">0.000</text>
+<text x="0" y="709" class="label">2022 m3 site history env mean</text>
+<rect x="470" y="696" width="480" height="16" class="track"></rect>
+<rect x="470" y="696" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="709" class="value">0.000</text>
+<text x="0" y="737" class="label">2022 m4 m43 ridge qc top m1000 lambda25 alpha0.75</text>
+<rect x="470" y="724" width="480" height="16" class="track"></rect>
+<rect x="470" y="724" width="134.35" height="16" class="bar"></rect>
+<text x="612.35" y="737" class="value">0.110</text>
+<text x="0" y="765" class="label">2022 m4 parent overlap baseline</text>
+<rect x="470" y="752" width="480" height="16" class="track"></rect>
+<rect x="470" y="752" width="368.25" height="16" class="bar"></rect>
+<text x="846.25" y="765" class="value">0.302</text>
+<text x="0" y="793" class="label">2022 m4 calibrated parent overlap env centered alpha0.5</text>
+<rect x="470" y="780" width="480" height="16" class="track"></rect>
+<rect x="470" y="780" width="368.03" height="16" class="bar"></rect>
+<text x="846.03" y="793" class="value">0.302</text>
+<text x="0" y="821" class="label">2022 m4 ridge genotype effect baseline</text>
+<rect x="470" y="808" width="480" height="16" class="track"></rect>
+<rect x="470" y="808" width="140.36" height="16" class="bar"></rect>
+<text x="618.36" y="821" class="value">0.115</text>
+<text x="0" y="849" class="label">2022 m4 calibrated ridge env centered alpha0.75 m1000 lambda25</text>
+<rect x="470" y="836" width="480" height="16" class="track"></rect>
+<rect x="470" y="836" width="134.35" height="16" class="bar"></rect>
+<text x="612.35" y="849" class="value">0.110</text>
+<text x="0" y="877" class="label">2022 m4 genomic knn baseline</text>
+<rect x="470" y="864" width="480" height="16" class="track"></rect>
+<rect x="470" y="864" width="289.32" height="16" class="bar"></rect>
+<text x="767.32" y="877" class="value">0.238</text>
+<text x="0" y="905" class="label">2022 m4 calibrated genomic knn env centered alpha0.5</text>
+<rect x="470" y="892" width="480" height="16" class="track"></rect>
+<rect x="470" y="892" width="286.26" height="16" class="bar"></rect>
+<text x="764.26" y="905" class="value">0.235</text>
+<text x="0" y="933" class="label">2022 m5 metadata weather soil ec ridge env mean</text>
+<rect x="470" y="920" width="480" height="16" class="track"></rect>
+<rect x="470" y="920" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="933" class="value">0.000</text>
+<text x="0" y="961" class="label">2022 m5 metadata weather ridge env mean</text>
+<rect x="470" y="948" width="480" height="16" class="track"></rect>
+<rect x="470" y="948" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="961" class="value">0.000</text>
+<text x="0" y="989" class="label">2022 m5 pca knn metadata weather soil ec env mean</text>
+<rect x="470" y="976" width="480" height="16" class="track"></rect>
+<rect x="470" y="976" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="989" class="value">0.000</text>
+<text x="0" y="1017" class="label">2022 m5 metadata weather soil ridge env mean</text>
+<rect x="470" y="1004" width="480" height="16" class="track"></rect>
+<rect x="470" y="1004" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1017" class="value">0.000</text>
+<text x="0" y="1045" class="label">2022 m5 ec matrix ridge env mean</text>
+<rect x="470" y="1032" width="480" height="16" class="track"></rect>
+<rect x="470" y="1032" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1045" class="value">0.000</text>
+<text x="0" y="1073" class="label">2022 m5 metadata weather ec ridge env mean</text>
+<rect x="470" y="1060" width="480" height="16" class="track"></rect>
+<rect x="470" y="1060" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1073" class="value">0.000</text>
+<text x="0" y="1101" class="label">2022 m6 gated env genomic knn residual</text>
+<rect x="470" y="1088" width="480" height="16" class="track"></rect>
+<rect x="470" y="1088" width="289.32" height="16" class="bar"></rect>
+<text x="767.32" y="1101" class="value">0.238</text>
+<text x="0" y="1129" class="label">2022 m61 validation weighted environment offset only</text>
+<rect x="470" y="1116" width="480" height="16" class="track"></rect>
+<rect x="470" y="1116" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1129" class="value">0.000</text>
+<text x="0" y="1157" class="label">2022 m61 validation weighted env genomic knn residual</text>
+<rect x="470" y="1144" width="480" height="16" class="track"></rect>
+<rect x="470" y="1144" width="289.32" height="16" class="bar"></rect>
+<text x="767.32" y="1157" class="value">0.238</text>
+<text x="0" y="1185" class="label">2022 m6 gated environment offset only</text>
+<rect x="470" y="1172" width="480" height="16" class="track"></rect>
+<rect x="470" y="1172" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1185" class="value">0.000</text>
+<text x="0" y="1213" class="label">2022 m61 validation weighted env parent overlap residual</text>
+<rect x="470" y="1200" width="480" height="16" class="track"></rect>
+<rect x="470" y="1200" width="368.25" height="16" class="bar"></rect>
+<text x="846.25" y="1213" class="value">0.302</text>
+<text x="0" y="1241" class="label">2022 m6 gated env parent overlap residual</text>
+<rect x="470" y="1228" width="480" height="16" class="track"></rect>
+<rect x="470" y="1228" width="368.25" height="16" class="bar"></rect>
+<text x="846.25" y="1241" class="value">0.302</text>
+<text x="0" y="1270" class="section-label">2024</text>
+<text x="0" y="1295" class="label">MODEL A aligned</text>
+<rect x="470" y="1282" width="480" height="16" class="track"></rect>
+<rect x="470" y="1282" width="480.00" height="16" class="bar"></rect>
+<text x="958.00" y="1295" class="value">0.394</text>
+<text x="0" y="1323" class="label">MODEL B aligned</text>
+<rect x="470" y="1310" width="480" height="16" class="track"></rect>
+<rect x="470" y="1310" width="296.54" height="16" class="bar"></rect>
+<text x="774.54" y="1323" class="value">0.243</text>
+<text x="0" y="1351" class="label">CLAC 50 50 ensemble aligned</text>
+<rect x="470" y="1338" width="480" height="16" class="track"></rect>
+<rect x="470" y="1338" width="443.38" height="16" class="bar"></rect>
+<text x="921.38" y="1351" class="value">0.364</text>
+<text x="0" y="1379" class="label">run  submission5</text>
+<rect x="470" y="1366" width="480" height="16" class="track"></rect>
+<rect x="470" y="1366" width="349.91" height="16" class="bar"></rect>
+<text x="827.91" y="1379" class="value">0.287</text>
+<text x="0" y="1407" class="label">2024 m3 site history env mean</text>
+<rect x="470" y="1394" width="480" height="16" class="track"></rect>
+<rect x="470" y="1394" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1407" class="value">0.000</text>
+<text x="0" y="1435" class="label">2024 m3 blend site weather env mean</text>
+<rect x="470" y="1422" width="480" height="16" class="track"></rect>
+<rect x="470" y="1422" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1435" class="value">0.000</text>
+<text x="0" y="1463" class="label">2024 m3 meta weather knn env mean</text>
+<rect x="470" y="1450" width="480" height="16" class="track"></rect>
+<rect x="470" y="1450" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1463" class="value">0.000</text>
+<text x="0" y="1491" class="label">2024 m4 calibrated ridge env centered alpha0.75 m1000 lambda100</text>
+<rect x="470" y="1478" width="480" height="16" class="track"></rect>
+<rect x="470" y="1478" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1491" class="value">-0.043</text>
+<text x="0" y="1519" class="label">2024 m4 calibrated genomic knn env centered alpha0.75</text>
+<rect x="470" y="1506" width="480" height="16" class="track"></rect>
+<rect x="470" y="1506" width="420.72" height="16" class="bar"></rect>
+<text x="898.72" y="1519" class="value">0.345</text>
+<text x="0" y="1547" class="label">2024 m4 genomic knn baseline</text>
+<rect x="470" y="1534" width="480" height="16" class="track"></rect>
+<rect x="470" y="1534" width="425.20" height="16" class="bar"></rect>
+<text x="903.20" y="1547" class="value">0.349</text>
+<text x="0" y="1575" class="label">2024 m4 parent overlap baseline</text>
+<rect x="470" y="1562" width="480" height="16" class="track"></rect>
+<rect x="470" y="1562" width="386.54" height="16" class="bar"></rect>
+<text x="864.54" y="1575" class="value">0.317</text>
+<text x="0" y="1603" class="label">2024 m4 m43 ridge qc top m1000 lambda100 alpha0.75</text>
+<rect x="470" y="1590" width="480" height="16" class="track"></rect>
+<rect x="470" y="1590" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1603" class="value">-0.043</text>
+<text x="0" y="1631" class="label">2024 m4 ridge genotype effect baseline</text>
+<rect x="470" y="1618" width="480" height="16" class="track"></rect>
+<rect x="470" y="1618" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1631" class="value">-0.055</text>
+<text x="0" y="1659" class="label">2024 m4 calibrated parent overlap env centered alpha0.75</text>
+<rect x="470" y="1646" width="480" height="16" class="track"></rect>
+<rect x="470" y="1646" width="381.81" height="16" class="bar"></rect>
+<text x="859.81" y="1659" class="value">0.313</text>
+<text x="0" y="1687" class="label">2024 m5 metadata weather soil ridge env mean</text>
+<rect x="470" y="1674" width="480" height="16" class="track"></rect>
+<rect x="470" y="1674" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1687" class="value">0.000</text>
+<text x="0" y="1715" class="label">2024 m5 metadata weather ridge env mean</text>
+<rect x="470" y="1702" width="480" height="16" class="track"></rect>
+<rect x="470" y="1702" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1715" class="value">0.000</text>
+<text x="0" y="1743" class="label">2024 m5 pca knn metadata weather soil ec env mean</text>
+<rect x="470" y="1730" width="480" height="16" class="track"></rect>
+<rect x="470" y="1730" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1743" class="value">0.000</text>
+<text x="0" y="1771" class="label">2024 m5 ec matrix ridge env mean</text>
+<rect x="470" y="1758" width="480" height="16" class="track"></rect>
+<rect x="470" y="1758" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1771" class="value">0.000</text>
+<text x="0" y="1799" class="label">2024 m5 metadata weather soil ec ridge env mean</text>
+<rect x="470" y="1786" width="480" height="16" class="track"></rect>
+<rect x="470" y="1786" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1799" class="value">0.000</text>
+<text x="0" y="1827" class="label">2024 m5 metadata weather ec ridge env mean</text>
+<rect x="470" y="1814" width="480" height="16" class="track"></rect>
+<rect x="470" y="1814" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1827" class="value">0.000</text>
+<text x="0" y="1855" class="label">2024 m61 validation weighted environment offset only</text>
+<rect x="470" y="1842" width="480" height="16" class="track"></rect>
+<rect x="470" y="1842" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1855" class="value">0.000</text>
+<text x="0" y="1883" class="label">2024 m6 gated env genomic knn residual</text>
+<rect x="470" y="1870" width="480" height="16" class="track"></rect>
+<rect x="470" y="1870" width="425.20" height="16" class="bar"></rect>
+<text x="903.20" y="1883" class="value">0.349</text>
+<text x="0" y="1911" class="label">2024 m6 gated env parent overlap residual</text>
+<rect x="470" y="1898" width="480" height="16" class="track"></rect>
+<rect x="470" y="1898" width="386.54" height="16" class="bar"></rect>
+<text x="864.54" y="1911" class="value">0.317</text>
+<text x="0" y="1939" class="label">2024 m6 gated environment offset only</text>
+<rect x="470" y="1926" width="480" height="16" class="track"></rect>
+<rect x="470" y="1926" width="1.00" height="16" class="bar"></rect>
+<text x="479.00" y="1939" class="value">0.000</text>
+<text x="0" y="1967" class="label">2024 m61 validation weighted env genomic knn residual</text>
+<rect x="470" y="1954" width="480" height="16" class="track"></rect>
+<rect x="470" y="1954" width="425.20" height="16" class="bar"></rect>
+<text x="903.20" y="1967" class="value">0.349</text>
+<text x="0" y="1995" class="label">2024 m61 validation weighted env parent overlap residual</text>
+<rect x="470" y="1982" width="480" height="16" class="track"></rect>
+<rect x="470" y="1982" width="386.54" height="16" class="bar"></rect>
+<text x="864.54" y="1995" class="value">0.317</text>
+</svg>
+<h2>Model summary</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>rank</th><th>model</th><th>mean_env_rmse</th><th>mean_env_pearson_r</th><th>across_rmse</th><th>across_pearson_r</th><th>joined</th><th>missing_pred</th></tr></thead><tbody><tr><td>2022</td><td>27</td><td>MODEL_A</td><td>2.426649</td><td>0.312492</td><td>2.560056</td><td>0.576525</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>19</td><td>MODEL_B</td><td>2.38102</td><td>0.352582</td><td>2.492725</td><td>0.58791</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>4</td><td>CLAC_50_50_ensemble</td><td>2.301759</td><td>0.377561</td><td>2.438018</td><td>0.636442</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>43</td><td>regulatory_gwas__pred_global</td><td>2.975259</td><td></td><td>3.116306</td><td></td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>41</td><td>regulatory_gwas__pred_hybrid_mean</td><td>2.958007</td><td>0.17138</td><td>3.100809</td><td>0.109485</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>20</td><td>regulatory_gwas__pred_station_mean</td><td>2.383912</td><td></td><td>2.487886</td><td>0.616174</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>14</td><td>regulatory_gwas__pred_hybrid_plus_station</td><td>2.361953</td><td>0.17138</td><td>2.466892</td><td>0.62602</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>42</td><td>regulatory_gwas__pred_blup_global</td><td>2.963555</td><td>0.133561</td><td>3.10522</td><td>0.080292</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>26</td><td>MODEL_A_stage_window_climate_best_cw0.1</td><td>2.418943</td><td>0.315777</td><td>2.554477</td><td>0.581287</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>3</td><td>CLACsubmission5_climate_aware</td><td>2.301318</td><td>0.375186</td><td>2.438228</td><td>0.635257</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>1</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>2.301096</td><td>0.377819</td><td>2.437817</td><td>0.636106</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>2</td><td>CLACsubmission5_stage_window_climate</td><td>2.301102</td><td>0.376323</td><td>2.43849</td><td>0.633688</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>25</td><td>MODEL_A_climate_aware</td><td>2.415788</td><td>0.31193</td><td>2.551499</td><td>0.581324</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>24</td><td>MODEL_A_stage_window_climate</td><td>2.402327</td><td>0.322054</td><td>2.543347</td><td>0.589907</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>29</td><td>climate_diagnostics_2022__MODEL_A_mu_corrected_stage_window</td><td>2.432719</td><td>0.312492</td><td>2.56743</td><td>0.573444</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>6</td><td>climate_diagnostics_2022__CLACsubmission5_mu_corrected_stage_window</td><td>2.303931</td><td>0.377561</td><td>2.440728</td><td>0.635609</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>5</td><td>env_feature_automl_2022__CLACsubmission5_automl_mu_corrected</td><td>2.301759</td><td>0.377561</td><td>2.438018</td><td>0.636442</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>28</td><td>env_feature_automl_2022__MODEL_A_automl_mu_corrected</td><td>2.426649</td><td>0.312492</td><td>2.560056</td><td>0.576525</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>37</td><td>run__local_test_10000__MODEL_A</td><td>2.833819</td><td>0.186407</td><td>3.016597</td><td>0.255935</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>38</td><td>run__local_test_10000__MODEL_B</td><td>2.833819</td><td>0.186407</td><td>3.016597</td><td>0.255935</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>39</td><td>run__local_test_10000__CLACsubmission5</td><td>2.833819</td><td>0.186407</td><td>3.016597</td><td>0.255935</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>31</td><td>2022_m3_meta_weather_knn_env_mean</td><td>2.495593</td><td></td><td>2.62702</td><td>0.524348</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>21</td><td>2022_m3_blend_site_weather_env_mean</td><td>2.390009</td><td></td><td>2.495653</td><td>0.621437</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>18</td><td>2022_m3_site_history_env_mean</td><td>2.37713</td><td></td><td>2.480701</td><td>0.625149</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>22</td><td>2022_m4_m43_ridge_qc_top_m1000_lambda25_alpha0.75</td><td>2.401845</td><td>0.1103</td><td>2.501545</td><td>0.601471</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>15</td><td>2022_m4_parent_overlap_baseline</td><td>2.369594</td><td>0.302336</td><td>2.496935</td><td>0.654033</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>7</td><td>2022_m4_calibrated_parent_overlap_env_centered_alpha0.5</td><td>2.324941</td><td>0.30216</td><td>2.436265</td><td>0.647437</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>30</td><td>2022_m4_ridge_genotype_effect_baseline</td><td>2.4396</td><td>0.115239</td><td>2.535489</td><td>0.578078</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>23</td><td>2022_m4_calibrated_ridge_env_centered_alpha0.75_m1000_lambda25</td><td>2.401845</td><td>0.1103</td><td>2.501545</td><td>0.601471</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>11</td><td>2022_m4_genomic_knn_baseline</td><td>2.334188</td><td>0.237534</td><td>2.437424</td><td>0.62996</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>10</td><td>2022_m4_calibrated_genomic_knn_env_centered_alpha0.5</td><td>2.333149</td><td>0.23502</td><td>2.438996</td><td>0.64288</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>32</td><td>2022_m5_metadata_weather_soil_ec_ridge_env_mean</td><td>2.507606</td><td></td><td>2.638216</td><td>0.616247</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>35</td><td>2022_m5_metadata_weather_ridge_env_mean</td><td>2.69068</td><td></td><td>2.845857</td><td>0.500154</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>40</td><td>2022_m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>2.856344</td><td></td><td>3.026281</td><td>0.253406</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>34</td><td>2022_m5_metadata_weather_soil_ridge_env_mean</td><td>2.631205</td><td></td><td>2.779778</td><td>0.52328</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>36</td><td>2022_m5_ec_matrix_ridge_env_mean</td><td>2.797674</td><td></td><td>2.943214</td><td>0.576896</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>33</td><td>2022_m5_metadata_weather_ec_ridge_env_mean</td><td>2.540551</td><td></td><td>2.671637</td><td>0.610081</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>8</td><td>2022_m6_gated_env_genomic_knn_residual</td><td>2.331519</td><td>0.237534</td><td>2.435571</td><td>0.64293</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>16</td><td>2022_m61_validation_weighted_environment_offset_only</td><td>2.3747</td><td></td><td>2.479524</td><td>0.643965</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>9</td><td>2022_m61_validation_weighted_env_genomic_knn_residual</td><td>2.331519</td><td>0.237534</td><td>2.435571</td><td>0.64293</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>17</td><td>2022_m6_gated_environment_offset_only</td><td>2.3747</td><td></td><td>2.479524</td><td>0.643965</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>12</td><td>2022_m61_validation_weighted_env_parent_overlap_residual</td><td>2.358192</td><td>0.302336</td><td>2.483688</td><td>0.671349</td><td>10290</td><td>0</td></tr><tr><td>2022</td><td>13</td><td>2022_m6_gated_env_parent_overlap_residual</td><td>2.358192</td><td>0.302336</td><td>2.483688</td><td>0.671349</td><td>10290</td><td>0</td></tr><tr><td>2024</td><td>1</td><td>MODEL_A_aligned</td><td>2.59478</td><td>0.394085</td><td>2.739796</td><td>0.452711</td><td>9064</td><td>422</td></tr><tr><td>2024</td><td>12</td><td>MODEL_B_aligned</td><td>2.750472</td><td>0.243459</td><td>2.850053</td><td>0.435933</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>2</td><td>CLAC_50_50_ensemble_aligned</td><td>2.630807</td><td>0.364021</td><td>2.736818</td><td>0.467344</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>11</td><td>run__submission5</td><td>2.475934</td><td>0.287277</td><td>2.761797</td><td>0.486674</td><td>1309</td><td>8177</td></tr><tr><td>2024</td><td>16</td><td>2024_m3_site_history_env_mean</td><td>2.838678</td><td></td><td>2.941047</td><td>0.35131</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>17</td><td>2024_m3_blend_site_weather_env_mean</td><td>2.879896</td><td></td><td>2.992938</td><td>0.333044</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>18</td><td>2024_m3_meta_weather_knn_env_mean</td><td>2.966024</td><td></td><td>3.111308</td><td>0.289054</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>13</td><td>2024_m4_calibrated_ridge_env_centered_alpha0.75_m1000_lambda100</td><td>2.888701</td><td>-0.042957</td><td>3.005781</td><td>0.317523</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>6</td><td>2024_m4_calibrated_genomic_knn_env_centered_alpha0.75</td><td>2.759084</td><td>0.345417</td><td>2.844969</td><td>0.389572</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>3</td><td>2024_m4_genomic_knn_baseline</td><td>2.741612</td><td>0.34909</td><td>2.820197</td><td>0.39744</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>7</td><td>2024_m4_parent_overlap_baseline</td><td>2.739345</td><td>0.317356</td><td>2.783416</td><td>0.372178</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>14</td><td>2024_m4_m43_ridge_qc_top_m1000_lambda100_alpha0.75</td><td>2.888701</td><td>-0.042957</td><td>3.005781</td><td>0.317523</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>15</td><td>2024_m4_ridge_genotype_effect_baseline</td><td>2.9779</td><td>-0.054841</td><td>3.097336</td><td>0.283457</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>10</td><td>2024_m4_calibrated_parent_overlap_env_centered_alpha0.75</td><td>2.74241</td><td>0.313472</td><td>2.798995</td><td>0.37894</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>19</td><td>2024_m5_metadata_weather_soil_ridge_env_mean</td><td>2.870866</td><td></td><td>3.010162</td><td>0.345661</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>20</td><td>2024_m5_metadata_weather_ridge_env_mean</td><td>3.21443</td><td></td><td>3.468801</td><td>0.301069</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>21</td><td>2024_m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>2.706807</td><td></td><td>2.801035</td><td>0.516705</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>22</td><td>2024_m5_ec_matrix_ridge_env_mean</td><td>3.023284</td><td></td><td>3.198887</td><td>0.314006</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>23</td><td>2024_m5_metadata_weather_soil_ec_ridge_env_mean</td><td>2.797995</td><td></td><td>2.923195</td><td>0.388033</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>24</td><td>2024_m5_metadata_weather_ec_ridge_env_mean</td><td>2.820591</td><td></td><td>2.944547</td><td>0.371878</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>25</td><td>2024_m61_validation_weighted_environment_offset_only</td><td>2.803319</td><td></td><td>2.900474</td><td>0.382793</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>4</td><td>2024_m6_gated_env_genomic_knn_residual</td><td>2.698687</td><td>0.34909</td><td>2.772204</td><td>0.43355</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>8</td><td>2024_m6_gated_env_parent_overlap_residual</td><td>2.695533</td><td>0.317356</td><td>2.733209</td><td>0.406329</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>26</td><td>2024_m6_gated_environment_offset_only</td><td>2.799529</td><td></td><td>2.895984</td><td>0.386478</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>5</td><td>2024_m61_validation_weighted_env_genomic_knn_residual</td><td>2.702596</td><td>0.34909</td><td>2.776845</td><td>0.429896</td><td>9486</td><td>0</td></tr><tr><td>2024</td><td>9</td><td>2024_m61_validation_weighted_env_parent_overlap_residual</td><td>2.699019</td><td>0.317356</td><td>2.737749</td><td>0.402978</td><td>9486</td><td>0</td></tr></tbody></table></div>
+<h2>Highest-RMSE environments for the primary model</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>model</th><th>environment</th><th>n</th><th>rmse</th><th>pearson_r</th><th>bias</th></tr></thead><tbody><tr><td>2022</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>NEH1_2022</td><td>344</td><td>4.334265</td><td>0.145516</td><td>3.932864</td></tr><tr><td>2022</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>WIH1_2022</td><td>423</td><td>3.762931</td><td>0.558005</td><td>-3.317199</td></tr><tr><td>2022</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>IAH2_2022</td><td>518</td><td>3.67283</td><td>0.145178</td><td>1.551251</td></tr><tr><td>2022</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>GAH1_2022</td><td>445</td><td>3.637188</td><td>0.285598</td><td>3.17504</td></tr><tr><td>2022</td><td>CLACsubmission5_stage_window_climate_best_cw0.1</td><td>MOH2_2022</td><td>453</td><td>2.824154</td><td>0.207032</td><td>2.258305</td></tr><tr><td>2024</td><td>MODEL_A_aligned</td><td>NEH3_2024</td><td>238</td><td>6.524377</td><td>0.424386</td><td>-6.312043</td></tr><tr><td>2024</td><td>MODEL_A_aligned</td><td>MOH1_2024</td><td>583</td><td>3.9624</td><td>0.485531</td><td>-3.55288</td></tr><tr><td>2024</td><td>MODEL_A_aligned</td><td>IAH2_2024</td><td>651</td><td>3.813106</td><td>0.275605</td><td>2.530288</td></tr><tr><td>2024</td><td>MODEL_A_aligned</td><td>MIH1_2024</td><td>407</td><td>3.515111</td><td>0.416555</td><td>-3.061098</td></tr><tr><td>2024</td><td>MODEL_A_aligned</td><td>NYH2_2024</td><td>349</td><td>3.232614</td><td>0.395144</td><td>-2.717803</td></tr></tbody></table></div>
+<p class="note">2022 ranking uses mean environment RMSE. 2024 ranking uses mean environment Pearson r, matching the planned competition-style distinction in the evaluation spec.</p>
+
+</main>
+</body>
+</html>
