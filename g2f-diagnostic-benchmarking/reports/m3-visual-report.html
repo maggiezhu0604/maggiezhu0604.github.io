@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M3 Visual Report</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: Canvas;
+  --fg: CanvasText;
+  --muted: color-mix(in srgb, CanvasText 68%, Canvas);
+  --line: color-mix(in srgb, CanvasText 18%, Canvas);
+  --soft: color-mix(in srgb, CanvasText 7%, Canvas);
+  --bar: #3b82f6;
+  --bar2: #10b981;
+  --warn: #f59e0b;
+}
+body {
+  margin: 0;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 26px; margin: 0 0 6px; font-weight: 500; }
+h2 { font-size: 18px; margin: 28px 0 10px; font-weight: 500; }
+p { color: var(--muted); margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--soft); }
+.k { color: var(--muted); font-size: 12px; }
+.v { font-size: 24px; font-weight: 500; margin-top: 4px; }
+svg { width: 100%; height: auto; display: block; }
+.track { fill: color-mix(in srgb, CanvasText 10%, Canvas); }
+.bar { fill: var(--bar); }
+.bar.alt { fill: var(--bar2); }
+.gridline { stroke: var(--line); stroke-width: 1; }
+.diag { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 5; }
+.dot { stroke: var(--bg); stroke-width: 1.3; opacity: .9; }
+.dot2022 { fill: var(--bar); }
+.dot2024 { fill: var(--bar2); }
+.label, .value, .section-label { fill: currentColor; font-size: 12px; }
+.section-label { font-weight: 500; }
+.value { fill: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { font-weight: 500; background: var(--soft); }
+tr:last-child td { border-bottom: 0; }
+.note { border-left: 3px solid var(--warn); padding-left: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>M3 Environment Mean Visual Report</h1>
+<p>M3 compares three interpretable environment-mean baselines: site history, metadata-weather KNN, and a fixed 0.6 / 0.4 blend. All predictions use raw Yield_Mg_ha and are scored through the same M2 observed inner join.</p>
+<div class='grid'><div class='card'><div class='k'>2022 target envs</div><div class='v'>26</div><div class='k'>11,555 submission rows</div></div><div class='card'><div class='k'>2024 target envs</div><div class='v'>23</div><div class='k'>10,057 submission rows</div></div><div class='card'><div class='k'>2022 site-history RMSE</div><div class='v'>2.37713</div><div class='k'>across r 0.625149</div></div><div class='card'><div class='k'>2024 site-history RMSE</div><div class='v'>2.838678</div><div class='k'>across r 0.35131</div></div></div>
+<h2>Observed target environments vs site-history expectation</h2>
+<svg viewBox="0 0 760 420" role="img" aria-label="target environment observed mean yield versus site-history predicted mean yield, both in Mg per ha">
+<line x1="64.00" x2="64.00" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="362.00" y2="362.00" class="gridline"></line>
+<text x="64.00" y="386" text-anchor="middle" class="value">3.0</text>
+<text x="54" y="366.00" text-anchor="end" class="value">3.0</text>
+<line x1="198.40" x2="198.40" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="293.20" y2="293.20" class="gridline"></line>
+<text x="198.40" y="386" text-anchor="middle" class="value">5.4</text>
+<text x="54" y="297.20" text-anchor="end" class="value">5.4</text>
+<line x1="332.80" x2="332.80" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="224.40" y2="224.40" class="gridline"></line>
+<text x="332.80" y="386" text-anchor="middle" class="value">7.8</text>
+<text x="54" y="228.40" text-anchor="end" class="value">7.8</text>
+<line x1="467.20" x2="467.20" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="155.60" y2="155.60" class="gridline"></line>
+<text x="467.20" y="386" text-anchor="middle" class="value">10.2</text>
+<text x="54" y="159.60" text-anchor="end" class="value">10.2</text>
+<line x1="601.60" x2="601.60" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="86.80" y2="86.80" class="gridline"></line>
+<text x="601.60" y="386" text-anchor="middle" class="value">12.6</text>
+<text x="54" y="90.80" text-anchor="end" class="value">12.6</text>
+<line x1="736.00" x2="736.00" y1="18" y2="362" class="gridline"></line>
+<line x1="64" x2="736" y1="18.00" y2="18.00" class="gridline"></line>
+<text x="736.00" y="386" text-anchor="middle" class="value">15.0</text>
+<text x="54" y="22.00" text-anchor="end" class="value">15.0</text>
+<line x1="64.00" y1="362.00" x2="736.00" y2="18.00" class="diag"></line>
+<circle cx="566.00" cy="30.00" r="5.5" class="dot dot2022"></circle>
+<text x="578.00" y="34.00" class="value">2022 target environments</text>
+<circle cx="566.00" cy="50.00" r="5.5" class="dot dot2024"></circle>
+<text x="578.00" y="54.00" class="value">2024 target environments</text>
+<circle cx="473.86" cy="123.38" r="6.42" class="dot dot2022"><title>DEH1_2022: observed 11.324, history 10.319, residual 1.005</title></circle>
+<circle cx="334.59" cy="304.98" r="6.34" class="dot dot2022"><title>GAH1_2022: observed 4.989, history 7.832, residual -2.843</title></circle>
+<circle cx="409.35" cy="175.64" r="6.32" class="dot dot2022"><title>GAH2_2022: observed 9.501, history 9.167, residual 0.334</title></circle>
+<circle cx="501.75" cy="131.43" r="6.54" class="dot dot2022"><title>IAH1_2022: observed 11.043, history 10.817, residual 0.226</title></circle>
+<circle cx="512.67" cy="170.68" r="6.53" class="dot dot2022"><title>IAH2_2022: observed 9.674, history 11.012, residual -1.338</title></circle>
+<circle cx="565.03" cy="107.98" r="6.54" class="dot dot2022"><title>IAH3_2022: observed 11.861, history 11.947, residual -0.086</title></circle>
+<circle cx="504.33" cy="92.56" r="6.53" class="dot dot2022"><title>IAH4_2022: observed 12.399, history 10.863, residual 1.537</title></circle>
+<circle cx="525.10" cy="134.36" r="6.35" class="dot dot2022"><title>ILH1_2022: observed 10.941, history 11.234, residual -0.293</title></circle>
+<circle cx="508.92" cy="114.03" r="6.38" class="dot dot2022"><title>INH1_2022: observed 11.650, history 10.945, residual 0.705</title></circle>
+<circle cx="453.26" cy="184.15" r="6.50" class="dot dot2022"><title>MIH1_2022: observed 9.204, history 9.951, residual -0.747</title></circle>
+<circle cx="411.93" cy="113.49" r="6.31" class="dot dot2022"><title>MNH1_2022: observed 11.669, history 9.213, residual 2.456</title></circle>
+<circle cx="342.15" cy="270.64" r="6.36" class="dot dot2022"><title>MOH2_2022: observed 6.187, history 7.967, residual -1.779</title></circle>
+<circle cx="381.58" cy="169.99" r="6.56" class="dot dot2022"><title>NCH1_2022: observed 9.698, history 8.671, residual 1.027</title></circle>
+<circle cx="341.70" cy="304.58" r="6.06" class="dot dot2022"><title>NEH1_2022: observed 5.003, history 7.959, residual -2.956</title></circle>
+<circle cx="438.64" cy="139.12" r="6.30" class="dot dot2022"><title>NYH2_2022: observed 10.775, history 9.690, residual 1.085</title></circle>
+<circle cx="469.05" cy="152.96" r="6.32" class="dot dot2022"><title>NYH3_2022: observed 10.292, history 10.233, residual 0.058</title></circle>
+<circle cx="501.25" cy="116.99" r="6.30" class="dot dot2022"><title>OHH1_2022: observed 11.547, history 10.808, residual 0.739</title></circle>
+<circle cx="361.81" cy="218.61" r="6.07" class="dot dot2022"><title>TXH1_2022: observed 8.002, history 8.318, residual -0.316</title></circle>
+<circle cx="381.52" cy="218.18" r="6.03" class="dot dot2022"><title>TXH2_2022: observed 8.017, history 8.670, residual -0.654</title></circle>
+<circle cx="265.38" cy="258.94" r="6.05" class="dot dot2022"><title>TXH3_2022: observed 6.595, history 6.596, residual -0.001</title></circle>
+<circle cx="530.59" cy="32.25" r="6.29" class="dot dot2022"><title>WIH1_2022: observed 14.503, history 11.332, residual 3.172</title></circle>
+<circle cx="451.58" cy="115.21" r="6.49" class="dot dot2022"><title>WIH2_2022: observed 11.609, history 9.921, residual 1.688</title></circle>
+<circle cx="477.84" cy="95.23" r="6.34" class="dot dot2022"><title>WIH3_2022: observed 12.306, history 10.390, residual 1.915</title></circle>
+<circle cx="491.78" cy="198.66" r="6.72" class="dot dot2024"><title>DEH1_2024: observed 8.698, history 10.639, residual -1.941</title></circle>
+<circle cx="314.77" cy="278.84" r="6.09" class="dot dot2024"><title>GAH1_2024: observed 5.901, history 7.478, residual -1.577</title></circle>
+<circle cx="419.99" cy="175.78" r="6.13" class="dot dot2024"><title>GAH2_2024: observed 9.496, history 9.357, residual 0.139</title></circle>
+<circle cx="496.10" cy="178.76" r="6.83" class="dot dot2024"><title>IAH2_2024: observed 9.392, history 10.716, residual -1.324</title></circle>
+<circle cx="529.14" cy="70.37" r="7.06" class="dot dot2024"><title>IAH4_2024: observed 13.173, history 11.306, residual 1.866</title></circle>
+<circle cx="516.03" cy="143.53" r="6.14" class="dot dot2024"><title>ILH1_2024: observed 10.621, history 11.072, residual -0.452</title></circle>
+<circle cx="522.19" cy="108.27" r="5.84" class="dot dot2024"><title>INH1_2024: observed 11.851, history 11.182, residual 0.670</title></circle>
+<circle cx="451.41" cy="90.44" r="6.24" class="dot dot2024"><title>MIH1_2024: observed 12.473, history 9.918, residual 2.555</title></circle>
+<circle cx="436.29" cy="93.36" r="6.21" class="dot dot2024"><title>MNH1_2024: observed 12.371, history 9.648, residual 2.722</title></circle>
+<circle cx="316.34" cy="125.21" r="6.68" class="dot dot2024"><title>MOH1_2024: observed 11.260, history 7.506, residual 3.754</title></circle>
+<circle cx="377.32" cy="195.96" r="7.09" class="dot dot2024"><title>NCH1_2024: observed 8.792, history 8.595, residual 0.197</title></circle>
+<circle cx="307.49" cy="178.91" r="5.72" class="dot dot2024"><title>NEH1_2024: observed 9.387, history 7.348, residual 2.039</title></circle>
+<circle cx="375.58" cy="265.79" r="5.71" class="dot dot2024"><title>NEH2_2024: observed 6.356, history 8.564, residual -2.208</title></circle>
+<circle cx="385.78" cy="44.69" r="5.71" class="dot dot2024"><title>NEH3_2024: observed 14.069, history 8.746, residual 5.323</title></circle>
+<circle cx="443.29" cy="65.24" r="6.08" class="dot dot2024"><title>NYH2_2024: observed 13.352, history 9.773, residual 3.579</title></circle>
+<circle cx="472.58" cy="191.38" r="6.14" class="dot dot2024"><title>NYH3_2024: observed 8.952, history 10.296, residual -1.344</title></circle>
+<circle cx="516.87" cy="27.55" r="6.05" class="dot dot2024"><title>OHH1_2024: observed 14.667, history 11.087, residual 3.581</title></circle>
+<circle cx="453.98" cy="83.42" r="6.28" class="dot dot2024"><title>ONH3_2024: observed 12.718, history 9.964, residual 2.753</title></circle>
+<circle cx="369.76" cy="251.38" r="5.71" class="dot dot2024"><title>TXH1_2024: observed 6.859, history 8.460, residual -1.600</title></circle>
+<circle cx="540.11" cy="49.42" r="6.09" class="dot dot2024"><title>WIH1_2024: observed 13.904, history 11.502, residual 2.402</title></circle>
+<circle cx="488.70" cy="109.96" r="7.02" class="dot dot2024"><title>WIH2_2024: observed 11.792, history 10.584, residual 1.208</title></circle>
+<circle cx="551.87" cy="144.33" r="6.28" class="dot dot2024"><title>WIH3_2024: observed 10.593, history 11.712, residual -1.118</title></circle>
+<text x="393.78" y="36.69" class="value">NEH3_2024</text>
+<text x="324.34" y="117.21" class="value">MOH1_2024</text>
+<text x="524.87" y="19.55" class="value">OHH1_2024</text>
+<text x="451.29" y="57.24" class="value">NYH2_2024</text>
+<text x="538.59" y="24.25" class="value">WIH1_2022</text>
+<text x="349.70" y="296.58" class="value">NEH1_2022</text>
+<text x="400.00" y="404" text-anchor="middle" class="label">Site-history predicted mean (Mg/ha)</text>
+<text x="16" y="190.00" transform="rotate(-90 16 190.00)" text-anchor="middle" class="label">Observed environment mean (Mg/ha)</text>
+</svg>
+<p class="note">Dots above the diagonal mean the target environment outperformed its historical site expectation; dots below the diagonal mean site history over-predicts the target environment.</p>
+<h2>M3 model comparison</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>rank</th><th>model</th><th>mean_env_rmse</th><th>across_pearson_r</th><th>mean_bias</th><th>joined_rows</th><th>note</th></tr></thead><tbody><tr><td>2022</td><td>18</td><td>2022_m3_site_history_env_mean</td><td>2.37713</td><td>0.625149</td><td>-0.214531</td><td>10290</td><td>within-env Pearson NA for constant env mean</td></tr><tr><td>2022</td><td>21</td><td>2022_m3_blend_site_weather_env_mean</td><td>2.390009</td><td>0.621437</td><td>-0.185789</td><td>10290</td><td>within-env Pearson NA for constant env mean</td></tr><tr><td>2022</td><td>31</td><td>2022_m3_meta_weather_knn_env_mean</td><td>2.495593</td><td>0.524348</td><td>-0.142675</td><td>10290</td><td>within-env Pearson NA for constant env mean</td></tr><tr><td>2024</td><td>16</td><td>2024_m3_site_history_env_mean</td><td>2.838678</td><td>0.35131</td><td>-0.964652</td><td>9486</td><td>within-env Pearson NA for constant env mean</td></tr><tr><td>2024</td><td>17</td><td>2024_m3_blend_site_weather_env_mean</td><td>2.879896</td><td>0.333044</td><td>-1.007898</td><td>9486</td><td>within-env Pearson NA for constant env mean</td></tr><tr><td>2024</td><td>18</td><td>2024_m3_meta_weather_knn_env_mean</td><td>2.966024</td><td>0.289054</td><td>-1.072767</td><td>9486</td><td>within-env Pearson NA for constant env mean</td></tr></tbody></table></div>
+<h2>Largest history surprises</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>Env</th><th>observed_mean</th><th>site_history</th><th>residual</th><th>observed_rows</th><th>nearest_envs</th></tr></thead><tbody><tr><td>2024</td><td>NEH3_2024</td><td>14.069</td><td>8.746</td><td>5.323</td><td>238</td><td>NEH3_2021|NEH1_2023|NEH3_2020|NEH1_2022|NEH2_2020</td></tr><tr><td>2024</td><td>MOH1_2024</td><td>11.260</td><td>7.506</td><td>3.754</td><td>583</td><td>MOH1_2015|MOH2_2015|MOH1_2019|MOH1_2016|MOH1_2014</td></tr><tr><td>2024</td><td>OHH1_2024</td><td>14.667</td><td>11.087</td><td>3.581</td><td>341</td><td>OHH1_2017|OHH1_2015|OHH1_2020|OHH1_2022|OHH1_2018</td></tr><tr><td>2024</td><td>NYH2_2024</td><td>13.352</td><td>9.773</td><td>3.579</td><td>349</td><td>NYH2_2021|NYH3_2021|NYS1_2021|NYH1_2018|NYH2_2017</td></tr><tr><td>2022</td><td>WIH1_2022</td><td>14.503</td><td>11.332</td><td>3.172</td><td>423</td><td>WIH1_2016|WIH1_2017|WIH1_2018|WIH1_2019|WIH1_2020</td></tr><tr><td>2022</td><td>NEH1_2022</td><td>5.003</td><td>7.959</td><td>-2.956</td><td>344</td><td>NEH1_2019|NEH1_2020|NEH1_2021|NEH2_2019|NEH3_2020</td></tr><tr><td>2022</td><td>GAH1_2022</td><td>4.989</td><td>7.832</td><td>-2.843</td><td>445</td><td>GAH1_2014|GAH2_2019|GAH1_2019|GAH2_2016|GAH2_2021</td></tr><tr><td>2024</td><td>ONH3_2024</td><td>12.718</td><td>9.964</td><td>2.753</td><td>422</td><td>WIH1_2019|TXH2_2015|TXH2_2016|TXH2_2017|NYH2_2021</td></tr><tr><td>2024</td><td>MNH1_2024</td><td>12.371</td><td>9.648</td><td>2.722</td><td>397</td><td>MNH1_2016|MNH1_2015|MNH1_2017|MNH1_2018|MNH1_2014</td></tr><tr><td>2024</td><td>MIH1_2024</td><td>12.473</td><td>9.918</td><td>2.555</td><td>407</td><td>MIH1_2021|MIH1_2016|MNH1_2016|WIH2_2018|MIH1_2019</td></tr><tr><td>2022</td><td>MNH1_2022</td><td>11.669</td><td>9.213</td><td>2.456</td><td>434</td><td>MNH1_2016|MNH1_2017|MNH1_2018|MNH1_2019|MNH1_2020</td></tr><tr><td>2024</td><td>WIH1_2024</td><td>13.904</td><td>11.502</td><td>2.402</td><td>354</td><td>WIH1_2017|WIH1_2016|WIH1_2020|WIH2_2020|WIH1_2022</td></tr></tbody></table></div>
+<h2>Highest-RMSE environments under site-history baseline</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>environment</th><th>rmse</th><th>bias</th><th>n</th></tr></thead><tbody><tr><td>2024</td><td>NEH3_2024</td><td>5.626459</td><td>-5.323054</td><td>238</td></tr><tr><td>2024</td><td>MOH1_2024</td><td>4.247767</td><td>-3.75427</td><td>583</td></tr><tr><td>2024</td><td>NYH2_2024</td><td>4.046799</td><td>-3.578549</td><td>349</td></tr><tr><td>2024</td><td>OHH1_2024</td><td>3.884302</td><td>-3.580534</td><td>341</td></tr><tr><td>2022</td><td>WIH1_2022</td><td>3.749563</td><td>-3.17155</td><td>423</td></tr><tr><td>2022</td><td>IAH2_2022</td><td>3.621156</td><td>1.338343</td><td>518</td></tr><tr><td>2022</td><td>NEH1_2022</td><td>3.468994</td><td>2.95574</td><td>344</td></tr><tr><td>2022</td><td>GAH1_2022</td><td>3.392436</td><td>2.843193</td><td>445</td></tr><tr><td>2024</td><td>MNH1_2024</td><td>3.387088</td><td>-2.722336</td><td>397</td></tr><tr><td>2024</td><td>ONH3_2024</td><td>3.282768</td><td>-2.753476</td><td>422</td></tr><tr><td>2024</td><td>IAH2_2024</td><td>3.249394</td><td>1.323814</td><td>651</td></tr><tr><td>2024</td><td>MIH1_2024</td><td>3.180414</td><td>-2.55515</td><td>407</td></tr></tbody></table></div>
+<p class="note">The metadata-weather KNN baseline was interpretable but weaker than site-history in both competition rounds, indicating that coarse metadata and simple season-level weather summaries were insufficient to replace historical site information for target-environment mean calibration.</p>
+
+</main>
+</body>
+</html>

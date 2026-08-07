@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M5 Visual Report</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: Canvas;
+  --fg: CanvasText;
+  --muted: color-mix(in srgb, CanvasText 68%, Canvas);
+  --line: color-mix(in srgb, CanvasText 18%, Canvas);
+  --soft: color-mix(in srgb, CanvasText 7%, Canvas);
+  --bar: #3b82f6;
+  --bar2: #10b981;
+  --warn: #f59e0b;
+}
+body {
+  margin: 0;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 1100px; margin: 0 auto; }
+h1 { font-size: 26px; margin: 0 0 6px; font-weight: 500; }
+h2 { font-size: 18px; margin: 28px 0 10px; font-weight: 500; }
+p { color: var(--muted); margin: 0 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--soft); }
+.k { color: var(--muted); font-size: 12px; }
+.v { font-size: 24px; font-weight: 500; margin-top: 4px; }
+svg { width: 100%; height: auto; display: block; }
+.track { fill: color-mix(in srgb, CanvasText 10%, Canvas); }
+.bar { fill: var(--bar); }
+.bar.alt { fill: var(--bar2); }
+.gridline { stroke: var(--line); stroke-width: 1; }
+.diag { stroke: var(--muted); stroke-width: 1.4; stroke-dasharray: 5 5; }
+.dot { stroke: var(--bg); stroke-width: 1.3; opacity: .9; }
+.dot2022 { fill: var(--bar); }
+.dot2024 { fill: var(--bar2); }
+.label, .value, .section-label { fill: currentColor; font-size: 12px; }
+.section-label { font-weight: 500; }
+.value { fill: var(--muted); }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+table { width: 100%; border-collapse: collapse; min-width: 720px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { font-weight: 500; background: var(--soft); }
+tr:last-child td { border-bottom: 0; }
+.note { border-left: 3px solid var(--warn); padding-left: 10px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+
+<h1>M5 Environment-Covariate Visual Report</h1>
+<p>M5 tests whether metadata, weather, soil and crop-model-derived EC layers improve target-environment mean calibration beyond M3 site history. Hyperparameters are selected using historical training validation only; post-competition observed target values are used only for retrospective scoring, error-shift maps and failure diagnostics.</p>
+<p>Environmental covariates contain useful signal, but direct correction is risky. The scientific question is not "do weather/soil/EC features improve prediction?", but "when should the model trust these features enough to move the environment mean?"</p>
+<div class='grid'><div class='card'><div class='k'>2022 target envs</div><div class='v'>26</div><div class='k'>217 training envs; 6 M5 models</div></div><div class='card'><div class='k'>2024 target envs</div><div class='v'>23</div><div class='k'>272 training envs; 6 M5 models</div></div><div class='card'><div class='k'>2022 best LOYO family</div><div class='v'>metadata_weather_soil_ec</div><div class='k'>RMSE 2.2654; r 0.244552</div></div><div class='card'><div class='k'>2024 best LOYO family</div><div class='v'>metadata_weather</div><div class='k'>RMSE 2.043188; r 0.566571</div></div></div>
+<h2>Historical LOYO model-family selection: RMSE (Mg/ha)</h2>
+<svg viewBox="0 0 900 444" role="img" aria-label="bar chart">
+<text x="0" y="38" class="label">2022 metadata_weather_soil_ec</text>
+<rect x="210" y="24" width="600" height="18" class="track"></rect>
+<rect x="210" y="24" width="583.80" height="18" class="bar"></rect>
+<text x="801.80" y="38" class="value">2.2654</text>
+<text x="0" y="70" class="label">2022 metadata_weather_soil_ec_pca_knn</text>
+<rect x="210" y="56" width="600" height="18" class="track"></rect>
+<rect x="210" y="56" width="584.76" height="18" class="bar"></rect>
+<text x="802.76" y="70" class="value">2.269125</text>
+<text x="0" y="102" class="label">2022 ec_matrix</text>
+<rect x="210" y="88" width="600" height="18" class="track"></rect>
+<rect x="210" y="88" width="586.01" height="18" class="bar"></rect>
+<text x="804.01" y="102" class="value">2.273992</text>
+<text x="0" y="134" class="label">2022 metadata_weather_ec</text>
+<rect x="210" y="120" width="600" height="18" class="track"></rect>
+<rect x="210" y="120" width="590.38" height="18" class="bar"></rect>
+<text x="808.38" y="134" class="value">2.290932</text>
+<text x="0" y="166" class="label">2022 metadata_weather_soil</text>
+<rect x="210" y="152" width="600" height="18" class="track"></rect>
+<rect x="210" y="152" width="590.42" height="18" class="bar"></rect>
+<text x="808.42" y="166" class="value">2.291087</text>
+<text x="0" y="198" class="label">2022 metadata_weather</text>
+<rect x="210" y="184" width="600" height="18" class="track"></rect>
+<rect x="210" y="184" width="600.00" height="18" class="bar"></rect>
+<text x="818.00" y="198" class="value">2.328268</text>
+<text x="0" y="230" class="label">2024 metadata_weather</text>
+<rect x="210" y="216" width="600" height="18" class="track"></rect>
+<rect x="210" y="216" width="526.53" height="18" class="bar"></rect>
+<text x="744.53" y="230" class="value">2.043188</text>
+<text x="0" y="262" class="label">2024 metadata_weather_soil</text>
+<rect x="210" y="248" width="600" height="18" class="track"></rect>
+<rect x="210" y="248" width="558.02" height="18" class="bar"></rect>
+<text x="776.02" y="262" class="value">2.165384</text>
+<text x="0" y="294" class="label">2024 metadata_weather_soil_ec</text>
+<rect x="210" y="280" width="600" height="18" class="track"></rect>
+<rect x="210" y="280" width="574.12" height="18" class="bar"></rect>
+<text x="792.12" y="294" class="value">2.227826</text>
+<text x="0" y="326" class="label">2024 metadata_weather_ec</text>
+<rect x="210" y="312" width="600" height="18" class="track"></rect>
+<rect x="210" y="312" width="582.64" height="18" class="bar"></rect>
+<text x="800.64" y="326" class="value">2.260895</text>
+<text x="0" y="358" class="label">2024 metadata_weather_soil_ec_pca_knn</text>
+<rect x="210" y="344" width="600" height="18" class="track"></rect>
+<rect x="210" y="344" width="588.61" height="18" class="bar"></rect>
+<text x="806.61" y="358" class="value">2.284051</text>
+<text x="0" y="390" class="label">2024 ec_matrix</text>
+<rect x="210" y="376" width="600" height="18" class="track"></rect>
+<rect x="210" y="376" width="597.06" height="18" class="bar"></rect>
+<text x="815.06" y="390" class="value">2.31686</text>
+</svg>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>family</th><th>lambda</th><th>PCs</th><th>KNN k</th><th>features</th><th>LOYO RMSE (Mg/ha)</th><th>LOYO r</th></tr></thead><tbody><tr><td>2022</td><td>metadata_weather_soil_ec</td><td>1000.0</td><td></td><td></td><td>296</td><td>2.2654</td><td>0.244552</td></tr><tr><td>2022</td><td>metadata_weather_soil_ec_pca_knn</td><td></td><td>3</td><td>12</td><td>295</td><td>2.269125</td><td>0.261414</td></tr><tr><td>2022</td><td>ec_matrix</td><td>1000.0</td><td></td><td></td><td>208</td><td>2.273992</td><td>0.180086</td></tr><tr><td>2022</td><td>metadata_weather_ec</td><td>1000.0</td><td></td><td></td><td>267</td><td>2.290932</td><td>0.218831</td></tr><tr><td>2022</td><td>metadata_weather_soil</td><td>1000.0</td><td></td><td></td><td>89</td><td>2.291087</td><td>0.17829</td></tr><tr><td>2022</td><td>metadata_weather</td><td>1000.0</td><td></td><td></td><td>60</td><td>2.328268</td><td>0.128681</td></tr><tr><td>2024</td><td>metadata_weather</td><td>1.0</td><td></td><td></td><td>60</td><td>2.043188</td><td>0.566571</td></tr><tr><td>2024</td><td>metadata_weather_soil</td><td>10.0</td><td></td><td></td><td>89</td><td>2.165384</td><td>0.485414</td></tr><tr><td>2024</td><td>metadata_weather_soil_ec</td><td>1000.0</td><td></td><td></td><td>293</td><td>2.227826</td><td>0.412245</td></tr><tr><td>2024</td><td>metadata_weather_ec</td><td>1000.0</td><td></td><td></td><td>264</td><td>2.260895</td><td>0.381722</td></tr><tr><td>2024</td><td>metadata_weather_soil_ec_pca_knn</td><td></td><td>8</td><td>12</td><td>292</td><td>2.284051</td><td>0.374574</td></tr><tr><td>2024</td><td>ec_matrix</td><td>1000.0</td><td></td><td></td><td>205</td><td>2.31686</td><td>0.325907</td></tr></tbody></table></div>
+<h2>M2 scoring comparison: M3 site-history vs M5 environment-mean models</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>rank</th><th>model</th><th>mean_env_rmse</th><th>across_pearson_r</th><th>mean_bias</th><th>joined_rows</th></tr></thead><tbody><tr><td>2022</td><td>18</td><td>2022_m3_site_history_env_mean</td><td>2.37713</td><td>0.625149</td><td>-0.214531</td><td>10290</td></tr><tr><td>2022</td><td>32</td><td>2022_m5_metadata_weather_soil_ec_ridge_env_mean</td><td>2.507606</td><td>0.616247</td><td>-0.407231</td><td>10290</td></tr><tr><td>2022</td><td>33</td><td>2022_m5_metadata_weather_ec_ridge_env_mean</td><td>2.540551</td><td>0.610081</td><td>-0.392491</td><td>10290</td></tr><tr><td>2022</td><td>34</td><td>2022_m5_metadata_weather_soil_ridge_env_mean</td><td>2.631205</td><td>0.52328</td><td>-0.057104</td><td>10290</td></tr><tr><td>2022</td><td>35</td><td>2022_m5_metadata_weather_ridge_env_mean</td><td>2.69068</td><td>0.500154</td><td>-0.071035</td><td>10290</td></tr><tr><td>2022</td><td>36</td><td>2022_m5_ec_matrix_ridge_env_mean</td><td>2.797674</td><td>0.576896</td><td>-0.903601</td><td>10290</td></tr><tr><td>2022</td><td>40</td><td>2022_m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>2.856344</td><td>0.253406</td><td>-0.47452</td><td>10290</td></tr><tr><td>2024</td><td>16</td><td>2024_m3_site_history_env_mean</td><td>2.838678</td><td>0.35131</td><td>-0.964652</td><td>9486</td></tr><tr><td>2024</td><td>19</td><td>2024_m5_metadata_weather_soil_ridge_env_mean</td><td>2.870866</td><td>0.345661</td><td>-1.14309</td><td>9486</td></tr><tr><td>2024</td><td>20</td><td>2024_m5_metadata_weather_ridge_env_mean</td><td>3.21443</td><td>0.301069</td><td>1.838246</td><td>9486</td></tr><tr><td>2024</td><td>21</td><td>2024_m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>2.706807</td><td>0.516705</td><td>-1.048317</td><td>9486</td></tr><tr><td>2024</td><td>22</td><td>2024_m5_ec_matrix_ridge_env_mean</td><td>3.023284</td><td>0.314006</td><td>-1.511257</td><td>9486</td></tr><tr><td>2024</td><td>23</td><td>2024_m5_metadata_weather_soil_ec_ridge_env_mean</td><td>2.797995</td><td>0.388033</td><td>-1.02593</td><td>9486</td></tr><tr><td>2024</td><td>24</td><td>2024_m5_metadata_weather_ec_ridge_env_mean</td><td>2.820591</td><td>0.371878</td><td>-1.039548</td><td>9486</td></tr></tbody></table></div>
+<h2>M5.1 target-environment error shift summary</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>model</th><th># target envs improved vs M3</th><th># target envs worsened vs M3</th><th># harmful overcorrection envs</th><th>M3 mean abs error (Mg/ha)</th><th>M5 mean abs error (Mg/ha)</th><th>delta M5-M3 abs error (Mg/ha)</th></tr></thead><tbody><tr><td>2022</td><td>m5_ec_matrix_ridge_env_mean</td><td>6</td><td>15</td><td>2</td><td>1.172177</td><td>1.871475</td><td>0.699299</td></tr><tr><td>2022</td><td>m5_metadata_weather_ec_ridge_env_mean</td><td>9</td><td>12</td><td>2</td><td>1.172177</td><td>1.445087</td><td>0.27291</td></tr><tr><td>2022</td><td>m5_metadata_weather_ridge_env_mean</td><td>6</td><td>14</td><td>2</td><td>1.172177</td><td>1.630395</td><td>0.458218</td></tr><tr><td>2022</td><td>m5_metadata_weather_soil_ec_ridge_env_mean</td><td>9</td><td>12</td><td>2</td><td>1.172177</td><td>1.413294</td><td>0.241118</td></tr><tr><td>2022</td><td>m5_metadata_weather_soil_ridge_env_mean</td><td>5</td><td>15</td><td>2</td><td>1.172177</td><td>1.559446</td><td>0.38727</td></tr><tr><td>2022</td><td>m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>4</td><td>19</td><td>4</td><td>1.172177</td><td>1.892805</td><td>0.720628</td></tr><tr><td>2024</td><td>m5_ec_matrix_ridge_env_mean</td><td>8</td><td>13</td><td>1</td><td>2.016043</td><td>2.208297</td><td>0.192254</td></tr><tr><td>2024</td><td>m5_metadata_weather_ec_ridge_env_mean</td><td>10</td><td>9</td><td>1</td><td>2.016043</td><td>1.928123</td><td>-0.08792</td></tr><tr><td>2024</td><td>m5_metadata_weather_ridge_env_mean</td><td>10</td><td>12</td><td>4</td><td>2.016043</td><td>2.395346</td><td>0.379303</td></tr><tr><td>2024</td><td>m5_metadata_weather_soil_ec_ridge_env_mean</td><td>12</td><td>9</td><td>1</td><td>2.016043</td><td>1.895629</td><td>-0.120414</td></tr><tr><td>2024</td><td>m5_metadata_weather_soil_ridge_env_mean</td><td>9</td><td>11</td><td>1</td><td>2.016043</td><td>2.057847</td><td>0.041804</td></tr><tr><td>2024</td><td>m5_pca_knn_metadata_weather_soil_ec_env_mean</td><td>12</td><td>8</td><td>1</td><td>2.016043</td><td>1.72926</td><td>-0.286783</td></tr></tbody></table></div>
+<h2>Harmful overcorrection cases for full M5</h2>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>Env</th><th>Observed env mean (Mg/ha)</th><th>M3 predicted env mean (Mg/ha)</th><th>M5 full predicted env mean (Mg/ha)</th><th>M3 signed error (Mg/ha)</th><th>M5 signed error (Mg/ha)</th><th>abs error increase by M5 (Mg/ha)</th></tr></thead><tbody><tr><td>2022</td><td>IAH3_2022</td><td>11.861</td><td>11.947</td><td>10.202</td><td>0.086</td><td>-1.659</td><td>1.573</td></tr><tr><td>2022</td><td>ILH1_2022</td><td>10.941</td><td>11.234</td><td>9.129</td><td>0.293</td><td>-1.812</td><td>1.520</td></tr><tr><td>2024</td><td>ILH1_2024</td><td>10.621</td><td>11.072</td><td>9.980</td><td>0.452</td><td>-0.640</td><td>0.189</td></tr></tbody></table></div>
+<h2>Weather and CUSUM context for target environments with the largest M5-vs-M3 error shifts</h2>
+<p>This table links the environments where full M5 changed target-environment mean error most strongly relative to M3 with weather novelty and sustained CUSUM stress episodes.</p>
+<div class='table-wrap'><table><thead><tr><th>round</th><th>Env</th><th>M5 effect vs M3</th><th>delta M5-M3 abs error (Mg/ha)</th><th>max weather shift abs z</th><th>top shifted weather feature</th><th>dominant CUSUM stress family</th><th>max CUSUM stress intensity</th></tr></thead><tbody><tr><td>2024</td><td>WIH1_2024</td><td>worsened</td><td>3.020</td><td>5.109629</td><td>PRECTOTCORR__sum__w02</td><td>drought</td><td>1.919765</td></tr><tr><td>2024</td><td>MOH1_2024</td><td>improved</td><td>-1.943</td><td>2.326164</td><td>ALLSKY_SFC_PAR_TOT__mean__w00</td><td>heat</td><td>4.010169</td></tr><tr><td>2024</td><td>NEH1_2024</td><td>corrective_crossing</td><td>-1.825</td><td>2.295957</td><td>RH2M__mean__w05</td><td>drought</td><td>4.338131</td></tr><tr><td>2022</td><td>IAH3_2022</td><td>harmful_overcorrection</td><td>1.573</td><td>2.400272</td><td>T2M_MIN__mean__w00</td><td>radiation_depression</td><td>3.101447</td></tr><tr><td>2024</td><td>DEH1_2024</td><td>improved</td><td>-1.532</td><td>4.898294</td><td>QV2M__mean__w07</td><td>heat</td><td>8.113314</td></tr><tr><td>2022</td><td>ILH1_2022</td><td>harmful_overcorrection</td><td>1.520</td><td>3.683319</td><td>PRECTOTCORR__sum__w06</td><td>radiation_depression</td><td>5.185651</td></tr><tr><td>2022</td><td>INH1_2022</td><td>worsened</td><td>1.334</td><td>2.923709</td><td>PRECTOTCORR__sum__w07</td><td>radiation_depression</td><td>5.450515</td></tr><tr><td>2022</td><td>MNH1_2022</td><td>improved</td><td>-1.242</td><td>2.910775</td><td>T2M_MIN__mean__w00</td><td>radiation_depression</td><td>4.833141</td></tr><tr><td>2022</td><td>NEH1_2022</td><td>worsened</td><td>1.228</td><td>3.423282</td><td>RH2M__mean__w01</td><td>drought</td><td>3.4657</td></tr><tr><td>2024</td><td>NYH2_2024</td><td>improved</td><td>-1.211</td><td>2.211945</td><td>PRECTOTCORR__sum__w03</td><td>humidity</td><td>2.874391</td></tr><tr><td>2022</td><td>WIH1_2022</td><td>worsened</td><td>1.158</td><td>4.612663</td><td>PRECTOTCORR__sum__w08</td><td>radiation_depression</td><td>8.037607</td></tr><tr><td>2022</td><td>TXH3_2022</td><td>worsened</td><td>1.150</td><td>7.322701</td><td>PRECTOTCORR__sum__w07</td><td>heat</td><td>15.338681</td></tr><tr><td>2022</td><td>NCH1_2022</td><td>improved</td><td>-0.913</td><td>2.60965</td><td>PRECTOTCORR__sum__w06</td><td>heat</td><td>5.751573</td></tr><tr><td>2024</td><td>WIH3_2024</td><td>improved</td><td>-0.823</td><td>2.395179</td><td>PRECTOTCORR__sum__w02</td><td>drought</td><td>4.347139</td></tr></tbody></table></div>
+<p class="note">Interpretation: M5 environmental covariates contain target-year signal, especially in 2024, but full correction can worsen already accurate site-history predictions. These visual diagnostics motivate M6 gated and validation-weighted environment offsets rather than unconditional replacement of M3.</p>
+
+</main>
+</body>
+</html>

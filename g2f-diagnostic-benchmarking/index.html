@@ -1,0 +1,687 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>G2F Diagnostic Benchmarking Portfolio</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f7f4;
+      --ink: #191919;
+      --muted: #66645f;
+      --line: #d7d3c9;
+      --panel: #ffffff;
+      --soft: #eeeeea;
+      --accent: #1f1f1f;
+      --accent-soft: #dedbd2;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: inherit;
+      text-decoration-color: rgba(25, 25, 25, 0.35);
+      text-underline-offset: 3px;
+    }
+
+    a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    .page {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    .hero {
+      min-height: 430px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+      gap: 28px;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      padding: 24px 0 34px;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.25rem, 6vw, 5.5rem);
+      line-height: 0.98;
+      letter-spacing: 0;
+      max-width: 940px;
+    }
+
+    .lede {
+      margin: 22px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 9px 14px;
+      border: 1px solid var(--ink);
+      border-radius: 4px;
+      background: var(--ink);
+      color: var(--panel);
+      font-size: 0.95rem;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--ink);
+    }
+
+    .hero-figure {
+      margin: 0;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      padding: 10px;
+    }
+
+    .hero-figure img {
+      width: 100%;
+      display: block;
+      height: auto;
+    }
+
+    .hero-figure figcaption {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.86rem;
+    }
+
+    section {
+      padding: 34px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 1.55rem;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 1.05rem;
+      letter-spacing: 0;
+    }
+
+    .section-intro {
+      max-width: 760px;
+      margin: -6px 0 22px;
+      color: var(--muted);
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .metric {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px;
+      min-height: 104px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.8rem;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stage {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stage-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 46px;
+      height: 28px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .stage p,
+    .figure-card p,
+    .link-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .stage-links {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .figure-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 12px;
+    }
+
+    .figure-card img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      margin-bottom: 12px;
+    }
+
+    .figure-card h3 {
+      margin-bottom: 6px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .link-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px;
+      min-height: 146px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .link-card a {
+      margin-top: auto;
+      font-weight: 600;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      counter-reset: workflow;
+    }
+
+    .workflow-step {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 16px;
+      min-height: 170px;
+      position: relative;
+    }
+
+    .workflow-step::before {
+      counter-increment: workflow;
+      content: counter(workflow, decimal-leading-zero);
+      display: block;
+      color: var(--muted);
+      font-size: 0.82rem;
+      margin-bottom: 14px;
+    }
+
+    .workflow-step p,
+    .finding p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .findings {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .finding {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px;
+      min-height: 158px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .finding a {
+      margin-top: auto;
+      font-weight: 600;
+    }
+
+    .robustness {
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(280px, 0.92fr);
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .robustness-panel,
+    .robustness-summary {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      padding: 18px;
+    }
+
+    .robustness-panel p,
+    .robustness-summary p {
+      color: var(--muted);
+      margin: 10px 0 0;
+      font-size: 0.95rem;
+    }
+
+    .robustness-summary {
+      display: grid;
+      gap: 10px;
+    }
+
+    .check-row {
+      display: grid;
+      grid-template-columns: 70px minmax(0, 1fr);
+      gap: 12px;
+      align-items: baseline;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .check-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .check-row strong {
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .check-row span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .footer {
+      padding-top: 28px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 880px) {
+      .hero,
+      .timeline,
+      .feature-grid,
+      .link-grid,
+      .workflow,
+      .findings,
+      .robustness {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      h1 {
+        font-size: clamp(2rem, 12vw, 4.2rem);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .page {
+        padding: 20px 14px 40px;
+      }
+
+      .metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Genomes to Fields maize GxE prediction</p>
+        <h1 id="page-title">Diagnostic benchmarking, beyond the leaderboard.</h1>
+        <p class="lede">This project is for people who care about robust GxE prediction, model diagnostics and breeding decision support. It turns public G2F maize competition data into an end-to-end computational workflow for asking why models succeed or fail across environments and hybrids.</p>
+        <div class="hero-actions">
+          <a class="button" href="reports/m7-all-findings-visual-report.html">Open M7 visual report</a>
+          <a class="button secondary" href="reports/m61-validation-gate-visual-report.html">Open validation gate</a>
+          <a class="button secondary" href="reports/m71-failure-environment-atlas.html">Open failure atlas</a>
+        </div>
+        <div class="metrics" aria-label="Project summary metrics">
+          <div class="metric"><strong>67</strong><span>active scored model outputs or prediction columns</span></div>
+          <div class="metric"><strong>M1-M7</strong><span>completed diagnostic pipeline stages</span></div>
+          <div class="metric"><strong>4</strong><span>main manuscript figures assembled</span></div>
+          <div class="metric"><strong>2</strong><span>competition rounds re-analysed: 2022 and 2024</span></div>
+        </div>
+      </div>
+      <figure class="hero-figure">
+        <img src="figures/fig1_diagnostic_framework.png" alt="Diagnostic benchmarking framework diagram connecting competition files, entity layer, model consumption, decomposition metrics, failure atlas and breeding decision support.">
+        <figcaption>Fig. 1 draft: the project logic from G2F raw files to breeding decision support.</figcaption>
+      </figure>
+    </section>
+
+    <section aria-labelledby="workflow-title">
+      <h2 id="workflow-title">Computational Workflow</h2>
+      <p class="section-intro">The project follows an end-to-end analytical workflow: data preprocessing, diagnostic baseline modeling, environment stratification, error-shift analysis, failure-mode mapping and interactive visualization.</p>
+      <div class="workflow">
+        <article class="workflow-step">
+          <h3>Data preprocessing</h3>
+          <p>Build a clean working layer from raw G2F competition files while preserving official `Env`, `Hybrid` and `Yield_Mg_ha` identifiers.</p>
+        </article>
+        <article class="workflow-step">
+          <h3>Diagnostic modeling</h3>
+          <p>Train reproducible baselines that separate target-environment mean calibration from hybrid residual prediction.</p>
+        </article>
+        <article class="workflow-step">
+          <h3>Environment stratification</h3>
+          <p>Describe target environments by site-history support, weather novelty and CUSUM stress episodes.</p>
+        </article>
+        <article class="workflow-step">
+          <h3>Error-shift analysis</h3>
+          <p>Compare when environmental covariate corrections improve calibration and when they cause harmful overcorrection.</p>
+        </article>
+        <article class="workflow-step">
+          <h3>Failure-mode mapping</h3>
+          <p>Link prediction errors to environment calibration, hybrid phenotype support, genomic relatedness and parent-name ambiguity.</p>
+        </article>
+        <article class="workflow-step">
+          <h3>Interactive visualization</h3>
+          <p>Convert model outputs into visual reports, target-environment atlases and decision-support views.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="findings-title">
+      <h2 id="findings-title">Key Findings</h2>
+      <p class="section-intro">The project is organized around findings, not model names. Each finding links to the visual evidence used to diagnose the behavior.</p>
+      <div class="findings">
+        <article class="finding">
+          <h3>Site history is a strong environment-mean baseline.</h3>
+          <p>Historical site information explained much of the absolute yield level, making environment calibration a first-order source of RMSE and bias behavior.</p>
+          <a href="reports/m3-visual-report.html">View environment mean report</a>
+        </article>
+        <article class="finding">
+          <h3>Environmental covariates contain signal, but direct correction is risky.</h3>
+          <p>M5 corrections improved some target environments, especially in 2024, but also produced harmful overcorrection when M3 was already well calibrated.</p>
+          <a href="reports/m5-visual-report.html">View M5 covariate report</a>
+        </article>
+        <article class="finding">
+          <h3>Gated calibration can improve RMSE without changing hybrid ranking.</h3>
+          <p>M6 and M6.1 shifted target environment means while preserving within-environment ranking, separating calibration gains from hybrid-ranking gains.</p>
+          <a href="reports/m61-validation-gate-visual-report.html">View validation gate diagnostics</a>
+        </article>
+        <article class="finding">
+          <h3>Failure cases are not one biological category.</h3>
+          <p>Top residuals separate into target-environment calibration errors, stress-associated contexts, sparse phenotype support, low genomic relatedness and parent-name ambiguity.</p>
+          <a href="reports/m71-failure-environment-atlas.html">Open failure atlas</a>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="robustness-title">
+      <h2 id="robustness-title">Robustness Check</h2>
+      <p class="section-intro">A useful failure atlas should not collapse when reasonable diagnostic cutoffs change. I tested whether harmful-overcorrection environments and hybrid failure labels were artifacts of the thresholds used to define them.</p>
+      <div class="robustness">
+        <article class="robustness-panel">
+          <h3>Are failure labels threshold artifacts?</h3>
+          <p>I implemented two sensitivity layers without retraining models: an absolute threshold grid around the manuscript defaults, and a data-adaptive grid using round-specific empirical quantiles for large residuals and genomic relatedness.</p>
+          <p>The main hybrid support labels were stable under the absolute grid, while some residual-pattern labels became threshold-sensitive under data-adaptive residual quantiles. This makes the atlas more honest: stable findings can be emphasized, sensitive labels can be reported with caution.</p>
+          <p>Detailed threshold sensitivity outputs are summarized here for public portfolio use; full reproducibility files are kept in the research workspace.</p>
+        </article>
+        <aside class="robustness-summary" aria-label="Failure-label sensitivity summary">
+          <div class="check-row">
+            <strong>90</strong>
+            <span>threshold sets tested across both sensitivity layers</span>
+          </div>
+          <div class="check-row">
+            <strong>81</strong>
+            <span>absolute-threshold configurations for environment and hybrid failure labels</span>
+          </div>
+          <div class="check-row">
+            <strong>9</strong>
+            <span>data-adaptive configurations using round-specific empirical quantiles</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="timeline-title">
+      <h2 id="timeline-title">Visual Report Library</h2>
+      <p class="section-intro">These reports provide the technical path behind the findings. They are ordered as a research pipeline, but the main portfolio story is the workflow and diagnostic evidence above.</p>
+      <div class="timeline">
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Data entity layer and coverage audit</h3>
+            <span class="tag">M1</span>
+          </div>
+          <p>Converted raw competition files into stable `Env`, `Hybrid`, trait, genotype, metadata, weather, soil and EC working tables. This stage revealed phenotype support and observed-row coverage as first-order constraints.</p>
+          <div class="stage-links">
+            <a href="reports/m1-visual-report.html">Visual report</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Competition-style evaluation</h3>
+            <span class="tag">M2</span>
+          </div>
+          <p>Built the metric layer for RMSE, Pearson correlation, bias and observed-answer joins, allowing published submissions and reproducible diagnostic baselines to be compared with the same evaluator.</p>
+          <div class="stage-links">
+            <a href="reports/m2-visual-report.html">Visual report</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Environment mean baselines</h3>
+            <span class="tag">M3</span>
+          </div>
+          <p>Tested site-history, distance-weighted metadata-weather KNN and blended target-environment mean models. These baselines made environment calibration visible as a separate predictive mechanism.</p>
+          <div class="stage-links">
+            <a href="reports/m3-visual-report.html">Visual report</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Hybrid residual and genomic relationship baselines</h3>
+            <span class="tag">M4</span>
+          </div>
+          <p>Added parent-overlap, genomic KNN and ridge residual baselines to isolate hybrid ranking from environment calibration. M4 defines the residual layer used later by gated ensembles.</p>
+          <div class="stage-links">
+            <a href="reports/m4-visual-report.html">Visual report</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Environmental covariates and stress episodes</h3>
+            <span class="tag">M5</span>
+          </div>
+          <p>Compared weather, soil and crop-model-derived EC corrections, then converted weather windows into CUSUM stress episodes that expose sustained heat, drought, radiation and humidity anomalies.</p>
+          <div class="stage-links">
+            <a href="reports/m5-visual-report.html">Visual report</a>
+            <a href="reports/m53b-cusum-timeline-visual-report.html">CUSUM timeline</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Gated and validation-weighted calibration</h3>
+            <span class="tag">M6</span>
+          </div>
+          <p>Used conservative gates to apply environmental corrections only when target-year evidence supported them. M6.1 made the gate validation-weighted and revealed when calibration improves without changing hybrid ranking.</p>
+          <div class="stage-links">
+            <a href="reports/m61-validation-gate-visual-report.html">Visual report</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Final diagnostics and failure atlas</h3>
+            <span class="tag">M7</span>
+          </div>
+          <p>Summarized all model outputs, identified top failure environments, harmful overcorrection cases, calibration-without-ranking-change cases and hybrid-level failure modes.</p>
+          <div class="stage-links">
+            <a href="reports/m7-all-findings-visual-report.html">All findings</a>
+            <a href="reports/m71-failure-environment-atlas.html">Failure atlas</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Target environment landscape</h3>
+            <span class="tag">View</span>
+          </div>
+          <p>A separate exploratory page for understanding how target environments differ across site, year, weather shift and diagnostic context.</p>
+          <div class="stage-links">
+            <a href="reports/target-environment-landscape.html">Open landscape</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="figures-title">
+      <h2 id="figures-title">Manuscript Figure Gallery</h2>
+      <p class="section-intro">These figure drafts turn the pipeline into a manuscript-facing argument. The gallery is intentionally small: each figure answers one question a reviewer or breeding scientist would ask.</p>
+      <div class="feature-grid">
+        <article class="figure-card">
+          <img src="figures/fig2_model_consumption_metrics.png" alt="Model-consumption and metric behavior figure preview.">
+          <h3>Fig. 2: model consumption explains metric behavior</h3>
+          <p>Shows why environment calibration, hybrid ranking and environmental correction affect different metrics.</p>
+        </article>
+
+        <article class="figure-card">
+          <img src="figures/fig3_target_environment_atlas.png" alt="Target environment failure atlas preview.">
+          <h3>Fig. 3: target environment failure atlas</h3>
+          <p>Separates high-error environments by RMSE, bias direction, stress family and weather novelty.</p>
+        </article>
+
+        <article class="figure-card">
+          <img src="figures/fig4_hybrid_failure_map.png" alt="Hybrid-level failure mechanism figure preview.">
+          <h3>Fig. 4: hybrid-level failure mechanisms</h3>
+          <p>Distinguishes sparse historical support from broadly difficult and environment-specific hybrid failures.</p>
+        </article>
+
+        <article class="figure-card">
+          <img src="figures/extended_data_fig4_cusum_timelines.png" alt="CUSUM stress episode timeline preview.">
+          <h3>Extended Data: CUSUM stress episodes</h3>
+          <p>Shows how weather shift can be represented as sustained stress episodes rather than isolated outliers.</p>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="diagnostics-title">
+      <h2 id="diagnostics-title">Explore the Evidence</h2>
+      <p class="section-intro">A compact set of entry points for readers who want to inspect the most important diagnostic views directly.</p>
+      <div class="link-grid">
+        <article class="link-card">
+          <h3>Environment calibration</h3>
+          <p>M3, M5, M6 and M6.1 show that a model can improve RMSE and bias by shifting environment means without changing within-environment ranking.</p>
+          <a href="figures/extended_data_fig3_calibration_without_ranking.png">View calibration figure</a>
+        </article>
+        <article class="link-card">
+          <h3>Stress episodes</h3>
+          <p>CUSUM timelines show when weather shift is not a single outlier, but a sustained episode with onset, duration, cumulative intensity and recovery.</p>
+          <a href="reports/m53b-cusum-timeline-visual-report.html">Open CUSUM timeline</a>
+        </article>
+        <article class="link-card">
+          <h3>Harmful overcorrection</h3>
+          <p>Feature-rich environmental corrections can help, but they can also worsen an already accurate site-history baseline without a gate.</p>
+          <a href="figures/extended_data_fig2_harmful_overcorrection.png">View overcorrection figure</a>
+        </article>
+        <article class="link-card">
+          <h3>Threshold sensitivity</h3>
+          <p>Layer A and Layer B test whether failure labels remain stable when diagnostic cutoffs are varied or made data-adaptive.</p>
+          <a href="#robustness-title">Review robustness summary</a>
+        </article>
+        <article class="link-card">
+          <h3>Target environment landscape</h3>
+          <p>An exploratory view for understanding how target environments differ by site, year, weather shift and diagnostic context.</p>
+          <a href="reports/target-environment-landscape.html">Open landscape</a>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer">Public portfolio preview. Built from selected G2F visual reports and figure previews; raw competition data and manuscript drafts are not included.</p>
+  </main>
+</body>
+</html>

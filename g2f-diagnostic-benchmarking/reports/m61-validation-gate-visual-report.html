@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>G2F M6.1 Validation Gate Diagnostics</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --bg: Canvas;
+  --fg: CanvasText;
+  --muted: color-mix(in srgb, CanvasText 66%, Canvas);
+  --line: color-mix(in srgb, CanvasText 22%, Canvas);
+  --soft: color-mix(in srgb, CanvasText 7%, Canvas);
+  --blue: #2563eb;
+  --green: #059669;
+  --orange: #d97706;
+  --red: #dc2626;
+  --purple: #7c3aed;
+}
+body {
+  margin: 0;
+  padding: 28px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+main { max-width: 1180px; margin: 0 auto; }
+h1 { margin: 0 0 8px; font-size: 26px; font-weight: 500; }
+h2 { margin: 22px 0 10px; font-size: 18px; font-weight: 500; }
+p { margin: 0 0 14px; color: var(--muted); }
+.controls { display: flex; flex-wrap: wrap; gap: 10px; align-items: end; margin: 16px 0; }
+label { display: grid; gap: 4px; color: var(--muted); }
+select { min-width: 190px; color: var(--fg); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 7px 9px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; margin: 12px 0; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 12px; background: var(--soft); }
+.k { color: var(--muted); font-size: 12px; }
+.v { font-size: 21px; font-weight: 500; margin-top: 3px; }
+svg { display: block; width: 100%; height: auto; }
+.axis { stroke: var(--line); }
+.tick { stroke: var(--line); }
+.label { fill: var(--muted); font-size: 12px; }
+.point text { fill: var(--fg); font-size: 12px; }
+.obs { stroke: var(--fg); stroke-width: 2; stroke-dasharray: 5 5; }
+.m3 { fill: var(--blue); }
+.m5 { fill: var(--red); }
+.m6 { fill: var(--green); }
+.m61 { fill: var(--purple); }
+.bar-good { fill: var(--green); }
+.bar-bad { fill: var(--red); }
+.bar-neutral { fill: var(--orange); }
+.legend { display: flex; flex-wrap: wrap; gap: 12px; color: var(--muted); margin-top: 6px; }
+.swatch { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; margin-top: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 900px; }
+th, td { padding: 8px 10px; border-bottom: 1px solid var(--line); text-align: left; white-space: nowrap; }
+th { background: var(--soft); font-weight: 500; }
+tbody tr { cursor: pointer; }
+tbody tr:hover { background: var(--soft); }
+tbody tr.active-row { outline: 2px solid var(--purple); outline-offset: -2px; }
+</style>
+</head>
+<body>
+<main>
+<h1>G2F M6.1 Validation Gate Diagnostics</h1>
+<p>Compares M3 site-history, M5 full correction, M6 hand-rule gate and M6.1 validation-weighted gate for each target environment.</p>
+<div class="controls">
+  <label>Round<select id="round"></select></label>
+  <label>Environment<select id="env"></select></label>
+  <label>Rank environment table by<select id="sort"><option value="dHand">absolute M6.1-vs-M6 hand error change</option><option value="dM3">absolute M6.1-vs-M3 error change</option><option value="cusum">CUSUM stress intensity</option><option value="wz">weather-shift novelty</option><option value="gRmse">genomic residual RMSE</option></select></label>
+</div>
+<div class="grid" id="cards"></div>
+<h2>Environment Mean Correction Path</h2>
+<p>The path plot shows how each correction moves the M3 site-history environment mean. M5 full is the unconstrained environmental-covariate correction; M6 and M6.1 show the gated corrections after shrinkage.</p>
+<svg id="offset" viewBox="0 0 980 300" role="img" aria-label="environment mean correction path from M3 to M5, M6 and M6.1"></svg>
+<div class="legend">
+  <span><i class="swatch m3"></i>M3</span>
+  <span><i class="swatch m5"></i>M5 full</span>
+  <span><i class="swatch m6"></i>M6 hand</span>
+  <span><i class="swatch m61"></i>M6.1 validation</span>
+  <span>Dashed line: observed mean</span>
+</div>
+<h2>Residual Models</h2>
+<svg id="residual" viewBox="0 0 980 230" role="img" aria-label="genomic and parent overlap residual diagnostics"></svg>
+<h2>Environment Table</h2>
+<p>The ranking control sorts this table only. Click any environment row to load that environment in the correction-path plot above.</p>
+<div class="table-wrap"><table id="tbl"></table></div>
+</main>
+<script>
+const data = [{"round":"2022","env":"DEH1_2022","obs":11.324058069698017,"n":473,"m3":10.31904088,"m5":9.79208392,"m6":10.25580604,"m61":10.25580604,"gate":0.12,"vgate":0.12,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.907411,"family":"humidity","episodes":2,"wz":1.895549,"wfeat":"QV2M__mean__w10","site":"site_history","dHand":0.0,"dM3":0.063235,"gRmse":2.552437,"gBias":-0.990128,"pRmse":2.35687,"pBias":-0.0794},{"round":"2022","env":"GAH1_2022","obs":4.989130697148953,"n":445,"m3":7.83232396,"m5":7.21578694,"m6":7.67510702,"m61":7.67510702,"gate":0.255,"vgate":0.255,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":13.00717,"family":"heat","episodes":3,"wz":3.935957,"wfeat":"PRECTOTCORR__sum__w02","site":"site_history","dHand":0.0,"dM3":-0.157217,"gRmse":3.294647,"gBias":2.744598,"pRmse":4.041148,"pBias":3.620094},{"round":"2022","env":"GAH2_2022","obs":9.50119542071951,"n":437,"m3":9.1671237,"m5":8.70489147,"m6":9.05618796,"m61":9.05618796,"gate":0.24,"vgate":0.24,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":9.010859,"family":"heat","episodes":3,"wz":2.376111,"wfeat":"WS2M__mean__w07","site":"site_history","dHand":0.0,"dM3":0.110936,"gRmse":1.934857,"gBias":-0.368119,"pRmse":1.876281,"pBias":0.500671},{"round":"2022","env":"IAH1_2022","obs":11.042634023437088,"n":524,"m3":10.81664302,"m5":10.33337278,"m6":10.75865059,"m61":10.75865059,"gate":0.12,"vgate":0.12,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.073775,"family":"radiation_depression","episodes":1,"wz":2.305889,"wfeat":"PRECTOTCORR__sum__w03","site":"site_history","dHand":0.0,"dM3":0.057992,"gRmse":2.235126,"gBias":-0.238508,"pRmse":2.316956,"pBias":0.668117},{"round":"2022","env":"IAH2_2022","obs":9.673941467000281,"n":518,"m3":11.01228424,"m5":10.42806608,"m6":10.94217806,"m61":10.94217806,"gate":0.12,"vgate":0.12,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.220292,"family":"drought","episodes":2,"wz":2.193941,"wfeat":"ALLSKY_SFC_SW_DWN__mean__w03","site":"site_history","dHand":0.0,"dM3":-0.070106,"gRmse":3.575067,"gBias":1.319101,"pRmse":4.027748,"pBias":2.220974},{"round":"2022","env":"IAH3_2022","obs":11.861395841608987,"n":521,"m3":11.94722025,"m5":10.20229886,"m6":11.73782968,"m61":11.73782968,"gate":0.12,"vgate":0.12,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.101447,"family":"radiation_depression","episodes":1,"wz":2.400272,"wfeat":"T2M_MIN__mean__w00","site":"site_history","dHand":0.0,"dM3":0.037742,"gRmse":1.851255,"gBias":-0.072654,"pRmse":1.947514,"pBias":0.828586},{"round":"2022","env":"IAH4_2022","obs":12.399431750663407,"n":518,"m3":10.86262121,"m5":10.24588984,"m6":10.78861345,"m61":10.78861345,"gate":0.12,"vgate":0.12,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":2.9347,"family":"drought","episodes":2,"wz":2.265375,"wfeat":"T2M_MIN__mean__w00","site":"site_history","dHand":0.0,"dM3":0.074008,"gRmse":2.573506,"gBias":-1.561192,"pRmse":2.12573,"pBias":-0.658081},{"round":"2022","env":"ILH1_2022","obs":10.941481865266887,"n":446,"m3":11.23434749,"m5":9.12900625,"m6":10.86591277,"m61":10.86591277,"gate":0.175,"vgate":0.175,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":5.185651,"family":"radiation_depression","episodes":2,"wz":3.683319,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":0.0,"dM3":-0.217297,"gRmse":2.217549,"gBias":-0.008033,"pRmse":2.26906,"pBias":0.868666},{"round":"2022","env":"INH1_2022","obs":11.649905208015426,"n":458,"m3":10.94487549,"m5":9.61107821,"m6":10.71146097,"m61":10.71146097,"gate":0.175,"vgate":0.175,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":5.450515,"family":"radiation_depression","episodes":2,"wz":2.923709,"wfeat":"PRECTOTCORR__sum__w07","site":"site_history","dHand":0.0,"dM3":0.233415,"gRmse":1.863483,"gBias":-0.880381,"pRmse":1.564389,"pBias":-0.016544},{"round":"2022","env":"MIH1_2022","obs":9.203664841374735,"n":507,"m3":9.95084972,"m5":9.52675422,"m6":9.87027158,"m61":9.87027158,"gate":0.19,"vgate":0.19,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":6.582283,"family":"radiation_depression","episodes":2,"wz":7.287745,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":0.0,"dM3":-0.080578,"gRmse":1.902105,"gBias":0.713859,"pRmse":2.411768,"pBias":1.641676},{"round":"2022","env":"MNH1_2022","obs":11.669409105017438,"n":434,"m3":9.21322353,"m5":10.45500084,"m6":9.43053456,"m61":9.43053456,"gate":0.175,"vgate":0.175,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":4.833141,"family":"radiation_depression","episodes":1,"wz":2.910775,"wfeat":"T2M_MIN__mean__w00","site":"site_history","dHand":0.0,"dM3":-0.217311,"gRmse":2.82591,"gBias":-2.186129,"pRmse":2.15558,"pBias":-1.297888},{"round":"2022","env":"MOH2_2022","obs":6.1873656424139645,"n":453,"m3":7.96679014,"m5":8.27913055,"m6":8.0136412,"m61":8.0136412,"gate":0.15,"vgate":0.15,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":2.669878,"family":"humidity","episodes":0,"wz":4.136404,"wfeat":"PRECTOTCORR__sum__w03","site":"site_history","dHand":0.0,"dM3":0.046851,"gRmse":2.607978,"gBias":1.894438,"pRmse":3.230217,"pBias":2.746475},{"round":"2022","env":"NCH1_2022","obs":9.698020639381076,"n":530,"m3":8.67132845,"m5":9.58465164,"m6":8.83116001,"m61":8.83116001,"gate":0.175,"vgate":0.175,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":5.751573,"family":"heat","episodes":2,"wz":2.60965,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":0.0,"dM3":-0.159832,"gRmse":1.431695,"gBias":-0.811138,"pRmse":1.052238,"pBias":0.073586},{"round":"2022","env":"NEH1_2022","obs":5.002783782337604,"n":344,"m3":7.9585239,"m5":9.18663988,"m6":8.12431956,"m61":8.12431956,"gate":0.135,"vgate":0.135,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.4657,"family":"drought","episodes":1,"wz":3.423282,"wfeat":"RH2M__mean__w01","site":"site_history","dHand":0.0,"dM3":0.165796,"gRmse":3.695574,"gBias":3.178498,"pRmse":4.415629,"pBias":4.022456},{"round":"2022","env":"NEH2_2022","obs":0.0,"n":0,"m3":9.21198451,"m5":9.24772519,"m6":9.22020487,"m61":9.22020487,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":12.158974,"family":"drought","episodes":1,"wz":4.165352,"wfeat":"RH2M__mean__w01","site":"site_history","dHand":0.0,"dM3":0.0,"gRmse":0.0,"gBias":0.0,"pRmse":0.0,"pBias":0.0},{"round":"2022","env":"NEH3_2022","obs":0.0,"n":0,"m3":8.49043649,"m5":9.24415842,"m6":8.66379253,"m61":8.66379253,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":12.158974,"family":"drought","episodes":1,"wz":4.165352,"wfeat":"RH2M__mean__w01","site":"site_history","dHand":0.0,"dM3":0.0,"gRmse":0.0,"gBias":0.0,"pRmse":0.0,"pBias":0.0},{"round":"2022","env":"NYH2_2022","obs":10.774536642683954,"n":427,"m3":9.68965107,"m5":10.18132523,"m6":9.79536101,"m61":9.79536101,"gate":0.215,"vgate":0.215,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":8.271937,"family":"radiation_depression","episodes":2,"wz":3.330727,"wfeat":"PRECTOTCORR__sum__w08","site":"site_history","dHand":0.0,"dM3":-0.10571,"gRmse":2.047852,"gBias":-0.927455,"pRmse":1.75564,"pBias":-0.022026},{"round":"2022","env":"NYH3_2022","obs":10.291688257616924,"n":435,"m3":10.23319959,"m5":10.13700111,"m6":10.21251692,"m61":10.21251692,"gate":0.215,"vgate":0.215,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":8.271937,"family":"radiation_depression","episodes":2,"wz":3.330727,"wfeat":"PRECTOTCORR__sum__w08","site":"site_history","dHand":0.0,"dM3":0.020683,"gRmse":1.772661,"gBias":-0.014209,"pRmse":1.922531,"pBias":0.879365},{"round":"2022","env":"OHH1_2022","obs":11.546524453873703,"n":430,"m3":10.80775789,"m5":10.05944679,"m6":10.70673589,"m61":10.70673589,"gate":0.135,"vgate":0.135,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":3.38375,"family":"radiation_depression","episodes":1,"wz":2.99835,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":0.0,"dM3":0.101022,"gRmse":1.997361,"gBias":-0.786895,"pRmse":1.856876,"pBias":0.115301},{"round":"2022","env":"SCH1_2022","obs":0.0,"n":0,"m3":5.1936332,"m5":8.32251094,"m6":5.78811997,"m61":5.78811997,"gate":0.19,"vgate":0.19,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":6.185744,"family":"heat","episodes":3,"wz":5.457081,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":0.0,"dM3":0.0,"gRmse":0.0,"gBias":0.0,"pRmse":0.0,"pBias":0.0},{"round":"2022","env":"TXH1_2022","obs":8.002035932798838,"n":347,"m3":8.31757269,"m5":8.34203045,"m6":8.32319797,"m61":8.32319797,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":15.338681,"family":"heat","episodes":2,"wz":7.322701,"wfeat":"PRECTOTCORR__sum__w07","site":"site_history","dHand":0.0,"dM3":0.005625,"gRmse":1.445754,"gBias":0.400256,"pRmse":1.880458,"pBias":1.233058},{"round":"2022","env":"TXH2_2022","obs":8.0166871162107,"n":335,"m3":8.670489,"m5":8.51601998,"m6":8.63496113,"m61":8.63496113,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":15.338681,"family":"heat","episodes":2,"wz":7.322701,"wfeat":"PRECTOTCORR__sum__w07","site":"site_history","dHand":0.0,"dM3":-0.035528,"gRmse":1.700823,"gBias":0.681409,"pRmse":2.170296,"pBias":1.547205},{"round":"2022","env":"TXH3_2022","obs":6.595046136199881,"n":342,"m3":6.5960551,"m5":7.74595055,"m6":6.86053105,"m61":6.86053105,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":15.338681,"family":"heat","episodes":2,"wz":7.322701,"wfeat":"PRECTOTCORR__sum__w07","site":"site_history","dHand":0.0,"dM3":0.264476,"gRmse":1.384293,"gBias":0.357313,"pRmse":1.796569,"pBias":1.199409},{"round":"2022","env":"WIH1_2022","obs":14.503424951050064,"n":423,"m3":11.3318747,"m5":10.17346066,"m6":11.06543947,"m61":11.06543947,"gate":0.23,"vgate":0.23,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":8.037607,"family":"radiation_depression","episodes":2,"wz":4.612663,"wfeat":"PRECTOTCORR__sum__w08","site":"site_history","dHand":0.0,"dM3":0.266435,"gRmse":3.875427,"gBias":-3.383957,"pRmse":3.107569,"pBias":-2.476324},{"round":"2022","env":"WIH2_2022","obs":11.609351751276844,"n":501,"m3":9.9210068,"m5":10.66320797,"m6":10.1102681,"m61":10.1102681,"gate":0.255,"vgate":0.255,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":8.037607,"family":"radiation_depression","episodes":3,"wz":2.578957,"wfeat":"T2M_MIN__mean__w00","site":"site_history","dHand":0.0,"dM3":-0.189261,"gRmse":2.384089,"gBias":-1.440568,"pRmse":2.028201,"pBias":-0.525413},{"round":"2022","env":"WIH3_2022","obs":12.305694429469163,"n":442,"m3":10.3903892,"m5":10.90999241,"m6":10.48131976,"m61":10.48131976,"gate":0.175,"vgate":0.175,"rel":1.0,"best":"metadata_weather_soil_ec","cusum":7.381097,"family":"radiation_depression","episodes":2,"wz":2.775428,"wfeat":"T2M_MIN__mean__w00","site":"site_history","dHand":0.0,"dM3":-0.090931,"gRmse":2.455487,"gBias":-1.758225,"pRmse":1.929153,"pBias":-0.897498},{"round":"2024","env":"DEH1_2024","obs":8.698438512883333,"n":600,"m3":10.63935215,"m5":9.10755034,"m6":10.22576566,"m61":10.27483693,"gate":0.27,"vgate":0.237965,"rel":0.917122,"best":"metadata_weather","cusum":8.113314,"family":"heat","episodes":3,"wz":4.898294,"wfeat":"QV2M__mean__w07","site":"site_history","dHand":0.049071,"dM3":-0.364515,"gRmse":2.681544,"gBias":1.787579,"pRmse":2.894246,"pBias":2.178663},{"round":"2024","env":"GAH1_2024","obs":5.900717203336158,"n":354,"m3":7.47794608,"m5":7.95501782,"m6":7.58767258,"m61":7.58539933,"gate":0.23,"vgate":0.225235,"rel":0.917122,"best":"metadata_weather","cusum":16.949219,"family":"humidity","episodes":2,"wz":12.53956,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":-0.002273,"dM3":0.107453,"gRmse":2.872068,"gBias":2.069362,"pRmse":3.579616,"pBias":2.901897},{"round":"2024","env":"GAH2_2024","obs":9.495818716585365,"n":369,"m3":9.35693794,"m5":8.60511324,"m6":9.15394527,"m61":9.15815098,"gate":0.27,"vgate":0.264406,"rel":0.917122,"best":"metadata_weather","cusum":13.753895,"family":"heat","episodes":3,"wz":9.895704,"wfeat":"QV2M__mean__w07","site":"site_history","dHand":-0.004206,"dM3":0.198787,"gRmse":1.297492,"gBias":0.043558,"pRmse":1.706816,"pBias":0.885102},{"round":"2024","env":"IAH2_2024","obs":9.39246880893702,"n":651,"m3":10.71628246,"m5":10.50169701,"m6":10.68194879,"m61":10.68266014,"gate":0.16,"vgate":0.156685,"rel":0.917122,"best":"metadata_weather","cusum":3.857813,"family":"drought","episodes":3,"wz":1.883249,"wfeat":"T2MDEW__mean__w04","site":"site_history","dHand":0.000711,"dM3":-0.033622,"gRmse":3.277095,"gBias":1.526712,"pRmse":3.519056,"pBias":2.010102},{"round":"2024","env":"IAH4_2024","obs":13.172728662484849,"n":759,"m3":11.3063563,"m5":10.57010951,"m6":11.18855681,"m61":11.19099747,"gate":0.16,"vgate":0.156685,"rel":0.917122,"best":"metadata_weather","cusum":3.196183,"family":"drought","episodes":3,"wz":2.392401,"wfeat":"PRECTOTCORR__sum__w01","site":"site_history","dHand":-0.002441,"dM3":0.115359,"gRmse":2.519662,"gBias":-1.731622,"pRmse":2.179932,"pBias":-1.220835},{"round":"2024","env":"ILH1_2024","obs":10.62053994767027,"n":370,"m3":11.07221278,"m5":9.98031857,"m6":10.92480706,"m61":10.92786109,"gate":0.135,"vgate":0.132203,"rel":0.917122,"best":"metadata_weather","cusum":1.811728,"family":"humidity","episodes":1,"wz":3.357763,"wfeat":"PRECTOTCORR__sum__w02","site":"site_history","dHand":0.003054,"dM3":-0.144352,"gRmse":1.660745,"gBias":0.421203,"pRmse":1.683455,"pBias":0.523823},{"round":"2024","env":"INH1_2024","obs":11.851449020124543,"n":273,"m3":11.18189621,"m5":10.90791092,"m6":11.1449082,"m61":11.14567453,"gate":0.135,"vgate":0.132203,"rel":0.917122,"best":"metadata_weather","cusum":1.484267,"family":"humidity","episodes":0,"wz":2.809645,"wfeat":"PRECTOTCORR__sum__w06","site":"site_history","dHand":-0.000766,"dM3":0.036222,"gRmse":1.749436,"gBias":-0.643026,"pRmse":1.714771,"pBias":-0.509215},{"round":"2024","env":"MIH1_2024","obs":12.473123914587223,"n":407,"m3":9.91797424,"m5":10.40630484,"m6":9.99122383,"m61":9.9897061,"gate":0.15,"vgate":0.146892,"rel":0.917122,"best":"metadata_weather","cusum":2.338946,"family":"humidity","episodes":1,"wz":4.534759,"wfeat":"PRECTOTCORR__sum__w02","site":"site_history","dHand":0.001518,"dM3":-0.071732,"gRmse":2.971513,"gBias":-2.388388,"pRmse":2.891561,"pBias":-2.273684},{"round":"2024","env":"MNH1_2024","obs":12.370664101559194,"n":397,"m3":9.6483286,"m5":10.11589683,"m6":9.71145031,"m61":9.71014252,"gate":0.135,"vgate":0.132203,"rel":0.917122,"best":"metadata_weather","cusum":1.887433,"family":"humidity","episodes":2,"wz":3.928224,"wfeat":"PRECTOTCORR__sum__w01","site":"site_history","dHand":0.001308,"dM3":-0.061814,"gRmse":3.184395,"gBias":-2.566331,"pRmse":3.077899,"pBias":-2.442593},{"round":"2024","env":"MOH1_2024","obs":11.260187891048027,"n":583,"m3":7.50591742,"m5":9.44844319,"m6":7.81672154,"m61":7.77984463,"gate":0.16,"vgate":0.141016,"rel":0.917122,"best":"metadata_weather","cusum":4.010169,"family":"heat","episodes":2,"wz":2.326164,"wfeat":"ALLSKY_SFC_PAR_TOT__mean__w00","site":"site_history","dHand":0.036877,"dM3":-0.273927,"gRmse":3.718592,"gBias":-3.232423,"pRmse":3.285829,"pBias":-2.748308},{"round":"2024","env":"NCH1_2024","obs":8.791953864937904,"n":773,"m3":8.59543938,"m5":8.81685747,"m6":8.65522226,"m61":8.65398365,"gate":0.27,"vgate":0.264406,"rel":0.917122,"best":"metadata_weather","cusum":10.822104,"family":"humidity","episodes":3,"wz":7.627067,"wfeat":"QV2M__mean__w07","site":"site_history","dHand":0.001239,"dM3":-0.058544,"gRmse":1.775268,"gBias":0.118153,"pRmse":1.769393,"pBias":0.612312},{"round":"2024","env":"NEH1_2024","obs":9.386939960305439,"n":239,"m3":7.3483106,"m5":9.60045344,"m6":7.70865345,"m61":7.66589877,"gate":0.16,"vgate":0.141016,"rel":0.917122,"best":"metadata_weather","cusum":4.338131,"family":"drought","episodes":2,"wz":2.295957,"wfeat":"RH2M__mean__w05","site":"site_history","dHand":0.042755,"dM3":-0.317588,"gRmse":1.812424,"gBias":-1.362584,"pRmse":1.371688,"pBias":-0.563041},{"round":"2024","env":"NEH2_2024","obs":6.356014541130252,"n":238,"m3":8.56445426,"m5":8.73497112,"m6":8.60111538,"m61":8.60035573,"gate":0.215,"vgate":0.210545,"rel":0.917122,"best":"metadata_weather","cusum":8.920513,"family":"drought","episodes":2,"wz":2.700757,"wfeat":"GWETROOT__mean__w01","site":"site_history","dHand":-0.00076,"dM3":0.035901,"gRmse":2.745398,"gBias":2.620154,"pRmse":3.519967,"pBias":3.393378},{"round":"2024","env":"NEH3_2024","obs":14.068794191894957,"n":238,"m3":8.74574007,"m5":8.75118973,"m6":8.74691175,"m61":8.74688747,"gate":0.215,"vgate":0.210545,"rel":0.917122,"best":"metadata_weather","cusum":8.920513,"family":"drought","episodes":2,"wz":2.700757,"wfeat":"GWETROOT__mean__w01","site":"site_history","dHand":2.4e-05,"dM3":-0.001147,"gRmse":5.226187,"gBias":-4.959787,"pRmse":4.481355,"pBias":-4.142185},{"round":"2024","env":"NYH2_2024","obs":13.35170757482808,"n":349,"m3":9.77315844,"m5":10.98380149,"m6":9.91843561,"m61":9.91542595,"gate":0.12,"vgate":0.117514,"rel":0.917122,"best":"metadata_weather","cusum":2.874391,"family":"humidity","episodes":2,"wz":2.211945,"wfeat":"PRECTOTCORR__sum__w03","site":"site_history","dHand":0.00301,"dM3":-0.142268,"gRmse":3.788809,"gBias":-3.339375,"pRmse":3.695137,"pBias":-3.22492},{"round":"2024","env":"NYH3_2024","obs":8.951848423781081,"n":370,"m3":10.29624381,"m5":10.95120577,"m6":10.37483925,"m61":10.37321101,"gate":0.12,"vgate":0.117514,"rel":0.917122,"best":"metadata_weather","cusum":2.874391,"family":"humidity","episodes":2,"wz":2.211945,"wfeat":"PRECTOTCORR__sum__w03","site":"site_history","dHand":-0.001628,"dM3":0.076967,"gRmse":2.090433,"gBias":1.515733,"pRmse":2.177731,"pBias":1.631732},{"round":"2024","env":"OHH1_2024","obs":14.667061637680352,"n":341,"m3":11.08652745,"m5":10.42720297,"m6":11.00740851,"m61":11.00904759,"gate":0.12,"vgate":0.117514,"rel":0.917122,"best":"metadata_weather","cusum":1.993616,"family":"humidity","episodes":2,"wz":1.58118,"wfeat":"T2M__mean__w03","site":"site_history","dHand":-0.001639,"dM3":0.07748,"gRmse":3.53035,"gBias":-3.267421,"pRmse":2.806839,"pBias":-2.449825},{"round":"2024","env":"ONH3_2024","obs":12.717621606409953,"n":422,"m3":9.9641457,"m5":10.09774778,"m6":9.98752606,"m61":9.98704162,"gate":0.175,"vgate":0.171374,"rel":0.917122,"best":"metadata_weather","cusum":3.090051,"family":"humidity","episodes":1,"wz":3.085003,"wfeat":"PRECTOTCORR__sum__w03","site":"state_history","dHand":0.000484,"dM3":-0.022896,"gRmse":3.132881,"gBias":-2.618884,"pRmse":3.044413,"pBias":-2.505457},{"round":"2024","env":"SCH1_2024","obs":0.0,"n":0,"m3":4.46283213,"m5":8.03124879,"m6":5.1408313,"m61":5.06038848,"gate":0.19,"vgate":0.167457,"rel":0.917122,"best":"metadata_weather","cusum":12.55161,"family":"heat","episodes":2,"wz":9.546793,"wfeat":"QV2M__mean__w07","site":"site_history","dHand":0.0,"dM3":0.0,"gRmse":0.0,"gBias":0.0,"pRmse":0.0,"pBias":0.0},{"round":"2024","env":"TXH1_2024","obs":6.859085293489452,"n":237,"m3":8.45954077,"m5":7.94112918,"m6":8.31956964,"m61":8.32246964,"gate":0.27,"vgate":0.264406,"rel":0.917122,"best":"metadata_weather","cusum":22.36934,"family":"humidity","episodes":3,"wz":11.675751,"wfeat":"QV2M__mean__w07","site":"site_history","dHand":0.0029,"dM3":-0.137071,"gRmse":2.266967,"gBias":1.840855,"pRmse":3.019873,"pBias":2.642127},{"round":"2024","env":"WIH1_2024","obs":13.903625793485876,"n":354,"m3":11.50180111,"m5":8.48143325,"m6":11.35078272,"m61":11.36869954,"gate":0.05,"vgate":0.044068,"rel":0.917122,"best":"metadata_weather","cusum":1.919765,"family":"drought","episodes":1,"wz":5.109629,"wfeat":"PRECTOTCORR__sum__w02","site":"site_history","dHand":-0.017917,"dM3":0.133102,"gRmse":3.070222,"gBias":-2.446667,"pRmse":2.975739,"pBias":-2.320381},{"round":"2024","env":"WIH2_2024","obs":11.792006003291498,"n":741,"m3":10.58350746,"m5":10.83270498,"m6":10.61341116,"m61":10.61279166,"gate":0.12,"vgate":0.117514,"rel":0.917122,"best":"metadata_weather","cusum":2.310406,"family":"drought","episodes":2,"wz":2.087864,"wfeat":"PRECTOTCORR__sum__w01","site":"site_history","dHand":0.00062,"dM3":-0.029284,"gRmse":2.045966,"gBias":-0.923585,"pRmse":1.871573,"pBias":-0.438694},{"round":"2024","env":"WIH3_2024","obs":10.59313759124228,"n":421,"m3":11.71152064,"m5":10.88841088,"m6":11.54689869,"m61":11.55030965,"gate":0.2,"vgate":0.195856,"rel":0.917122,"best":"metadata_weather","cusum":4.347139,"family":"drought","episodes":3,"wz":2.395179,"wfeat":"PRECTOTCORR__sum__w02","site":"site_history","dHand":0.003411,"dM3":-0.161211,"gRmse":2.039671,"gBias":1.06898,"pRmse":2.111533,"pBias":1.185867}];
+const roundSel = document.getElementById('round');
+const envSel = document.getElementById('env');
+const sortSel = document.getElementById('sort');
+const cards = document.getElementById('cards');
+const offsetSvg = document.getElementById('offset');
+const residualSvg = document.getElementById('residual');
+const tbl = document.getElementById('tbl');
+const fmt = (x, d=3) => Number.isFinite(x) ? x.toFixed(d) : '';
+function uniq(xs) { return [...new Set(xs)]; }
+function init() {
+  uniq(data.map(d => d.round)).forEach(r => roundSel.add(new Option(r, r)));
+  roundSel.value = '2024';
+  updateEnvs();
+  roundSel.addEventListener('change', updateEnvs);
+  envSel.addEventListener('change', render);
+  sortSel.addEventListener('change', render);
+  render();
+}
+function updateEnvs() {
+  envSel.innerHTML = '';
+  data.filter(d => d.round === roundSel.value).map(d => d.env).sort().forEach(e => envSel.add(new Option(e, e)));
+  render();
+}
+function current() { return data.find(d => d.round === roundSel.value && d.env === envSel.value) || data[0]; }
+function sx(x, lo, hi) { return 90 + (x - lo) / Math.max(hi - lo, 0.001) * 800; }
+function renderCards(d) {
+  const delta = d.dHand;
+  const deltaClass = delta < 0 ? 'improved' : delta > 0 ? 'worsened' : 'unchanged';
+  cards.innerHTML = [
+    ['M6.1 gate', fmt(d.vgate, 3)],
+    ['Validation reliability', fmt(d.rel, 3) + ' / ' + d.best],
+    ['M6.1 vs hand', deltaClass + ' ' + fmt(delta, 3)],
+    ['Stress signal', d.family + ' CUSUM ' + fmt(d.cusum, 2)],
+    ['Weather shift', fmt(d.wz, 2) + ' / ' + d.wfeat],
+    ['Residual RMSE', 'G ' + fmt(d.gRmse, 3) + ' | P ' + fmt(d.pRmse, 3)]
+  ].map(([k,v]) => `<div class="card"><div class="k">${k}</div><div class="v">${v}</div></div>`).join('');
+}
+function renderOffset(d) {
+  const vals = [d.obs, d.m3, d.m5, d.m6, d.m61].filter(Number.isFinite);
+  const lo = Math.min(...vals) - 0.25;
+  const hi = Math.max(...vals) + 0.25;
+  const paths = [
+    ['Unconstrained correction: M3 -> M5 full', d.m5, 'm5'],
+    ['Hand-rule gate: M3 -> M6 hand', d.m6, 'm6'],
+    ['Validation-weighted gate: M3 -> M6.1', d.m61, 'm61']
+  ];
+  let s = `<defs>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="m5"/></marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="m6"/></marker>
+    <marker id="arrow-purple" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" class="m61"/></marker>
+  </defs>`;
+  s += `<line class="axis" x1="90" y1="218" x2="890" y2="218"/>`;
+  for (let i=0;i<=5;i++) {
+    const x = 90 + i * 160;
+    const val = lo + (hi-lo)*i/5;
+    s += `<line class="tick" x1="${x}" y1="212" x2="${x}" y2="224"/><text class="label" x="${x}" y="246" text-anchor="middle">${fmt(val,1)}</text>`;
+  }
+  s += `<text class="label" x="490" y="278" text-anchor="middle">Target environment mean Yield_Mg_ha</text>`;
+  const ox = sx(d.obs, lo, hi);
+  s += `<line class="obs" x1="${ox}" y1="28" x2="${ox}" y2="230"/><text class="label" x="${ox}" y="20" text-anchor="middle">observed mean ${fmt(d.obs,2)}</text>`;
+  const xM3 = sx(d.m3, lo, hi);
+  paths.forEach((p, i) => {
+    const [name, val, cls] = p;
+    const y = 58 + i * 58;
+    const xEnd = sx(val, lo, hi);
+    const marker = cls === 'm5' ? 'arrow-red' : cls === 'm6' ? 'arrow-green' : 'arrow-purple';
+    const stroke = cls === 'm5' ? 'var(--red)' : cls === 'm6' ? 'var(--green)' : 'var(--purple)';
+    s += `<g class="point">
+      <text x="24" y="${y+5}">${name}</text>
+      <line x1="${xM3}" y1="${y}" x2="${xEnd}" y2="${y}" stroke-width="3" stroke="${stroke}" marker-end="url(#${marker})" opacity="0.75"/>
+      <circle class="m3" cx="${xM3}" cy="${y}" r="7"/>
+      <circle class="${cls}" cx="${xEnd}" cy="${y}" r="8"/>
+      <text x="${xM3}" y="${y-13}" text-anchor="middle">M3 ${fmt(d.m3,2)}</text>
+      <text x="${xEnd}" y="${y+24}" text-anchor="middle">${fmt(val,2)}</text>
+    </g>`;
+  });
+  offsetSvg.innerHTML = s;
+}
+function renderResidual(d) {
+  const rows = [
+    ['Genomic KNN RMSE', d.gRmse, false],
+    ['Genomic KNN bias', d.gBias, true],
+    ['Parent overlap RMSE', d.pRmse, false],
+    ['Parent overlap bias', d.pBias, true]
+  ];
+  const maxAbs = Math.max(...rows.map(r => Math.abs(r[1])), 0.1);
+  let s = `<line class="axis" x1="490" y1="25" x2="490" y2="190"/>`;
+  rows.forEach((r, i) => {
+    const y = 46 + i * 42;
+    const value = r[1];
+    const x0 = 490;
+    const w = Math.abs(value) / maxAbs * 360;
+    const x = value >= 0 ? x0 : x0 - w;
+    const cls = r[2] ? (Math.abs(value) < 0.25 ? 'bar-good' : 'bar-neutral') : 'bar-neutral';
+    s += `<text class="label" x="28" y="${y+5}">${r[0]}</text><rect class="${cls}" x="${x}" y="${y-12}" width="${w}" height="24" rx="4"/><text class="label" x="${value >= 0 ? x0 + w + 8 : x - 8}" y="${y+5}" text-anchor="${value >= 0 ? 'start' : 'end'}">${fmt(value,3)}</text>`;
+  });
+  residualSvg.innerHTML = s;
+}
+function renderTable() {
+  const rows = data.filter(d => d.round === roundSel.value).slice().sort((a,b) => Math.abs(b[sortSel.value]) - Math.abs(a[sortSel.value])).slice(0, 12);
+  tbl.innerHTML = `<thead><tr><th>Env</th><th>M6.1 gate</th><th>reliability</th><th>M6.1 vs M6 hand abs-error delta</th><th>M6.1 vs M3 abs-error delta</th><th>CUSUM stress</th><th>weather-shift z</th><th>genomic RMSE</th><th>parent RMSE</th></tr></thead><tbody>` +
+    rows.map(d => `<tr data-env="${d.env}" class="${d.env === envSel.value ? 'active-row' : ''}"><td>${d.env}</td><td>${fmt(d.vgate,3)}</td><td>${fmt(d.rel,3)}</td><td>${fmt(d.dHand,3)}</td><td>${fmt(d.dM3,3)}</td><td>${d.family} ${fmt(d.cusum,2)}</td><td>${fmt(d.wz,2)}</td><td>${fmt(d.gRmse,3)}</td><td>${fmt(d.pRmse,3)}</td></tr>`).join('') + `</tbody>`;
+  tbl.querySelectorAll('tbody tr').forEach(tr => {
+    tr.addEventListener('click', () => {
+      envSel.value = tr.dataset.env;
+      render();
+    });
+  });
+}
+function render() {
+  const d = current();
+  if (!d) return;
+  renderCards(d);
+  renderOffset(d);
+  renderResidual(d);
+  renderTable();
+}
+init();
+</script>
+</body>
+</html>
