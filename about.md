@@ -41,6 +41,14 @@ B.S. in Environmental Systems, Ecology, Behavior and Evolution, August 2016-May 
 - Phenotypic, genomic, and operational data curation
 - Reproducible analytics for scalable breeding workflows
 
+### Featured Research Portfolio
+
+<div class="featured-project-card">
+  <h4>G2F Diagnostic Benchmarking</h4>
+  <p>A computational portfolio for diagnosing environment calibration, hybrid ranking, feature-layer correction, and failure modes in maize genotype-by-environment prediction.</p>
+  <a href="/g2f-diagnostic-benchmarking/">Open the portfolio hub</a>
+</div>
+
 ### Technical Skills
 
 - **Programming and analysis:** Python, R, Git, Excel, image analysis tools
