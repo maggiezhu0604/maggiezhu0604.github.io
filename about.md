@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Maggie Zhu(朱丹)
-subtitle: Plant Breeding + Data Science
+subtitle: Supporting Plant Breeding Decisions Through Advanced Analytics
 cover-img: /assets/img/IMG_2801.jpg
 permalink: /
 ---
