@@ -7,6 +7,11 @@ permalink: /outreach/
 
 My outreach work centers on science communication, food safety education, sustainability leadership, and community-engaged research.
 
+<video controls preload="metadata" style="width: 100%; max-width: 860px; border-radius: 8px; margin: 1.5rem 0;">
+  <source src="/assets/img/video-1540175771.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
 **UC Global Food Initiative Fellowship**
 As a UC Global Food Initiative Research Fellow, I contributed to a community-engaged project studying heavy metal contamination in edible plants from community garden and food desert contexts in Southern California and northern Mexico.
 
