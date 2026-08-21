@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>M7 Failure Label Sensitivity Report</title><style>
+:root { color-scheme: light; --bg:#f7f7f4; --ink:#191919; --muted:#66645f; --line:#d7d3c9; --panel:#fff; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif; line-height:1.55; }
+main { max-width: 920px; margin: 0 auto; padding: 38px 20px 64px; }
+a { color: inherit; text-underline-offset: 3px; }
+h1 { font-size: clamp(2rem, 6vw, 4rem); line-height:1; margin: 20px 0 24px; }
+h2 { margin-top: 34px; border-top:1px solid var(--line); padding-top:24px; }
+h3 { margin-top: 24px; }
+p, li { color: var(--muted); }
+.table-wrap { overflow-x:auto; border:1px solid var(--line); background:var(--panel); }
+table { border-collapse: collapse; width:100%; min-width: 680px; }
+th,td { border-bottom:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top; }
+th { color:var(--ink); background:#eeeeea; }
+code { background:#eeeeea; padding:0.1em 0.25em; border-radius:3px; }
+.back { display:inline-flex; margin-bottom:18px; color:var(--muted); }
+</style></head><body><main><a class="back" href="../index.html">Back to G2F portfolio</a><h1>M7 Failure-Label Sensitivity Analysis</h1>
+<p>Date: 2026-08-06</p>
+<h2>Purpose</h2>
+<p>    This analysis tests whether the M7 failure atlas depends strongly on arbitrary diagnostic thresholds. It re-labels existing M7 environment and hybrid failure outputs without retraining any model.</p>
+<p>Primary hybrid labels are mutually exclusive and follow the manuscript rule order. The <code>any_*</code> columns are non-exclusive counts, so a hybrid can contribute to both <code>any_low_historical_phenotype_hybrids</code> and <code>any_low_genomic_relatedness_hybrids</code>.</p>
+<h2>Layer Definitions</h2>
+<ul>
+<li>**Layer A: absolute threshold grid** scans fixed, interpretable cutoffs around the current defaults: M3 absolute error &lt;= 0.5 / 0.75 / 1.0 Mg/ha, M5 worsening &gt;= 0.2 / 0.25 / 0.5 Mg/ha, large hybrid residual &gt;= 1.5 / 2.0 / 2.5 Mg/ha, and low genomic relatedness &lt; 0.35 / 0.45 / 0.55.</li>
+<li>**Layer B: data-adaptive threshold grid** keeps the default harmful-overcorrection definition for environment-level cases, but replaces large-residual and low-genomic-relatedness cutoffs with round-specific empirical quantiles. Large-residual quantiles are estimated from all evaluable final-model target residuals, then applied to the M7.2 top-hybrid heatmap subset.</li>
+</ul>
+<h2>Output Files</h2>
+<ul>
+<li><code>work/g2f-competition/outputs/m7_failure_label_sensitivity/m7_failure_label_sensitivity_summary.csv</code></li>
+<li><code>work/g2f-competition/outputs/m7_failure_label_sensitivity/m7_failure_label_sensitivity_cases.csv</code></li>
+<li><code>output/g2f-competition-plan/m7-failure-label-sensitivity-report.md</code></li>
+</ul>
+<h2>Default Rule Snapshot</h2>
+<div class="table-wrap"><table><thead><tr><th>threshold_set_id</th><th>harmful_envs_total</th><th>low_historical_phenotype_hybrids</th><th>low_genomic_relatedness_hybrids</th><th>parent_name_ambiguity_hybrids</th><th>high_residual_despite_support_hybrids</th><th>any_low_genomic_relatedness_hybrids</th><th>any_parent_name_ambiguity_hybrids</th><th>broadly_difficult_hybrids</th><th>environment_specific_failure_hybrids</th><th>mixed_or_mild_failure_hybrids</th></tr></thead><tbody>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>A_m3le0.75_worse0.25_resid2.0_grel0.45</th><th>9</th><th>187</th><th>0</th><th>5</th><th>8</th><th>9</th><th>5</th><th>33</th><th>5</th><th>2</th></tr></thead><tbody>
+</tbody></table></div>
+<h2>Stability Summary</h2>
+<div class="table-wrap"><table><thead><tr><th>layer</th><th>n_threshold_sets</th><th>harmful_envs_min</th><th>harmful_envs_median</th><th>harmful_envs_max</th><th>median_harmful_env_jaccard</th><th>median_hybrid_label_jaccard</th><th>median_hybrid_pattern_jaccard</th></tr></thead><tbody>
+<tr><td>Layer A absolute threshold grid</td><td>81</td><td>4</td><td>6.0</td><td>9</td><td>0.666667</td><td>1.0</td><td>0.95122</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Layer B data-adaptive threshold grid</th><th>9</th><th>9</th><th>9.0</th><th>9</th><th>1.0</th><th>1.0</th><th>0.311475</th></tr></thead><tbody>
+</tbody></table></div>
+<h2>Most Threshold-Sensitive Configurations</h2>
+<div class="table-wrap"><table><thead><tr><th>layer</th><th>threshold_set_id</th><th>harmful_envs_total</th><th>harmful_env_jaccard_vs_default</th><th>hybrid_label_assignment_jaccard_vs_default</th><th>hybrid_pattern_assignment_jaccard_vs_default</th></tr></thead><tbody>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid1.5_grel0.35</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid1.5_grel0.45</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid1.5_grel0.55</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.5_grel0.35</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.5_grel0.45</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.5_grel0.55</td><td>4</td><td>0.444444</td><td>1.0</td><td>0.95122</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.0_grel0.35</td><td>4</td><td>0.444444</td><td>1.0</td><td>1.0</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.0_grel0.45</td><td>4</td><td>0.444444</td><td>1.0</td><td>1.0</td></tr>
+<tr><td>Layer A absolute threshold grid</td><td>A_m3le0.5_worse0.5_resid2.0_grel0.55</td><td>4</td><td>0.444444</td><td>1.0</td><td>1.0</td></tr>
+</tbody></table></div>
+<div class="table-wrap"><table><thead><tr><th>Layer A absolute threshold grid</th><th>A_m3le0.5_worse0.2_resid1.5_grel0.35</th><th>6</th><th>0.666667</th><th>1.0</th><th>0.95122</th></tr></thead><tbody>
+</tbody></table></div>
+<h2>Interpretation</h2>
+<p>Use this as a robustness layer rather than as a new model result. If the main qualitative labels remain stable across Layer A and Layer B, the failure atlas is less likely to be dismissed as a threshold artifact. If a label changes substantially, that label should be reported as threshold-sensitive or moved to supplementary analysis.</p></main></body></html>
