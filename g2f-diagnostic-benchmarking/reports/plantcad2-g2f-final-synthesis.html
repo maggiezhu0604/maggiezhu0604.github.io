@@ -48,6 +48,14 @@ code { background:#eeeeea; padding:0.1em 0.25em; border-radius:3px; }
 <p>[依据] The <code>score_shuffled_plantcad2_baseline</code> had mean environment RMSE = 2.73168091 and mean within-environment Pearson r = 0.36288201, while the <code>chromosome_block_shuffled_plantcad2_baseline</code> had mean environment RMSE = 2.72807718 and mean within-environment Pearson r = 0.36597863.</p>
 <p>[依据 + 推论] These shuffled-score controls perform close to the original ordinary and PlantCAD2-weighted SNP-kernel layer, supporting the M11 interpretation that the current PlantCAD2 score-to-weight transform contributes little marker-specific incremental structure beyond generic genotype relationship geometry.</p>
 <p>[边界] M14 is an interpretation robustness check only. It does not replace the frozen M7/M10/M12 claim gates and does not create a new positive or negative biological claim.</p>
+<h2>Residual-Rescue Addendum</h2>
+<p>[依据] Decision set v14 stops further empirical PlantCAD2 expansion after M14 v3 and treats M14 v3 only as diagnostic support.</p>
+<p>[依据] M14 v3 used leave-one-environment-out splitting with held-out residual defined as observed yield minus the frozen M61 baseline prediction.</p>
+<p>[依据] The primary endpoint was held-out residual RMSE reduction, and the secondary endpoint was residual R2.</p>
+<p>[结论] <code>plantcad2_snp_delta</code> did not explain frozen M61 held-out residuals: RMSE reduction = -0.02334616 and residual R2 = -0.01688556.</p>
+<p>[依据 + 推论] The best diagnostic residual-correction signal was <code>site_year_context_delta</code>, but its effect was very small: RMSE reduction = 0.00421828 and residual R2 = 0.00303587.</p>
+<p>[结论] M14 v3 residual-rescue diagnostic strengthens the existing negative interpretation: after a strong frozen M61 baseline, PlantCAD2 SNP delta did not provide held-out residual rescue.</p>
+<p>[边界] This addendum does not change the primary claim labels. The PlantCAD2 empirical extension remains negative / exploratory_negative, with no leaderboard claim and no biological claim.</p>
 <h2>Discussion</h2>
 <p>[结论] The main contribution of the PlantCAD2 extension is not a positive accuracy gain; it is a reproducible test of whether a sequence-model functional prior can be converted into a useful G2F prediction component under frozen hypotheses and matched controls.</p>
 <p>[依据] The analysis covered three model-consumption routes: marker weights, GxE kernels, and region burdens. Each route included a frozen comparison, paired environment-level testing, negative controls, and claim-gate boundaries.</p>
@@ -65,6 +73,7 @@ code { background:#eeeeea; padding:0.1em 0.25em; border-radius:3px; }
 <tr><td>SNP-level marker weighting did not improve prediction under the frozen gate.</td><td>M7/M8 claim label = negative.</td><td>supported</td></tr>
 <tr><td>PlantCAD2 x environment GxE did not provide robust exploratory improvement.</td><td>M10 RMSE and Pearson-r paired tests; claim label = exploratory_negative.</td><td>supported</td></tr>
 <tr><td>5Mb region burden did not improve beyond ordinary burden.</td><td>M12 paired tests and claim gate; claim label = exploratory_negative.</td><td>supported</td></tr>
+<tr><td>PlantCAD2 did not rescue residuals after frozen M61 baseline.</td><td>M14 v3 LOEO residual-rescue diagnostic; RMSE reduction = -0.02334616; residual R2 = -0.01688556.</td><td>supported</td></tr>
 <tr><td>The likely failure mode is low incremental structure, not missing scores or invalid kernels.</td><td>M11 kernel similarity and numerical diagnostics.</td><td>supported/inferred</td></tr>
 </tbody></table></div>
 <div class="table-wrap"><table><thead><tr><th>PlantCAD2 has no biological value for maize yield.</th><th>Not tested.</th><th>unsupported; excluded</th></tr></thead><tbody>
@@ -73,4 +82,5 @@ code { background:#eeeeea; padding:0.1em 0.25em; border-radius:3px; }
 <p>[依据] Primary full report: <code>output/g2f-competition-plan/plantcad2-functional-prior-hypothesis-test-report.md</code>.</p>
 <p>[依据] Negative-result diagnostics: <code>work/g2f-competition/outputs/m4_functional_prior/m11_plantcad2_negative_result_diagnostic_report.md</code>.</p>
 <p>[依据] Region-burden hypothesis test: <code>work/g2f-competition/outputs/m4_functional_prior/m12_region_burden_hypothesis_test_report.md</code>.</p>
+<p>[依据] M14 v3 residual-rescue diagnostic: <code>work/g2f-competition/outputs/m14_cross_validated_residual_explanation/m14_v3_report.md</code>.</p>
 <p>[依据] Checklist and frozen decisions: <code>output/g2f-competition-plan/plantcad2-functional-prior-hypothesis-testing-checklist.md</code>.</p></main></body></html>

@@ -64,6 +64,22 @@
 
 [边界] M14 is an interpretation robustness check only. It does not replace the frozen M7/M10/M12 claim gates and does not create a new positive or negative biological claim.
 
+## Residual-Rescue Addendum
+
+[依据] Decision set v14 stops further empirical PlantCAD2 expansion after M14 v3 and treats M14 v3 only as diagnostic support.
+
+[依据] M14 v3 used leave-one-environment-out splitting with held-out residual defined as observed yield minus the frozen M61 baseline prediction.
+
+[依据] The primary endpoint was held-out residual RMSE reduction, and the secondary endpoint was residual R2.
+
+[结论] `plantcad2_snp_delta` did not explain frozen M61 held-out residuals: RMSE reduction = -0.02334616 and residual R2 = -0.01688556.
+
+[依据 + 推论] The best diagnostic residual-correction signal was `site_year_context_delta`, but its effect was very small: RMSE reduction = 0.00421828 and residual R2 = 0.00303587.
+
+[结论] M14 v3 residual-rescue diagnostic strengthens the existing negative interpretation: after a strong frozen M61 baseline, PlantCAD2 SNP delta did not provide held-out residual rescue.
+
+[边界] This addendum does not change the primary claim labels. The PlantCAD2 empirical extension remains negative / exploratory_negative, with no leaderboard claim and no biological claim.
+
 ## Discussion
 
 [结论] The main contribution of the PlantCAD2 extension is not a positive accuracy gain; it is a reproducible test of whether a sequence-model functional prior can be converted into a useful G2F prediction component under frozen hypotheses and matched controls.
@@ -94,6 +110,7 @@
 | SNP-level marker weighting did not improve prediction under the frozen gate. | M7/M8 claim label = negative. | supported |
 | PlantCAD2 x environment GxE did not provide robust exploratory improvement. | M10 RMSE and Pearson-r paired tests; claim label = exploratory_negative. | supported |
 | 5Mb region burden did not improve beyond ordinary burden. | M12 paired tests and claim gate; claim label = exploratory_negative. | supported |
+| PlantCAD2 did not rescue residuals after frozen M61 baseline. | M14 v3 LOEO residual-rescue diagnostic; RMSE reduction = -0.02334616; residual R2 = -0.01688556. | supported |
 | The likely failure mode is low incremental structure, not missing scores or invalid kernels. | M11 kernel similarity and numerical diagnostics. | supported/inferred |
 | PlantCAD2 has no biological value for maize yield. | Not tested. | unsupported; excluded |
 
@@ -104,5 +121,7 @@
 [依据] Negative-result diagnostics: `work/g2f-competition/outputs/m4_functional_prior/m11_plantcad2_negative_result_diagnostic_report.md`.
 
 [依据] Region-burden hypothesis test: `work/g2f-competition/outputs/m4_functional_prior/m12_region_burden_hypothesis_test_report.md`.
+
+[依据] M14 v3 residual-rescue diagnostic: `work/g2f-competition/outputs/m14_cross_validated_residual_explanation/m14_v3_report.md`.
 
 [依据] Checklist and frozen decisions: `output/g2f-competition-plan/plantcad2-functional-prior-hypothesis-testing-checklist.md`.
