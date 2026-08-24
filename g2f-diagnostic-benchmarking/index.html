@@ -504,7 +504,7 @@
           <h3>Are failure labels threshold artifacts?</h3>
           <p>I implemented two sensitivity layers without retraining models: an absolute threshold grid around the manuscript defaults, and a data-adaptive grid using round-specific empirical quantiles for large residuals and genomic relatedness.</p>
           <p>The main hybrid support labels were stable under the absolute grid, while some residual-pattern labels became threshold-sensitive under data-adaptive residual quantiles. This makes the atlas more honest: stable findings can be emphasized, sensitive labels can be reported with caution.</p>
-          <p>Detailed threshold sensitivity outputs are summarized here for public portfolio use; full reproducibility files are kept in the research workspace.</p>
+          <p><a href="reports/m7-failure-label-sensitivity-report.html">View sensitivity report</a></p>
         </article>
         <aside class="robustness-summary" aria-label="Failure-label sensitivity summary">
           <div class="check-row">
@@ -518,6 +518,36 @@
           <div class="check-row">
             <strong>9</strong>
             <span>data-adaptive configurations using round-specific empirical quantiles</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="discussion-title">
+      <h2 id="discussion-title">Discussion and Future Directions</h2>
+      <p class="section-intro">The portfolio now treats PlantCAD2 as a functional-prior hypothesis test rather than another leaderboard model. The result is useful because it shows how a sequence-model score can be connected to G2F prediction, and where the current connection fails.</p>
+      <div class="robustness">
+        <article class="robustness-panel">
+          <h3>PlantCAD2 functional-prior result</h3>
+          <p>PlantCAD2 scores were connected through SNP-level marker weights, a PlantCAD2 x environment GxE kernel, and 5Mb region-burden features. Across the frozen gates, the SNP-level route was negative, while the GxE and region-burden extensions were exploratory negative.</p>
+          <p>The main diagnostic insight is that the current score-to-weight transform barely changed the genomic relationship geometry: PlantCAD2 kernel correlations to ordinary and control kernels stayed near one. This makes the negative result interpretable rather than a simple scoring or numerical failure.</p>
+          <p>A later trivial-baseline pass added context-mean, parent-only, score-shuffled and chromosome-block-shuffled controls for interpretation only; these strengthen the baseline-robustness argument without reopening PlantCAD2 model tuning.</p>
+          <p>The final M14 v3 residual-rescue diagnostic froze M61 as the baseline and found that PlantCAD2 SNP delta did not explain held-out residuals under leave-one-environment-out evaluation.</p>
+          <p><a href="reports/plantcad2-g2f-final-synthesis.html">Read final synthesis</a></p>
+          <p><a href="reports/m14-v3-cross-validated-residual-explanation.html">Open M14 residual-rescue report</a></p>
+        </article>
+        <aside class="robustness-summary" aria-label="PlantCAD2 future directions summary">
+          <div class="check-row">
+            <strong>3</strong>
+            <span>frozen PlantCAD2 consumption routes tested: marker weights, GxE kernel and 5Mb burden</span>
+          </div>
+          <div class="check-row">
+            <strong>0</strong>
+            <span>confirmatory biological claims allowed by the current claim gates</span>
+          </div>
+          <div class="check-row">
+            <strong>Next</strong>
+            <span>Future directions: LD/block-aware sensitivity, annotation-aware gene-set burdens and prespecified score encodings</span>
           </div>
         </aside>
       </div>
@@ -671,7 +701,7 @@
         <article class="link-card">
           <h3>Threshold sensitivity</h3>
           <p>Layer A and Layer B test whether failure labels remain stable when diagnostic cutoffs are varied or made data-adaptive.</p>
-          <a href="#robustness-title">Review robustness summary</a>
+          <a href="reports/m7-failure-label-sensitivity-report.html">Open sensitivity report</a>
         </article>
         <article class="link-card">
           <h3>Target environment landscape</h3>
