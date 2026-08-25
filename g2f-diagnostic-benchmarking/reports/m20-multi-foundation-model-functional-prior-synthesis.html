@@ -175,12 +175,12 @@
 
     <p class="eyebrow">M20 synthesis report</p>
     <h1>Multi-foundation-model functional-prior synthesis</h1>
-    <p>This page summarizes whether PlantCAD2 and AgroNT variant scores can be converted into genotype-level functional priors that explain G2F maize yield variation beyond frozen genotype/environment baselines and matched negative controls.</p>
+    <p>This page summarizes a frozen diagnostic test of whether PlantCAD2 and AgroNT variant scores can be converted into genotype-level functional priors that explain G2F maize yield variation beyond genotype/environment baselines and matched negative controls.</p>
 
     <div class="summary" aria-label="M20 claim gate summary">
       <div class="metric"><strong>2</strong><span>foundation-model score families synthesized</span></div>
       <div class="metric"><strong>0</strong><span>models passed the frozen diagnostic claim gate</span></div>
-      <div class="metric"><strong>No</strong><span>leaderboard or biological claim allowed</span></div>
+      <div class="metric"><strong>No</strong><span>leaderboard, biological or causal-variant claim allowed</span></div>
       <div class="metric"><strong>M20</strong><span>synthesis only, no new model tuning</span></div>
     </div>
 
@@ -192,7 +192,7 @@
     <section>
       <h2>Motivation</h2>
       <p><span class="claim">Evidence.</span> The project tested the bridge from DNA sequence variation to molecular or regulatory functional prior, genotype-level burden or kernel, and agronomic GxE prediction.</p>
-      <p><span class="claim">Inference.</span> The central scientific value is a controlled test of whether sequence-derived priors survive leakage-controlled, out-of-environment and matched-control evaluation.</p>
+      <p><span class="claim">Inference.</span> The central scientific value is the controlled test: sequence-derived priors must survive leakage-controlled, out-of-environment and matched-control evaluation before they support a biological or predictive claim.</p>
     </section>
 
     <section>
@@ -231,7 +231,7 @@
           </tr>
         </tbody>
       </table>
-      <p><span class="claim">Conclusion.</span> Global claim label: <code>multi_model_diagnostic_negative</code>. No tested foundation-model functional prior passed its frozen diagnostic claim gate.</p>
+      <p><span class="claim">Conclusion.</span> Global claim label: <code>multi_model_diagnostic_negative</code>. The priors were technically scoreable and testable, but no tested route passed its frozen diagnostic claim gate.</p>
     </section>
 
     <section>
@@ -241,11 +241,21 @@
     </section>
 
     <section>
+      <h2>What This Demonstrates</h2>
+      <ul>
+        <li>A public G2F prediction problem can be converted into a reproducible diagnostic benchmark with explicit source tables and claim gates.</li>
+        <li>DNA foundation-model scores can be connected to maize GxE models through marker weights, kernels, block burdens and residual covariates.</li>
+        <li>Negative controls are essential because small residual gains can appear in shuffled or matched-control features.</li>
+        <li>A negative result can still be scientifically useful when it identifies the bottleneck and freezes the next hypothesis.</li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Future Directions</h2>
       <ul>
         <li>Move from sparse marker-weight kernels to prespecified gene-set burden tests using maize gene annotations and stress-response gene sets.</li>
-        <li>Add LD/block-aware sensitivity analysis so functional scores are aggregated over haplotype blocks rather than arbitrary single markers.</li>
-        <li>Test denser imputed variants or WGS-derived markers before concluding that sequence foundation models cannot help breeding prediction.</li>
+        <li>Add LD/block-aware aggregation so functional scores are tested over haplotype blocks rather than arbitrary single markers.</li>
+        <li>Test denser imputed variants or WGS-derived markers before drawing a broad conclusion about sequence foundation models in breeding prediction.</li>
         <li>Keep GPN / PhyloGPN / GPN-Star as a feasibility-first evolutionary-constraint branch until maize/B73-centered alignment and checkpoint assumptions are verified.</li>
       </ul>
     </section>

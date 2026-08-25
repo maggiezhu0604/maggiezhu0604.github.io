@@ -444,7 +444,7 @@
       <div>
         <p class="eyebrow">Genomes to Fields maize GxE prediction</p>
         <h1 id="page-title">Diagnostic benchmarking, beyond the leaderboard.</h1>
-        <p class="lede">This project is for people who care about robust GxE prediction, model diagnostics and breeding decision support. It turns public G2F maize competition data into an end-to-end computational workflow for asking why models succeed or fail across environments and hybrids.</p>
+        <p class="lede">I built a leakage-controlled G2F diagnostic benchmark to test how environment baselines, genomic relatedness and DNA foundation-model functional priors behave when maize yield prediction is evaluated across new environments and hybrids.</p>
         <div class="hero-actions">
           <a class="button" href="reports/m7-all-findings-visual-report.html">Open M7 visual report</a>
           <a class="button secondary" href="reports/m61-validation-gate-visual-report.html">Open validation gate</a>
@@ -452,9 +452,9 @@
         </div>
         <div class="metrics" aria-label="Project summary metrics">
           <div class="metric"><strong>67</strong><span>active scored model outputs or prediction columns</span></div>
-          <div class="metric"><strong>M1-M7</strong><span>completed diagnostic pipeline stages</span></div>
+          <div class="metric"><strong>M1-M20</strong><span>completed diagnostic, functional-prior and synthesis stages</span></div>
           <div class="metric"><strong>4</strong><span>main manuscript figures assembled</span></div>
-          <div class="metric"><strong>2</strong><span>competition rounds re-analysed: 2022 and 2024</span></div>
+          <div class="metric"><strong>2</strong><span>DNA foundation-model priors tested: PlantCAD2 and AgroNT</span></div>
         </div>
       </div>
       <figure class="hero-figure">
@@ -465,7 +465,7 @@
 
     <section aria-labelledby="workflow-title">
       <h2 id="workflow-title">Computational Workflow</h2>
-      <p class="section-intro">The project follows an end-to-end analytical workflow: data preprocessing, diagnostic baseline modeling, environment stratification, error-shift analysis, failure-mode mapping and interactive visualization.</p>
+      <p class="section-intro">The workflow is designed around controlled evidence rather than leaderboard optimization: clean data entities, reproducible baselines, environment diagnostics, residual analysis, functional-prior tests and explicit claim gates.</p>
       <div class="workflow">
         <article class="workflow-step">
           <h3>Data preprocessing</h3>
@@ -496,7 +496,7 @@
 
     <section aria-labelledby="findings-title">
       <h2 id="findings-title">Key Findings</h2>
-      <p class="section-intro">The project is organized around findings, not model names. Each finding links to the visual evidence used to diagnose the behavior.</p>
+      <p class="section-intro">The project is organized around testable findings, not model names. Each finding links to the diagnostic evidence used to separate calibration, ranking, relatedness and functional-prior behavior.</p>
       <div class="findings">
         <article class="finding">
           <h3>Site history is a strong environment-mean baseline.</h3>
@@ -583,9 +583,9 @@
       <p class="section-intro">M20 extends the PlantCAD2 work into a multi-model synthesis: two DNA foundation-model score families were converted into genotype-level priors and tested under frozen residual and negative-control gates.</p>
       <div class="robustness">
         <article class="robustness-panel">
-          <h3>PlantCAD2 and AgroNT both fail the current diagnostic gate</h3>
+          <h3>Foundation-model priors were testable, but did not pass frozen claim gates</h3>
           <p>PlantCAD2 used zero-shot SNP scores through marker-weighted kernels, GxE kernels, 5Mb burden features and residual-rescue diagnostics. AgroNT used ref-vs-alt embedding delta scores through rank-normalized marker weights, 5Mb block burdens and genomewide burden covariates.</p>
-          <p>The global M20 result is diagnostic negative: no tested foundation-model functional prior improved held-out residual prediction beyond the frozen baseline and matched controls. This is a rigorous negative result, not a model-tuning endpoint.</p>
+          <p>The global M20 result is diagnostic negative: no tested foundation-model functional prior improved held-out residual prediction beyond the frozen baseline and matched controls. The value is the controlled test itself, including the negative result and its boundary.</p>
           <table class="model-table" aria-label="Foundation model synthesis table">
             <thead>
               <tr>
@@ -630,9 +630,32 @@
           </div>
           <div class="check-row">
             <strong>Next</strong>
-            <span>Prespecified gene-set or LD-block functional burdens with frozen hypotheses</span>
+            <span>Prespecified gene-set burdens, LD/block-aware aggregation and denser variant panels</span>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section aria-labelledby="demonstrates-title">
+      <h2 id="demonstrates-title">What This Demonstrates</h2>
+      <p class="section-intro">The project is a reproducible research artifact, not only a prediction exercise. It shows the full path from public breeding data to controlled model comparison and claim management.</p>
+      <div class="findings">
+        <article class="finding">
+          <h3>Reproducible data and audit workflow</h3>
+          <p>The pipeline preserves official G2F identifiers, tracks source tables and separates raw data from derived outputs, making each diagnostic stage inspectable.</p>
+        </article>
+        <article class="finding">
+          <h3>Fair baselines and negative controls</h3>
+          <p>Environment baselines, genomic relatedness models, shuffled-score controls and claim gates make the functional-prior tests harder to overinterpret.</p>
+        </article>
+        <article class="finding">
+          <h3>Cross-environment evaluation</h3>
+          <p>Leave-one-environment-out residual tests focus on the setting that matters for GxE prediction: performance under new environments, stress contexts and limited relatedness support.</p>
+        </article>
+        <article class="finding">
+          <h3>Boundary-aware interpretation</h3>
+          <p>The final synthesis reports where PlantCAD2 and AgroNT did not help under the tested routes, and turns that result into concrete next hypotheses.</p>
+        </article>
       </div>
     </section>
 
