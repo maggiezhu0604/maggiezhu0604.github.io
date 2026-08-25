@@ -371,6 +371,31 @@
       font-size: 0.9rem;
     }
 
+    .model-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 0.92rem;
+    }
+
+    .model-table th,
+    .model-table td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 8px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .model-table th {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .model-table td:nth-child(3),
+    .model-table td:nth-child(4) {
+      font-variant-numeric: tabular-nums;
+    }
+
     .footer {
       padding-top: 28px;
       color: var(--muted);
@@ -553,6 +578,64 @@
       </div>
     </section>
 
+    <section aria-labelledby="foundation-title">
+      <h2 id="foundation-title">Foundation-Model Functional Priors</h2>
+      <p class="section-intro">M20 extends the PlantCAD2 work into a multi-model synthesis: two DNA foundation-model score families were converted into genotype-level priors and tested under frozen residual and negative-control gates.</p>
+      <div class="robustness">
+        <article class="robustness-panel">
+          <h3>PlantCAD2 and AgroNT both fail the current diagnostic gate</h3>
+          <p>PlantCAD2 used zero-shot SNP scores through marker-weighted kernels, GxE kernels, 5Mb burden features and residual-rescue diagnostics. AgroNT used ref-vs-alt embedding delta scores through rank-normalized marker weights, 5Mb block burdens and genomewide burden covariates.</p>
+          <p>The global M20 result is diagnostic negative: no tested foundation-model functional prior improved held-out residual prediction beyond the frozen baseline and matched controls. This is a rigorous negative result, not a model-tuning endpoint.</p>
+          <table class="model-table" aria-label="Foundation model synthesis table">
+            <thead>
+              <tr>
+                <th>Model</th>
+                <th>Primary route</th>
+                <th>RMSE reduction</th>
+                <th>Residual R2</th>
+                <th>Gate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>PlantCAD2</td>
+                <td>M14 frozen M61 residual rescue</td>
+                <td>-0.0233</td>
+                <td>-0.0169</td>
+                <td>Negative</td>
+              </tr>
+              <tr>
+                <td>AgroNT</td>
+                <td>M18 5Mb block-burden residual explanation</td>
+                <td>-0.0078</td>
+                <td>-0.0056</td>
+                <td>Diagnostic negative</td>
+              </tr>
+            </tbody>
+          </table>
+          <p><a href="reports/m20-multi-foundation-model-functional-prior-synthesis.html">Open M20 synthesis report</a></p>
+        </article>
+        <aside class="robustness-summary" aria-label="M20 claim gate summary">
+          <div class="check-row">
+            <strong>2</strong>
+            <span>foundation-model score families synthesized: PlantCAD2 and AgroNT</span>
+          </div>
+          <div class="check-row">
+            <strong>0</strong>
+            <span>models passed frozen diagnostic gates against matched negative controls</span>
+          </div>
+          <div class="check-row">
+            <strong>No</strong>
+            <span>leaderboard, biological or causal-variant claim is allowed by M20</span>
+          </div>
+          <div class="check-row">
+            <strong>Next</strong>
+            <span>Prespecified gene-set or LD-block functional burdens with frozen hypotheses</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
     <section aria-labelledby="timeline-title">
       <h2 id="timeline-title">Visual Report Library</h2>
       <p class="section-intro">These reports provide the technical path behind the findings. They are ordered as a research pipeline, but the main portfolio story is the workflow and diagnostic evidence above.</p>
@@ -644,6 +727,17 @@
           <p>A separate exploratory page for understanding how target environments differ across site, year, weather shift and diagnostic context.</p>
           <div class="stage-links">
             <a href="reports/target-environment-landscape.html">Open landscape</a>
+          </div>
+        </article>
+
+        <article class="stage">
+          <div class="stage-top">
+            <h3>Multi-foundation-model functional-prior synthesis</h3>
+            <span class="tag">M20</span>
+          </div>
+          <p>Compares PlantCAD2 and AgroNT score-to-prior routes under frozen residual prediction, negative controls and claim gates. The result is diagnostic negative and motivates gene-set or LD-block burden tests.</p>
+          <div class="stage-links">
+            <a href="reports/m20-multi-foundation-model-functional-prior-synthesis.html">Synthesis report</a>
           </div>
         </article>
       </div>
